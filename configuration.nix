@@ -45,7 +45,6 @@
 
   services.displayManager.ly.enable = true;
   programs.hyprland = {
-    withUWSM = true;
     enable = true;
     xwayland.enable = true;
   };
