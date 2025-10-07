@@ -34,11 +34,15 @@
     };
   };
 
-  programs.hyprland = {
+  wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
     settings = {
-      monitor = "eDP-1,1920x1080@60,0x0,1";
-      input = { kb_layout = "uk"; };
+      "$mod" = "SUPER";
+      bind = [ "$mod, F, exec, firefox"
+               "$mod, RETURN, exec, $terminal" ];
+      monitor = ",preferred,auto,auto";
+      input = { kb_layout = "gb"; };
       exec-once = [ "kitty" ];
     };
   };

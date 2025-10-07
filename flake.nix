@@ -5,11 +5,9 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, hyprland, ... }:
+  outputs = { self, nixpkgs, home-manager, disko, ... }:
     let
       system = "x86_64-linux";
     in {
@@ -20,7 +18,6 @@
           ./configuration.nix
           ./disk-config.nix
           ./disk-config.nix
-          hyprland.homeManagerModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

@@ -44,24 +44,16 @@
   };
 
   services.displayManager.ly.enable = true;
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
+  programs.hyprland.enable = true;
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  # services.printing.enable = true; # Printing
 
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
   services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
+  # services.libinput.enable = true; # Touchpad support
 
   users.users.fqian = {
     isNormalUser = true;
@@ -72,22 +64,21 @@
   environment.systemPackages = with pkgs; [
     vim 
     wget
+    evtest
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
+  # Some programs need SUID wrappers, can be configured further or are started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
   #   enable = true;
   #   enableSSHSupport = true;
   # };
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # services.openssh.enable = true; # Enable the OpenSSH daemon.
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
