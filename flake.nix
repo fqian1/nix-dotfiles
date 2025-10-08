@@ -3,12 +3,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    nvim-config.url = "path:./nvim";
+    nixCats.url = "github:BirdeeHub/nixCats-nvim";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, nixCats, ... }@inputs:
     let
       system = "x86_64-linux";
     in {
@@ -22,6 +22,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs =  {inherit inputs;};
             home-manager.users.fqian = {
               imports = [
 	        ./home.nix

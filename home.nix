@@ -1,6 +1,9 @@
 { config, pkgs, inputs, ... }:
 
 {
+  imports = [
+    ./nvim
+  ];
   home.username = "fqian";
   home.homeDirectory = "/home/fqian";
   home.stateVersion = "25.05";
@@ -10,12 +13,6 @@
     vim
     ripgrep
   ];
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    package = inputs.nvim-config.packages${pkgs.system}.example;
-  };
 
   programs.bash = {
     enable = true;
