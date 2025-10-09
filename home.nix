@@ -1,9 +1,13 @@
 { config, pkgs, inputs, ... }:
 
+let
+  mnw = inputs.mnw;
+in
 {
   imports = [
-    ./nvim
+    mnw.homeManagerModules.mnw
   ];
+
   home.username = "fqian";
   home.homeDirectory = "/home/fqian";
   home.stateVersion = "25.05";
@@ -12,7 +16,44 @@
     tree
     vim
     ripgrep
+    inputs.nvim-config.packages.x86_64-linux.default
   ];
+
+    programs.mnw = {
+    enable = true;
+
+    # Use the unwrapped version, as mnw will wrap it.
+    neovimPackage = pkgs.neovim-unwrapped;
+
+    # Tell mnw where your init.lua is.
+    # The path is relative to this home.nix file.
+    luaFiles = [ ./nvim/init.lua ];
+
+    # This is where you define the plugins that Nix should manage.
+    # This corresponds directly to the `plugins` block in the example flake.
+    plugins = {
+      # Plugins that are always loaded. lazy.nvim itself must be here.
+      start = [
+        pkgs.vimPlugins.lazy-nvim
+      ];
+
+      # Plugins that lazy.nvim will lazy-load from the Nix store.
+      # The names here must match what you use in your Lua config.
+      # e.g., "nvim-telescope/telescope.nvim" becomes `pkgs.vimPlugins.telescope-nvim`
+      # and "nvim-lua/plenary.nvim" becomes `pkgs.vimPlugins.plenary-nvim`
+      opt = [
+        pkgs.vimPlugins.telescope-nvim
+        pkgs.vimPlugins.plenary-nvim
+      ];
+
+      # This section is for developing your own config.
+      # It tells mnw to link your config files into the Neovim package.
+      dev.myconfig = {
+        # This links the entire ./nvim directory.
+        # It's "pure" because its contents are known at build time.
+        pure = ./nvim;
+      };
+    };
 
   programs.bash = {
     enable = true;

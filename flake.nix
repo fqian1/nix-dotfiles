@@ -3,17 +3,19 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    mnw.url = "github:Gerg-L/mnw";
+    mnw.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, nixCats, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, mnw,  ... }@inputs:
     let
       system = "x86_64-linux";
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit inputs; };
         modules = [
           disko.nixosModules.disko
           ./configuration.nix
@@ -22,7 +24,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs =  {inherit inputs;};
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.fqian = {
               imports = [
 	        ./home.nix
