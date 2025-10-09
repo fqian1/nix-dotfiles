@@ -4,7 +4,7 @@ let
   mnw = inputs.mnw;
 in
 {
-  smports = [
+  imports = [
     mnw.homeManagerModules.mnw
   ];
 
@@ -22,7 +22,7 @@ in
     enable = true;
     neovim = pkgs.neovim-unwrapped;
     luaFiles = [ ./nvim/init.lua ];
-    initLua = ''require("lua.config.options")'';
+    # initLua = ''require("lua.config.options")'';
 
     plugins = {
       start = [
