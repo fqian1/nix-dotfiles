@@ -2,6 +2,7 @@
 vim.keymap.set("n", " ", "<Nop>", { silent = true, remap = false })
 vim.g.mapleader = " "
 
+
 -- mnw is a global set by mnw
 -- so if it's set this config is being ran from nix
 if mnw ~= nil then

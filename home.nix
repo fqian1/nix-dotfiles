@@ -4,7 +4,7 @@ let
   mnw = inputs.mnw;
 in
 {
-  imports = [
+  smports = [
     mnw.homeManagerModules.mnw
   ];
 
@@ -22,6 +22,7 @@ in
     enable = true;
     neovim = pkgs.neovim-unwrapped;
     luaFiles = [ ./nvim/init.lua ];
+    initLua = ''require("lua.config.options")'';
 
     plugins = {
       start = [
@@ -32,6 +33,12 @@ in
 
       opt = [
         pkgs.vimPlugins.nvim-web-devicons
+        pkgs.vimPlugins.kanagawa-nvim
+        pkgs.vimPlugins.nvim-treesitter
+        pkgs.vimPlugins.nvim-treesitter-textobjects
+        pkgs.vimPlugins.nvim-treesitter-context
+        pkgs.vimPlugins.ts-comments-nvim
+        pkgs.vimPlugins.vim-matchup
         pkgs.vimPlugins.telescope-nvim
         pkgs.vimPlugins.telescope-frecency-nvim
         pkgs.vimPlugins.telescope-file-browser-nvim
