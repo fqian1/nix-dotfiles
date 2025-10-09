@@ -56,21 +56,6 @@
         "type": "github"
       }
     },
-    "mnw_2": {
-      "locked": {
-        "lastModified": 1758834834,
-        "narHash": "sha256-Y7IvY4F8vajZyp3WGf+KaiIVwondEkMFkt92Cr9NZmg=",
-        "owner": "Gerg-L",
-        "repo": "mnw",
-        "rev": "cfbc7d1cc832e318d0863a5fc91d940a96034001",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Gerg-L",
-        "repo": "mnw",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1759735786,
@@ -87,44 +72,12 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1759831965,
-        "narHash": "sha256-vgPm2xjOmKdZ0xKA6yLXPJpjOtQPHfaZDRtH+47XEBo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "c9b6fb798541223bbb396d287d16f43520250518",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nvim-config": {
-      "inputs": {
-        "mnw": "mnw_2",
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "path": "./nvim",
-        "type": "path"
-      },
-      "original": {
-        "path": "./nvim",
-        "type": "path"
-      },
-      "parent": []
-    },
     "root": {
       "inputs": {
         "disko": "disko",
         "home-manager": "home-manager",
         "mnw": "mnw",
-        "nixpkgs": "nixpkgs",
-        "nvim-config": "nvim-config"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

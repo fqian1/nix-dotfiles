@@ -16,50 +16,44 @@ in
     tree
     vim
     ripgrep
-    inputs.nvim-config.packages.x86_64-linux.default
   ];
 
-    programs.mnw = {
+  programs.mnw = {
     enable = true;
-
-    # Use the unwrapped version, as mnw will wrap it.
-    neovimPackage = pkgs.neovim-unwrapped;
-
-    # Tell mnw where your init.lua is.
-    # The path is relative to this home.nix file.
+    neovim = pkgs.neovim-unwrapped;
     luaFiles = [ ./nvim/init.lua ];
 
-    # This is where you define the plugins that Nix should manage.
-    # This corresponds directly to the `plugins` block in the example flake.
     plugins = {
-      # Plugins that are always loaded. lazy.nvim itself must be here.
       start = [
         pkgs.vimPlugins.lazy-nvim
-      ];
-
-      # Plugins that lazy.nvim will lazy-load from the Nix store.
-      # The names here must match what you use in your Lua config.
-      # e.g., "nvim-telescope/telescope.nvim" becomes `pkgs.vimPlugins.telescope-nvim`
-      # and "nvim-lua/plenary.nvim" becomes `pkgs.vimPlugins.plenary-nvim`
-      opt = [
-        pkgs.vimPlugins.telescope-nvim
         pkgs.vimPlugins.plenary-nvim
+        pkgs.vimPlugins.oil-nvim
       ];
 
-      # This section is for developing your own config.
-      # It tells mnw to link your config files into the Neovim package.
+      opt = [
+        pkgs.vimPlugins.nvim-web-devicons
+        pkgs.vimPlugins.telescope-nvim
+        pkgs.vimPlugins.telescope-frecency-nvim
+        pkgs.vimPlugins.telescope-file-browser-nvim
+        pkgs.vimPlugins.telescope-fzy-native-nvim
+        pkgs.vimPlugins.telescope-ui-select-nvim
+      ];
+
       dev.myconfig = {
-        # This links the entire ./nvim directory.
-        # It's "pure" because its contents are known at build time.
         pure = ./nvim;
       };
     };
+  };
+
+
+
 
   programs.bash = {
     enable = true;
     shellAliases = {
       test = "echo test";
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/#nixos";
+      vim = "nvim";
     };
   };
 
