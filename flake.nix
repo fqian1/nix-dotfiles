@@ -3,19 +3,23 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    mnw.url = "github:Gerg-L/mnw";
-    mnw.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, mnw,  ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko,  ... }@inputs:
     let
       system = "x86_64-linux";
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
+        packages = {
+	  nvim-config = pkgs.vimUtils.buildVimPlugin {
+	    name = "nvim-config";
+	    src = "./nvim";
+	  };
+	};
         modules = [
           disko.nixosModules.disko
           ./configuration.nix

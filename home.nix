@@ -1,13 +1,6 @@
 { config, pkgs, inputs, ... }:
 
-let
-  mnw = inputs.mnw;
-in
 {
-  imports = [
-    mnw.homeManagerModules.mnw
-  ];
-
   home.username = "fqian";
   home.homeDirectory = "/home/fqian";
   home.stateVersion = "25.05";
@@ -18,43 +11,6 @@ in
     ripgrep
   ];
 
-  programs.mnw = {
-    enable = true;
-    neovim = pkgs.neovim-unwrapped;
-    luaFiles = [ ./nvim/init.lua ];
-    # initLua = ''require("lua.config.options")'';
-
-    plugins = {
-      start = [
-        pkgs.vimPlugins.lazy-nvim
-        pkgs.vimPlugins.plenary-nvim
-        pkgs.vimPlugins.oil-nvim
-      ];
-
-      opt = [
-        pkgs.vimPlugins.nvim-web-devicons
-        pkgs.vimPlugins.kanagawa-nvim
-        pkgs.vimPlugins.nvim-treesitter
-        pkgs.vimPlugins.nvim-treesitter-textobjects
-        pkgs.vimPlugins.nvim-treesitter-context
-        pkgs.vimPlugins.ts-comments-nvim
-        pkgs.vimPlugins.vim-matchup
-        pkgs.vimPlugins.telescope-nvim
-        pkgs.vimPlugins.telescope-frecency-nvim
-        pkgs.vimPlugins.telescope-file-browser-nvim
-        pkgs.vimPlugins.telescope-fzy-native-nvim
-        pkgs.vimPlugins.telescope-ui-select-nvim
-      ];
-
-      dev.myconfig = {
-        pure = ./nvim;
-      };
-    };
-  };
-
-
-
-
   programs.bash = {
     enable = true;
     shellAliases = {
@@ -62,6 +18,42 @@ in
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/#nixos";
       vim = "nvim";
     };
+  };
+
+  programs.neovim = {
+    enable = true;
+    plugins = with pkgs; [
+      vimPlugins.undotree
+      vimPlugins.nvim-treesitter.withAllGrammars
+      vimPlugins.nvim-treesitter-textobjects
+      vimPlugins.nvim-treesitter-context
+      vimPlugins.vim-matchup
+      vimPlugins.nvim-autopairs
+      vimPlugins.nvim-cmp
+      vimPlugins.cmp-nvim-lsp
+      vimPlugins.cmp-buffer
+      vimPlugins.cmp-path
+      vimPlugins.cmp-cmdline
+      vimPlugins.luasnip
+      vimPlugins.friendly-snippets
+      vimPlugins.lspkind-nvim
+      vimPlugins.cmp-luasnip
+      vimPlugins.nvim-lspconfig
+      vimPlugins.bufferline-nvim
+      vimPlugins.nvim-web-devicons
+      vimPlugins.kanagawa-nvim
+      vimPlugins.conform-nvim
+      vimPlugins.gitsigns-nvim
+      vimPlugins.indent-blankline-nvim
+      vimPlugins.lsp_lines-nvim
+      vimPlugins.lualine-nvim
+      vimPlugins.telescope-nvim
+      vimPlugins.telescope-ui-select
+      vimPlugins.telescope-frecency-select
+      vimPlugins.telescope-file-browser-nvim
+      vimPlugins.telescope-fzy-native-nvim
+      inputs.self.packages.${pkgs.system}.nvim-config
+    ];
   };
 
   programs.git = {
@@ -85,6 +77,10 @@ in
     settings = {
       exec-once = [
         "waybar & hyprpaper & mako & hypridle"
+      ];
+      monitor = [
+        "HDMI-A,1920x1080@144,0x0,1"
+        "DP-1,3440x1440@240,auto-left,1"
       ];
   
       input = {
