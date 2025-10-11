@@ -24,6 +24,7 @@
     enable = true;
     plugins = with pkgs; [
       vimPlugins.undotree
+      vimPlugins.crates-nvim
       vimPlugins.nvim-treesitter.withAllGrammars
       vimPlugins.nvim-treesitter-textobjects
       vimPlugins.nvim-treesitter-context
@@ -80,7 +81,7 @@
       ];
       monitor = [
         "HDMI-A,1920x1080@144,0x0,1"
-        "DP-1,3440x1440@240,auto-left,1"
+        "DP-1,3440x1440@240,auto-right,1"
       ];
   
       input = {
