@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, nvimConfigPkg, ... }:
 
 {
   home.username = "fqian";
@@ -37,7 +37,7 @@
       vimPlugins.luasnip
       vimPlugins.friendly-snippets
       vimPlugins.lspkind-nvim
-      vimPlugins.cmp-luasnip
+      vimPlugins.cmp_luasnip
       vimPlugins.nvim-lspconfig
       vimPlugins.bufferline-nvim
       vimPlugins.nvim-web-devicons
@@ -48,11 +48,11 @@
       vimPlugins.lsp_lines-nvim
       vimPlugins.lualine-nvim
       vimPlugins.telescope-nvim
-      vimPlugins.telescope-ui-select
-      vimPlugins.telescope-frecency-select
+      vimPlugins.telescope-ui-select-nvim
+      vimPlugins.telescope-frecency-nvim
       vimPlugins.telescope-file-browser-nvim
       vimPlugins.telescope-fzy-native-nvim
-      inputs.self.packages.${pkgs.system}.nvim-config
+      nvimConfigPkg
     ];
   };
 

@@ -10,16 +10,15 @@
   outputs = { self, nixpkgs, home-manager, disko,  ... }@inputs:
     let
       system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
     in {
+        packages.${system}.nvim-config = pkgs.vimUtils.buildVimPlugin {
+	  name = "my-nvim-config";
+	  src = ./nvim;
+	};
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
-        packages = {
-	  nvim-config = pkgs.vimUtils.buildVimPlugin {
-	    name = "nvim-config";
-	    src = "./nvim";
-	  };
-	};
         modules = [
           disko.nixosModules.disko
           ./configuration.nix
@@ -28,7 +27,10 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.extraSpecialArgs = { 
+	      inherit inputs; 
+	      nvimConfigPkg = self.packages.${system}.nvim-config;
+	    };
             home-manager.users.fqian = {
               imports = [
 	        ./home.nix
