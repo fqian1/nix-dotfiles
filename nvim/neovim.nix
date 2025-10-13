@@ -1,6 +1,6 @@
 {
   symlinkJoin,
-  neovim,
+  neovim-unwrapped,
   makeWrapper,
   runCommandLocal,
   vimPlugins,
@@ -68,7 +68,7 @@
 in
   symlinkJoin {
     name = "neovim-custom";
-    paths = [neovim.unwrapped];
+    paths = [neovim-unwrapped];
     nativeBuildInputs = [makeWrapper];
     postBuild = ''
       wrapProgram $out/bin/nvim \
