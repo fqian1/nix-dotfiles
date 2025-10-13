@@ -44,6 +44,7 @@ in {
       test = "echo test";
       nrs = "sudo nixos-rebuild switch --flake ~/dotfiles/#nixos";
       gdot = ''cd ~/dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
+      lock = "swaylock -c 000000";
       vim = "nvim";
     };
   };
