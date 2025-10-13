@@ -1,17 +1,20 @@
-{ config, pkgs, inputs, ... }:
-
-let
-    neovim-custom = import ./nvim/neovim.nix {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
+  neovim-custom = import ./nvim/neovim.nix {
     inherit (pkgs) symlinkJoin neovim-unwrapped makeWrapper runCommandLocal vimPlugins lib;
   };
 in {
-
   home.username = "fqian";
   home.homeDirectory = "/home/fqian";
   home.stateVersion = "25.05";
   home.packages = with pkgs; [
     firefox
     tree
+    nerd-fonts.fira-code
     vim
     ripgrep
     neovim-custom
@@ -21,7 +24,15 @@ in {
     jdt-language-server
     pyright
     nil
+    wget
+    waybar
+    hyprpaper
+    alejandra
   ];
+
+  fonts.fontconfig.defaultFonts = {
+    monospace = ["FiraCode Nerd Font"];
+  };
 
   programs.swaylock = {
     enable = true;
@@ -32,6 +43,7 @@ in {
     shellAliases = {
       test = "echo test";
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/#nixos";
+      gdot = ''cd ~/nixos-dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
       vim = "nvim";
     };
   };
@@ -59,7 +71,7 @@ in {
         "waybar & hyprpaper & mako & hypridle"
       ];
       monitor = [
-        "HDMI-A,1920x1080@144,0x0,1"
+        "HDMI-A-1,1920x1080@239.96,0x0,1"
         "DP-1,3440x1440@240,auto-right,1"
       ];
 
@@ -94,7 +106,7 @@ in {
         active_opacity = 1;
         inactive_opacity = 1;
         fullscreen_opacity = 1;
-        blur = { enabled = false; };
+        blur = {enabled = false;};
       };
 
       animations = {
@@ -117,7 +129,7 @@ in {
         vfr = true;
       };
 
-      windowrulev2 = [ "suppressevent maximize, class:.*" ];
+      windowrulev2 = ["suppressevent maximize, class:.*"];
 
       "$mainMod" = "Alt_L";
       "$terminal" = "kitty";
@@ -171,7 +183,6 @@ in {
       ];
     };
   };
-
 
   programs.home-manager.enable = true;
 }
