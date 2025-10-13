@@ -11,7 +11,6 @@ in {
   home.username = "fqian";
   home.homeDirectory = "/home/fqian";
   home.stateVersion = "25.05";
-  home.sessionVariables.SHELL = "${pkgs.fish}/bin/fish";
   home.packages = with pkgs; [
     firefox
     tree
@@ -56,6 +55,16 @@ in {
     };
   };
 
+  programs.bash = {
+    initExtra = ''
+      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+      then
+        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+      fi
+    '';
+  };
+
   programs.zellij = {
     enable = true;
     enableFishIntegration = true;
@@ -73,6 +82,7 @@ in {
       font_family = "FiraCode Nerd Font";
       font_size = 12.0;
       background_opacity = "0.8";
+      shell = "${pkgs.fish}/bin/fish";
     };
   };
 
