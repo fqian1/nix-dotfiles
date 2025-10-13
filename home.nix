@@ -47,15 +47,6 @@ in {
     interactiveShellInit = ''
       set -g fish_greeting ""
     '';
-  };
-
-  programs.zellij = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-
-  programs.bash = {
-    enable = true;
     shellAliases = {
       test = "echo test";
       nrs = "sudo nixos-rebuild switch --flake ~/dotfiles/#nixos";
@@ -63,6 +54,11 @@ in {
       lock = "swaylock -c 000000";
       vim = "nvim";
     };
+  };
+
+  programs.zellij = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   programs.git = {
