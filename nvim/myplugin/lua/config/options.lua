@@ -11,7 +11,6 @@ vim.opt.iskeyword:append("-")
 vim.opt.path:append("**")
 vim.opt.selection = "exclusive"
 vim.opt.mouse = "a"
-vim.opt.clipboard:append("unnamedplus")
 vim.opt.modifiable = true
 vim.opt.showcmd = true                   -- Show incomplete commands in the bottom right
 vim.opt.wildmenu = true                  -- Enable command-line completion in a menu
