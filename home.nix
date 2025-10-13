@@ -31,7 +31,6 @@ in {
 
   programs.neovim = {
     enable = true;
-    package = neovim-custom;
   };
 
   programs.git = {
