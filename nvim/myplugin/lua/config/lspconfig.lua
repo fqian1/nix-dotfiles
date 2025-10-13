@@ -12,43 +12,43 @@ end
 
 lsp.rust_analyzer.setup({
   on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        ["rust-analyzer"] = {
-            checkOnSave = true,
-            check = {
-                command = "clippy",
-            },
-        },
+  capabilities = capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = true,
+      check = {
+        command = "clippy",
+      },
     },
+  },
 })
 
 lsp.lua_ls.setup({
   on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-        },
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
     },
+  },
 })
 
 lsp.jdtls.setup({
   on_attach = on_attach,
-    capabilities = capabilities,
+  capabilities = capabilities,
 })
 
 lsp.clangd.setup({
   on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = { "clangd" },
+  capabilities = capabilities,
+  cmd = { "clangd" },
 })
 
 lsp.pyright.setup({
   on_attach = on_attach,
-    capabilities = capabilities,
+  capabilities = capabilities,
 })
 
 lsp.nil_ls.setup({
@@ -58,5 +58,5 @@ lsp.nil_ls.setup({
 
 
 vim.diagnostic.config({
-    virtual_text = false,
+  virtual_text = false,
 })

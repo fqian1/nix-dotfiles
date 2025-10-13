@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 require("config.autocmds")
 require("config.autopairs")
 require("config.bufferline")

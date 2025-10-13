@@ -1,21 +1,6 @@
-require('treesitter').setup()
 require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    "c",
-    "cpp",
-    "rust",
-    "go",
-    "zig",
-    "asm",
-    "lua",
-    "vim",
-    "vimdoc",
-    "query",
-    "markdown",
-    "markdown_inline",
-  },
   sync_install = false,
-  auto_install = true,
+  auto_install = false,
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -66,5 +51,3 @@ require("treesitter-context").setup({
   zindex = 20,
   on_attach = nil,
 })
-
-require('ts-comments').setup()
