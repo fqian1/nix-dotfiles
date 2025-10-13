@@ -58,6 +58,16 @@ keymap("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 keymap("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 keymap("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+-- buffers
+keymap("n", "<leader>bn", ":bn<CR>", { desc = "Next buffer" })
+keymap("n", "<leader>bn", ":bp<CR>", { desc = "Previous buffer" })
+keymap("n", "<leader>sv", ":vsp<CR>", { desc = "Split right" })
+keymap("n", "<leader>sh", ":sp<CR>", { desc = "Split down" })
+keymap("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
+keymap("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+
 -- stay in visual mode after shifts
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)

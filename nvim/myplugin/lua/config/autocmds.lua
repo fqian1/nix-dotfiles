@@ -75,6 +75,11 @@ for _, method in ipairs({ "textDocument/diagnostic", "workspace/diagnostic" }) d
   end
 end
 
+local undodir = vim.fn.expand("~/.vim/undodir")
+if vim.fn.isdirectory(undodir) == 0 then
+  vim.fn.mkdir(undodir, "p")
+end
+
 -- -- Define highlight groups
 -- vim.cmd("highlight ActiveWindowBorder guifg=#b35900 guibg=NONE")
 -- vim.cmd("highlight InactiveWindowBorder guifg=#444444 guibg=NONE")
