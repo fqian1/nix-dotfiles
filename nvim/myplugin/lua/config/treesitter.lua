@@ -1,4 +1,4 @@
-require('treesitter').setup({})
+require('treesitter').setup()
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "c",
@@ -67,4 +67,4 @@ require("treesitter-context").setup({
   on_attach = nil,
 })
 
-require('ts-comments').setup({})
+require('ts-comments').setup()

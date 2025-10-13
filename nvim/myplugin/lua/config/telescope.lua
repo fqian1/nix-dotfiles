@@ -1,5 +1,5 @@
-opts = function()
-  local actions = require('telescope.actions')
+local actions = require('telescope.actions')
+local opts = {
   require('telescope').setup({
     defaults = {
       vimgrep_arguments = {
@@ -25,13 +25,6 @@ opts = function()
       }
     },
     extensions = {
-      ['ui-select'] = {
-        require('telescope.themes').get_dropdown({
-          layout_config = { width = 0.5, height = 0.4 },
-          previewer = false,
-          shorten_path = true,
-        })
-      },
       fzy_native = {
         override_generic_sorter = false,
         override_file_sorter = true,
@@ -52,11 +45,10 @@ opts = function()
       },
     }
   })
-end
+}
 
 require('telescope').setup(opts)
 require('telescope').load_extension('ui-select')
 require('telescope').load_extension('fzy_native') -- Will be used automatically
 require('telescope').load_extension('frecency')   -- Will be used automatically
 require('telescope').load_extension('file_browser')
-require('telescope').load_extension('themes')
