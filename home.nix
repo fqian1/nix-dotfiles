@@ -42,8 +42,8 @@ in {
     enable = true;
     shellAliases = {
       test = "echo test";
-      nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/#nixos";
-      gdot = ''cd ~/nixos-dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
+      nrs = "sudo nixos-rebuild switch --flake ~/dotfiles/#nixos";
+      gdot = ''cd ~/dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
       vim = "nvim";
     };
   };
