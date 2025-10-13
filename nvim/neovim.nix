@@ -1,6 +1,6 @@
 {
   symlinkJoin,
-  neovim-unwrapped,
+  neovim,
   makeWrapper,
   runCommandLocal,
   vimPlugins,
@@ -62,13 +62,13 @@
     lib.concatMapStringsSep
     "\n"
     (plugin: "ln -vsfT ${plugin} $out/pack/${packageName}/start/${lib.getName plugin}")
-    startPlugins
+    startPluginsWithDeps
   }
 '';
 in
   symlinkJoin {
     name = "neovim-custom";
-    paths = [neovim-unwrapped];
+    paths = [neovim.unwrapped];
     nativeBuildInputs = [makeWrapper];
     postBuild = ''
       wrapProgram $out/bin/nvim \
