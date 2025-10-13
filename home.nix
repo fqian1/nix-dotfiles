@@ -54,8 +54,7 @@ in {
   programs.kitty = {
     enable = true;
     settings = {
-      font_family = "Fira Code";
-      font_features = "FiraCode-Regular +calt";
+      font_family = "FiraCode Nerd Font";
       font_size = 12.0;
       background_opacity = "0.8";
     };
