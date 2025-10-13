@@ -12,10 +12,6 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-        packages.${system}.nvim-config = pkgs.vimUtils.buildVimPlugin {
-	  name = "my-nvim-config";
-	  src = ./nvim;
-	};
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
@@ -29,7 +25,6 @@
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { 
 	      inherit inputs; 
-	      nvimConfigPkg = self.packages.${system}.nvim-config;
 	    };
             home-manager.users.fqian = {
               imports = [
