@@ -1,4 +1,4 @@
-local opts = function()
+opts = function()
   local actions = require('telescope.actions')
   require('telescope').setup({
     defaults = {

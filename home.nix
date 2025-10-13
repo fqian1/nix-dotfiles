@@ -15,6 +15,12 @@ in {
     vim
     ripgrep
     neovim-custom
+    rust-analyzer
+    lua-language-server
+    clang-tools
+    jdt-language-server
+    pyright
+    nil
   ];
 
   programs.swaylock = {
@@ -47,7 +53,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-  
+
     settings = {
       exec-once = [
         "waybar & hyprpaper & mako & hypridle"
@@ -56,7 +62,7 @@ in {
         "HDMI-A,1920x1080@144,0x0,1"
         "DP-1,3440x1440@240,auto-right,1"
       ];
-  
+
       input = {
         kb_layout = "gb";
         kb_variant = "";
@@ -71,7 +77,7 @@ in {
         };
         sensitivity = 0;
       };
-  
+
       general = {
         gaps_in = 0;
         gaps_out = 0;
@@ -82,7 +88,7 @@ in {
         layout = "master";
         allow_tearing = false;
       };
-  
+
       decoration = {
         rounding = 0;
         active_opacity = 1;
@@ -90,35 +96,35 @@ in {
         fullscreen_opacity = 1;
         blur = { enabled = false; };
       };
-  
+
       animations = {
         enabled = false;
         first_launch_animation = true;
       };
-  
+
       master = {
         allow_small_split = true;
         mfact = 0.70;
         inherit_fullscreen = false;
       };
-  
+
       gestures.workspace_swipe = "off";
-  
+
       misc = {
         force_default_wallpaper = 1;
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         vfr = true;
       };
-  
+
       windowrulev2 = [ "suppressevent maximize, class:.*" ];
-  
+
       "$mainMod" = "Alt_L";
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
       "$browser" = "firefox-nightly";
       "$menu" = "wofi --show drun";
-  
+
       bind = [
         "$mainMod, RETURN, exec, $terminal"
         "$mainMod, Q, killactive,"
@@ -156,7 +162,7 @@ in {
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
       ];
-  
+
       binde = [
         "$mainMod SHIFT, h, resizeactive, -20 0"
         "$mainMod SHIFT, j, resizeactive, 0 20"
