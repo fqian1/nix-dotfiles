@@ -7,34 +7,38 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko,  ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          disko.nixosModules.disko
-          ./configuration.nix
-          ./disk-config.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { 
-	      inherit inputs; 
-	    };
-            home-manager.users.fqian = {
-              imports = [
-	        ./home.nix
-              ];
-            };
-            home-manager.backupFileExtension = "backup";
-          }
-        ];
-      };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    disko,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = {inherit inputs;};
+      modules = [
+        disko.nixosModules.disko
+        ./configuration.nix
+        ./disk-config.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
+          };
+          home-manager.users.fqian = {
+            imports = [
+              ./home.nix
+            ];
+          };
+          home-manager.backupFileExtension = "backup";
+        }
+      ];
     };
+  };
 }
-

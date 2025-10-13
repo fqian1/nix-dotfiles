@@ -14,7 +14,6 @@ in {
   home.packages = with pkgs; [
     firefox
     tree
-    nerd-fonts.fira-code
     vim
     ripgrep
     neovim-custom
@@ -30,9 +29,9 @@ in {
     alejandra
   ];
 
-  fonts.fontconfig.defaultFonts = {
-    monospace = ["FiraCode Nerd Font"];
-  };
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code
+  ];
 
   programs.swaylock = {
     enable = true;

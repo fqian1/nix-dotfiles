@@ -1,14 +1,16 @@
-{ config, lib, pkgs, ... }:
-
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./disk-config.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ./disk-config.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   hardware.graphics = {
     enable = true;
   };
@@ -27,7 +29,7 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   time.timeZone = "Europe/London";
 
@@ -38,9 +40,9 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
   console = {
-  #   font = "Lat2-Terminus16";
+    #   font = "Lat2-Terminus16";
     keyMap = "uk";
-  #   useXkbConfig = true; # use xkb.options in tty.
+    #   useXkbConfig = true; # use xkb.options in tty.
   };
 
   services.displayManager.ly.enable = true;
@@ -57,12 +59,12 @@
 
   users.users.fqian = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
     initialPassword = "password";
   };
 
   environment.systemPackages = with pkgs; [
-    vim 
+    vim
     wget
     evtest
   ];
@@ -92,4 +94,3 @@
 
   system.stateVersion = "25.05"; # Don't touch
 }
-
