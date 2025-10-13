@@ -55,8 +55,9 @@ in {
     enable = true;
     settings = {
       font_family = "Fira Code";
+      font_features = "FiraCode-Regular +calt";
       font_size = 12.0;
-      ackground_opacity = "0.8";
+      background_opacity = "0.8";
     };
   };
 
