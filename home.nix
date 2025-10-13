@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, nvimConfigPkg, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
     neovim-custom = import ./nvim/neovim.nix {
@@ -14,6 +14,7 @@ in {
     tree
     vim
     ripgrep
+    neovim-custom
   ];
 
   programs.swaylock = {
@@ -27,10 +28,6 @@ in {
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/#nixos";
       vim = "nvim";
     };
-  };
-
-  programs.neovim = {
-    enable = true;
   };
 
   programs.git = {
