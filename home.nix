@@ -1,6 +1,11 @@
 { config, pkgs, inputs, nvimConfigPkg, ... }:
 
-{
+let
+    neovim-custom = import ./nvim/neovim.nix {
+    inherit (pkgs) symlinkJoin neovim-unwrapped makeWrapper runCommandLocal vimPlugins lib;
+  };
+in {
+
   home.username = "fqian";
   home.homeDirectory = "/home/fqian";
   home.stateVersion = "25.05";
@@ -10,6 +15,10 @@
     vim
     ripgrep
   ];
+
+  programs.swaylock = {
+    enable = true;
+  };
 
   programs.bash = {
     enable = true;
@@ -22,39 +31,7 @@
 
   programs.neovim = {
     enable = true;
-    plugins = with pkgs; [
-      vimPlugins.undotree
-      vimPlugins.crates-nvim
-      vimPlugins.nvim-treesitter.withAllGrammars
-      vimPlugins.nvim-treesitter-textobjects
-      vimPlugins.nvim-treesitter-context
-      vimPlugins.vim-matchup
-      vimPlugins.nvim-autopairs
-      vimPlugins.nvim-cmp
-      vimPlugins.cmp-nvim-lsp
-      vimPlugins.cmp-buffer
-      vimPlugins.cmp-path
-      vimPlugins.cmp-cmdline
-      vimPlugins.luasnip
-      vimPlugins.friendly-snippets
-      vimPlugins.lspkind-nvim
-      vimPlugins.cmp_luasnip
-      vimPlugins.nvim-lspconfig
-      vimPlugins.bufferline-nvim
-      vimPlugins.nvim-web-devicons
-      vimPlugins.kanagawa-nvim
-      vimPlugins.conform-nvim
-      vimPlugins.gitsigns-nvim
-      vimPlugins.indent-blankline-nvim
-      vimPlugins.lsp_lines-nvim
-      vimPlugins.lualine-nvim
-      vimPlugins.telescope-nvim
-      vimPlugins.telescope-ui-select-nvim
-      vimPlugins.telescope-frecency-nvim
-      vimPlugins.telescope-file-browser-nvim
-      vimPlugins.telescope-fzy-native-nvim
-      nvimConfigPkg
-    ];
+    package = neovim-custom;
   };
 
   programs.git = {
