@@ -11,6 +11,7 @@ in {
   home.username = "fqian";
   home.homeDirectory = "/home/fqian";
   home.stateVersion = "25.05";
+  home.sessionVariables.SHELL = "${pkgs.fish}/bin/fish";
   home.packages = with pkgs; [
     firefox
     tree
@@ -32,6 +33,25 @@ in {
 
   programs.swaylock = {
     enable = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+    };
+  };
+
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set -g fish_greeting ""
+    '';
+  };
+
+  programs.zellij = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   programs.bash = {
