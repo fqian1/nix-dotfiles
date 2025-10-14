@@ -9,6 +9,10 @@
     inherit (pkgs) symlinkJoin neovim-unwrapped makeWrapper runCommandLocal vimPlugins lib;
   };
 in {
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
   home.username = "fqian";
   home.homeDirectory = "/home/fqian";
   home.stateVersion = "25.05";
