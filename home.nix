@@ -38,8 +38,6 @@ in {
   programs.starship = {
     enable = true;
     settings = lib.literalExpression ''
-                  "$schema" = 'https://starship.rs/config-schema.json'
-
       format = """
       [](color_orange)\
       $os\
