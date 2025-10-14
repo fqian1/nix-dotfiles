@@ -78,7 +78,7 @@ in {
 
   programs.kitty = {
     enable = true;
-    themeFile = "Kanagawa_dragon";
+    themeFile = "kanagawa_dragon";
     settings = {
       font_family = "FiraCode Nerd Font";
       font_size = 12.0;
