@@ -81,7 +81,7 @@ in {
     settings = {
       font_family = "FiraCode Nerd Font";
       font_size = 12.0;
-      theme = "kanagawa-dragon";
+      themeFile = "Kanagawa_dragon";
       background_opacity = "0.8";
       shell = "${pkgs.fish}/bin/fish";
     };
