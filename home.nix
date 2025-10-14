@@ -37,6 +37,7 @@ in {
 
   programs.starship = {
     enable = true;
+    enableFishIntegration = true;
     settings = lib.literalExpression ''
       format = """
       [](color_orange)\
