@@ -65,6 +65,25 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
+local persistent_folds_group = vim.api.nvim_create_augroup("PersistentFolds", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWinLeave", {
+  group = persistent_folds_group,
+  pattern = "?*",
+  callback = function()
+    vim.cmd.mkview()
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  group = persistent_folds_group,
+  pattern = "?*",
+  callback = function()
+    -- Use pcall/loadview with modifiers to suppress errors if no view exists
+    pcall(vim.cmd.loadview)
+  end,
+})
+
 for _, method in ipairs({ "textDocument/diagnostic", "workspace/diagnostic" }) do
   local default_diagnostic_handler = vim.lsp.handlers[method]
   vim.lsp.handlers[method] = function(err, result, context, config)

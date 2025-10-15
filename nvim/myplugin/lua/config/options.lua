@@ -56,8 +56,9 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()' -- Use treesitter for folding
 vim.opt.foldenable = true -- Enable folds
 vim.opt.foldlevelstart = 9 -- Start 3 folds deep
 vim.opt.foldopen = ''
+vim.opt.foldopen:remove('search')
 vim.opt.wildignore:append { '*.o', '*.obj', '*.bin', '*.dll', '*.exe' } -- Ignore common binary files during tab completion
-vim.cmd('syntax on') -- Enable syntax highlighting
+vim.cmd('syntax on')                                                    -- Enable syntax highlighting
 -- vim.cmd('colorscheme desert')          -- Set the colorscheme to 'desert'
 vim.opt.winblend = 0
 vim.opt.conceallevel = 0

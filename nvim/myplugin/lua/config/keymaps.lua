@@ -32,8 +32,8 @@ keymap("v", "K", ":m '>-2<CR>gv=gv", opts)
 keymap("n", "J", " mzJ`z", opts)
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
-keymap("n", "n", "nzzzv", opts)
-keymap("n", "N", "Nzzzv", opts)
+keymap("n", "n", "nzz", opts)
+keymap("n", "N", "Nzz", opts)
 
 -- paste and delete to void register
 keymap("x", "<leader>p", '"_dP', opts)
