@@ -514,7 +514,12 @@ in {
 
   programs.bash = {
     enable = true;
-    initExtra = ''set -o vi'';
+    initExtra = ''
+      set -o vi
+      set show-mode-in-prompt on
+      set vi-ins-mode-string "\1\e[6 q\2"
+      set vi-cmd-mode-string "\1\e[2 q\2"
+    '';
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
       gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
