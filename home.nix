@@ -25,6 +25,7 @@ in {
   };
 
   home.packages = with pkgs; [
+    wget
     tree
     vim
     ripgrep
@@ -34,14 +35,13 @@ in {
     clang-tools
     jdt-language-server
     pyright
+    alejandra
     nil
-    wget
     hyprpaper
     hyprlock
     hypridle
     hyprshot
     hyprpolkitagent
-    alejandra
     nerd-fonts.fira-code
     p7zip
   ];
@@ -501,13 +501,26 @@ in {
     };
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    fileWidgetCommand = "";
+  };
+
   programs.bash = {
     enable = true;
+    initExtra = ''set -o vi'';
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
       gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
       lock = "swaylock -c 000000";
       vim = "nvim";
+      cd = "z";
       ls = "ls -l";
     };
   };
