@@ -34,6 +34,8 @@ keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("n", "n", "nzz", opts)
 keymap("n", "N", "Nzz", opts)
+keymap("n", "{", "{zz", opts)
+keymap("n", "}", "}zz", opts)
 
 -- paste and delete to void register
 keymap("x", "<leader>p", '"_dP', opts)

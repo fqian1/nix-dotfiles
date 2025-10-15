@@ -23,6 +23,7 @@ in {
     gtk.enable = true;
     x11.enable = true;
   };
+
   home.packages = with pkgs; [
     tree
     vim
@@ -503,8 +504,8 @@ in {
   programs.bash = {
     enable = true;
     shellAliases = {
-      nrs = "sudo nixos-rebuild switch --flake ~/dotfiles/#nixos";
-      gdot = ''cd ~/dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
+      nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
+      gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
       lock = "swaylock -c 000000";
       vim = "nvim";
       ls = "ls -l";
