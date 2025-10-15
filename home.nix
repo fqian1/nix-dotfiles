@@ -506,6 +506,18 @@ in {
     enableBashIntegration = true;
   };
 
+  programs.readline = {
+    enable = true;
+    variables = {
+      editing-mode = "vi";
+      show-mode-in-prompt = "on";
+    };
+    extraConfig = ''
+      set vi-cmd-mode-string "\1\e[2 q\2"
+      set vi-ins-mode-string "\1\e[6 q\2"
+    '';
+  };
+
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
@@ -514,12 +526,6 @@ in {
 
   programs.bash = {
     enable = true;
-    initExtra = ''
-      set -o vi
-      set show-mode-in-prompt on
-      set vi-cmd-mode-string "\1\e[2 q\2cmd"
-      set vi-ins-mode-string "\1\e[6 q\2ins"
-    '';
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
       gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
