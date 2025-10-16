@@ -48,6 +48,10 @@ in {
     bat #TODO: Customise?
     yazi #TODO: Customise?
     hyperfine
+    wofi #TODO customise
+    obsidian
+    protonvpn-gui
+    qbittorrent
   ];
 
   gtk = {
@@ -293,6 +297,10 @@ in {
     };
   };
 
+  programs.wofi = {
+    enable = true;
+  };
+
   programs.hyprlock.enable = true;
   services.hypridle = {
     enable = true;
@@ -527,6 +535,21 @@ in {
     initExtra = ''
       stty susp '^H' #TODO: rebind Ctrl-H to suspend(hide) process. but doesnt work
       bind -m vi-command 'v': # disable pressing v in normal mode to start $editor
+
+      f() {
+        if [[ $# -eq 1 ]]; then
+          selected=$1
+        else
+            selected=$(fd . ~/projects ~/ ~/work -l -d 1 -t d | fzy)
+        fi
+        if [[ -z $selected ]]; then
+            return 0
+        fi
+          selected_name=$(basename "$selected" | tr . _)
+
+        zellij attach --create "$selected_name" --working-dir "$selected"
+      }
+      bind -x '"\C-f":f'
     '';
 
     shellAliases = {
@@ -542,14 +565,8 @@ in {
     #TODO: customize default disgusting ui
     enable = true;
     settings = {
-      pane_frames = true;
-      theme = "ansi";
-
-      keybinds = {
-        _props = {
-          clear-defaults = true;
-        };
-      };
+      pane_frames = false;
+      theme = "gruvbox-dark";
     };
   };
 
@@ -587,7 +604,7 @@ in {
         "HYPRCURSOR_SIZE,${toString config.home.pointerCursor.size}"
       ];
       exec-once = [
-        "hypridle"
+        "hypridle, hyprpolkitagent, nm-applet"
       ];
       monitor = [
         "HDMI-A-1,1920x1080@239.96,0x0,1"
@@ -630,7 +647,6 @@ in {
 
       animations = {
         enabled = false;
-        first_launch_animation = true;
       };
 
       master = {
@@ -638,8 +654,6 @@ in {
         mfact = 0.70;
         inherit_fullscreen = false;
       };
-
-      gestures.workspace_swipe = "off";
 
       misc = {
         force_default_wallpaper = 1;
@@ -701,6 +715,9 @@ in {
         "$mainMod SHIFT, l, resizeactive, 20 0"
       ];
     };
+    extraConfig = ''
+      ecosystem:no_update_news = true
+    '';
   };
 
   programs.home-manager.enable = true;

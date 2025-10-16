@@ -69,6 +69,21 @@
     vim
     wget
     evtest
+    protonvpn-cli
+    wireguard-tools
+    networkmanager-fortisslvpn
+    networkmanager-iodine
+    networkmanager-l2tp
+    networkmanager-openconnect
+    networkmanager-openvpn
+    networkmanager-sstp
+    networkmanager-vpnc
+    networkmanager-strongswan
+    python3
+    openssl
+    unrar
+    iputils
+    libnatpmp
   ];
 
   fonts.packages = with pkgs; [
@@ -82,10 +97,25 @@
   #   enableSSHSupport = true;
   # };
 
-  services.openssh.enable = true; # Enable the OpenSSH daemon.
+  services.openssh = {
+    enable = true; # Enable the OpenSSH daemon.
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "prohibit-password";
+    };
+  };
 
+  networking = {
+    firewall = {
+      allowedTCPPorts = [22];
+      checkReversePath = false;
+    };
+    wg-quick.interfaces.protonvpn = {
+      autostart = true;
+      configFile = "/etc/wireguard/wg-CH-850.conf";
+    };
+  };
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
