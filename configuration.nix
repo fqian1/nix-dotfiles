@@ -83,16 +83,17 @@
     # wireless.enable = true;
     networkmanager.enable = true;
     firewall = {
+      enable = true;
       allowedTCPPorts = [22];
       checkReversePath = false;
       trustedInterfaces = ["wg0" "protonvpn"];
       extraCommands = ''
         iptables -A OUTPUT -d 89.222.96.30 -p udp --dport 51820 -j ACCEPT
-        ip6tables -A OUTPUT -d YOUR_VPN_SERVER_IP_HERE -p udp --dport 51820 -j ACCEPT
+        #ip6tables -A OUTPUT -d 89.222.96.30 -p udp --dport 51820 -j ACCEPT
       '';
       extraStopCommands = ''
         iptables -D OUTPUT -d 89.222.96.30 -p udp --dport 51820 -j ACCEPT
-        ip6tables -D OUTPUT -d YOUR_VPN_SERVER_IP_HERE -p udp --dport 51820 -j ACCEPT
+        #ip6tables -D OUTPUT -d 89.222.96.30 -p udp --dport 51820 -j ACCEPT
       '';
     };
     wg-quick.interfaces.protonvpn = {
@@ -112,6 +113,7 @@
     #   useXkbConfig = true; # use xkb.options in tty.
   };
 
+  programs.hyprland.enable = true;
   services = {
     xserver.videoDrivers = ["nvidia"];
     displayManager.ly.enable = true;
