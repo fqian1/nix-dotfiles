@@ -36,6 +36,7 @@ in {
     pyright
     alejandra
     nil
+    hyprland
     hyprpaper
     hypridle
     hyprshot
@@ -50,7 +51,6 @@ in {
     hyperfine
     wofi #TODO customise
     obsidian
-    protonvpn-gui
     qbittorrent
   ];
 

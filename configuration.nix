@@ -15,7 +15,6 @@
   hardware.graphics = {
     enable = true;
   };
-  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
@@ -25,64 +24,38 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = ["ntfs"];
-
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-
-  time.timeZone = "Europe/London";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-  console = {
-    #   font = "Lat2-Terminus16";
-    keyMap = "uk";
-    #   useXkbConfig = true; # use xkb.options in tty.
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    supportedFilesystems = ["ntfs"];
   };
 
-  services.displayManager.ly.enable = true;
-  programs.hyprland.enable = true;
-
-  # services.printing.enable = true; # Printing
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
-  # services.libinput.enable = true; # Touchpad support
-
-  users.users.fqian = {
-    isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
-    initialPassword = "password";
+  systemd.services.protonvpn-portforward = {
+    description = "ProtonVPN NAT-PMP port forwarding";
+    after = ["wg-quick-protonvpn.service"];
+    wants = ["wg-quick-protonvpn.service"];
+    path = [pkgs.libnatpmp];
+    script = ''
+      while true; do
+        date
+        natpmpc -a 1 0 udp 60 -g 10.2.0.1 && natpmpc -a 1 0 tcp 60 -g 10.2.0.1 || {
+          echo "ERROR with natpmpc command"
+          break
+        }
+        sleep 45
+      done
+    '';
+    serviceConfig = {
+      Type = "simple";
+      Restart = "always";
+    };
+    wantedBy = ["multi-user.target"];
   };
 
   environment.systemPackages = with pkgs; [
     vim
     wget
     evtest
-    protonvpn-cli
-    wireguard-tools
-    networkmanager-fortisslvpn
-    networkmanager-iodine
-    networkmanager-l2tp
-    networkmanager-openconnect
-    networkmanager-openvpn
-    networkmanager-sstp
-    networkmanager-vpnc
-    networkmanager-strongswan
-    python3
-    openssl
-    unrar
-    iputils
     libnatpmp
   ];
 
@@ -90,22 +63,10 @@
     nerd-fonts.fira-code
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  services.openssh = {
-    enable = true; # Enable the OpenSSH daemon.
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "prohibit-password";
-    };
-  };
-
   networking = {
+    hostName = "nixos";
+    # wireless.enable = true;
+    networkmanager.enable = true;
     firewall = {
       allowedTCPPorts = [22];
       checkReversePath = false;
@@ -114,11 +75,49 @@
       autostart = true;
       configFile = "/etc/wireguard/wg-CH-850.conf";
     };
+    # proxy.default = "http://user:password@proxy:port/";
+    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
-  # Open ports in the firewall.
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+
+  time.timeZone = "Europe/London";
+
+  i18n.defaultLocale = "en_GB.UTF-8";
+  console = {
+    #   font = "Lat2-Terminus16";
+    keyMap = "uk";
+    #   useXkbConfig = true; # use xkb.options in tty.
+  };
+
+  services = {
+    xserver.videoDrivers = ["nvidia"];
+    displayManager.ly.enable = true;
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+    # printing.enable = true; # Printing
+    # libinput.enable = true; # Touchpad support
+    openssh = {
+      enable = true; # Enable the OpenSSH daemon.
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "prohibit-password";
+      };
+    };
+  };
+
+  users.users.fqian = {
+    isNormalUser = true;
+    extraGroups = ["wheel"];
+    initialPassword = "password";
+  };
+
+  # Some programs need SUID wrappers, can be configured further or are started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you accidentally delete configuration.nix.
