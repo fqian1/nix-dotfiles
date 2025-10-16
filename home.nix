@@ -28,7 +28,6 @@ in {
     wget
     tree
     vim
-    ripgrep
     neovim-custom
     rust-analyzer
     lua-language-server
@@ -38,12 +37,12 @@ in {
     alejandra
     nil
     hyprpaper
-    hyprlock
     hypridle
     hyprshot
     hyprpolkitagent
     nerd-fonts.fira-code
     p7zip
+    fzy #TODO: Customise?
     fd #TODO: Customise?
     ripgrep #TODO: Customise?
     bat #TODO: Customise?
@@ -295,33 +294,31 @@ in {
   };
 
   programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
-  services.hypridle.settings = {
-    general = {
-      lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
-      before_sleep_cmd = "loginctl lock-session";
-      after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-    };
-    listener = [
-      {
-        timeout = 300;
-        on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
-      }
-      {
-        timeout = 330;
-        on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
-        on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-      }
-      # {
-      #   timeout = 1800;
-      #   on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
-      #   # The 'after_sleep_cmd' in 'general' handles the resume
-      # }
-    ];
-  };
-
-  programs.swaylock = {
+  services.hypridle = {
     enable = true;
+    settings = {
+      general = {
+        lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+        before_sleep_cmd = "loginctl lock-session";
+        after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+      };
+      listener = [
+        {
+          timeout = 300;
+          on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+        }
+        {
+          timeout = 330;
+          on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+          on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+        }
+        # { Computer won't wake up if this happens so whatever ill just turn it off myself
+        #   timeout = 1800;
+        #   on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
+        #   # The 'after_sleep_cmd' in 'general' handles the resume
+        # }
+      ];
+    };
   };
 
   programs.starship = {
@@ -507,7 +504,7 @@ in {
   };
 
   programs.zoxide = {
-    #TODO: Configure in bash, add
+    #TODO: Configure in bash - autocomp and suggestions
     enable = true;
     enableBashIntegration = true;
   };
@@ -518,39 +515,23 @@ in {
       editing-mode = "vi";
       show-mode-in-prompt = "on";
       keyseq-timeout = 1;
-      vi-cmd-mode-string = "\\1\\e[2 q\\2[CMD]"; #TODO: Cursor doesn't change, how to fix?
+      vi-cmd-mode-string = "\\1\\e[2 q\\2[CMD]"; #FIX: Cursor doesn't change. maybe kitty issue
       vi-ins-mode-string = "\\1\\e[6 q\\2[INS]";
     };
   };
 
-  programs.fzf = {
-    #TODO: Configure in bash
-    enable = true;
-    enableBashIntegration = true;
-  };
-
   programs.bash = {
-    #TODO: Configure fzf, zellij sessionizer, ripgrep, bat
+    #TODO: Configure fzy, zellij sessionizer, ripgrep, bat
     enable = true;
     enableCompletion = true;
     initExtra = ''
-      export FZF_CTRL_R_COMMAND=
-      export FZF_ALT_C_COMMAND=
-
-      if command -v fzf-share >/dev/null; then
-        source "$(fzf-share)/key-bindings.bash"
-        source "$(fzf-share)/completion.bash"
-      fi
-
-      bind -m vi-command 'v':
-      bind -r '\ec'
-      bind '"\\C-f": __fzf_cd__\n'
+      stty susp '^H' #TODO: rebind Ctrl-H to suspend(hide) process. but doesnt work
+      bind -m vi-command 'v': # disable pressing v in normal mode to start $editor
     '';
 
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
       gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
-      lock = "swaylock -c 000000";
       vim = "nvim";
       cd = "z";
       ls = "ls -l";

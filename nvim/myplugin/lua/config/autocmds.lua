@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("FocusLost", {
 
 -- Set shiftwidth to 2 for lua files
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = "*.lua",
+  pattern = { "*.lua", "*.nix" },
   callback = function()
     vim.opt.shiftwidth = 2
   end,
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*",
   callback = function()
-    if vim.bo.filetype ~= "lua" then
+    if vim.bo.filetype ~= "lua" and vim.bo.filetype ~= "nix" then
       vim.opt.shiftwidth = 4
     end
   end,
