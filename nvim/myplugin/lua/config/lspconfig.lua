@@ -1,5 +1,4 @@
-local lsp = require("lspconfig")
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local on_attach = function(_, bufnr)
   local opts = { buffer = bufnr }
@@ -10,53 +9,45 @@ local on_attach = function(_, bufnr)
   vim.keymap.set("n", "<Leader>l", require("lsp_lines").toggle, opts)
 end
 
-lsp.rust_analyzer.setup({
+vim.lsp.config("rust_analyzer", {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
       checkOnSave = true,
-      check = {
-        command = "clippy",
-      },
+      check = { command = "clippy" },
     },
   },
 })
 
-lsp.lua_ls.setup({
+vim.lsp.config("lua_ls", {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-    },
+    Lua = { diagnostics = { globals = { "vim" } } },
   },
 })
 
-lsp.jdtls.setup({
+vim.lsp.config("jdtls", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
-lsp.clangd.setup({
+vim.lsp.config("clangd", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "clangd" },
 })
 
-lsp.pyright.setup({
+vim.lsp.config("pyright", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
-lsp.nil_ls.setup({
+vim.lsp.config("nil_ls", {
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
+vim.diagnostic.config({ virtual_text = false })
 
-vim.diagnostic.config({
-  virtual_text = false,
-})
