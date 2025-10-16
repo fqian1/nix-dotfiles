@@ -44,6 +44,11 @@ in {
     hyprpolkitagent
     nerd-fonts.fira-code
     p7zip
+    fd #TODO: Customise?
+    ripgrep #TODO: Customise?
+    bat #TODO: Customise?
+    yazi #TODO: Customise?
+    hyperfine
   ];
 
   gtk = {
@@ -307,11 +312,11 @@ in {
         on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
         on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
       }
-      {
-        timeout = 1800;
-        on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
-        # The 'after_sleep_cmd' in 'general' handles the resume
-      }
+      # {
+      #   timeout = 1800;
+      #   on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
+      #   # The 'after_sleep_cmd' in 'general' handles the resume
+      # }
     ];
   };
 
@@ -502,6 +507,7 @@ in {
   };
 
   programs.zoxide = {
+    #TODO: Configure in bash, add
     enable = true;
     enableBashIntegration = true;
   };
@@ -511,21 +517,36 @@ in {
     variables = {
       editing-mode = "vi";
       show-mode-in-prompt = "on";
+      keyseq-timeout = 1;
+      vi-cmd-mode-string = "\\1\\e[2 q\\2[CMD]"; #TODO: Cursor doesn't change, how to fix?
+      vi-ins-mode-string = "\\1\\e[6 q\\2[INS]";
     };
-    extraConfig = ''
-      set vi-cmd-mode-string "\1\e[2 q\2"
-      set vi-ins-mode-string "\1\e[6 q\2"
-    '';
   };
 
   programs.fzf = {
+    #TODO: Configure in bash
     enable = true;
     enableBashIntegration = true;
-    fileWidgetCommand = "";
   };
 
   programs.bash = {
+    #TODO: Configure fzf, zellij sessionizer, ripgrep, bat
     enable = true;
+    enableCompletion = true;
+    initExtra = ''
+      export FZF_CTRL_R_COMMAND=
+      export FZF_ALT_C_COMMAND=
+
+      if command -v fzf-share >/dev/null; then
+        source "$(fzf-share)/key-bindings.bash"
+        source "$(fzf-share)/completion.bash"
+      fi
+
+      bind -m vi-command 'v':
+      bind -r '\ec'
+      bind '"\\C-f": __fzf_cd__\n'
+    '';
+
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
       gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
@@ -537,6 +558,7 @@ in {
   };
 
   programs.zellij = {
+    #TODO: customize default disgusting ui
     enable = true;
     settings = {
       pane_frames = true;
@@ -562,8 +584,17 @@ in {
     settings = {
       font_family = "FiraCode Nerd Font";
       font_size = 12.0;
+      boxDrawingScale = "0.001, 1, 1.5, 2";
+      undercurlStyle = "thin-sparse";
       background_opacity = "0.8";
+      shell_integration = "enabled no-cursor";
+      allow_remote_control = true;
     };
+    extraConfig = ''
+      modify_font underline_position 9
+      modify_font underline_thickness 150%
+      modify_font strikethrough_position 2px
+    '';
   };
 
   wayland.windowManager.hyprland = {

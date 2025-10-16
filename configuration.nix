@@ -11,6 +11,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.trusted-users = ["root" "fqian"];
   hardware.graphics = {
     enable = true;
   };
@@ -81,7 +82,7 @@
   #   enableSSHSupport = true;
   # };
 
-  # services.openssh.enable = true; # Enable the OpenSSH daemon.
+  services.openssh.enable = true; # Enable the OpenSSH daemon.
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
