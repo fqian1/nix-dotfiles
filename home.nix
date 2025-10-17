@@ -592,13 +592,23 @@ in {
   };
 
   programs.zellij = {
-    #TODO: customize default disgusting ui
     enable = true;
     settings = {
       mouse_mode = true;
       pane_frames = false;
       copy_command = "wl-copy";
       theme = "gruvbox-dark";
+      default_layout = "default";
+    };
+    layouts = {
+      "default" = ''
+        layout {
+          pane split_direction="vertical" {
+            pane
+            pane
+          }
+        }
+      '';
     };
   };
 
