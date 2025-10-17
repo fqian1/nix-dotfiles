@@ -48,6 +48,7 @@ in {
     wofi #TODO customise
     obsidian
     qbittorrent
+    wl-clipboard-rs
   ];
 
   gtk = {
@@ -568,7 +569,7 @@ in {
         if [[ $# -eq 1 ]]; then
           selected=$1
         else
-            selected=$(fd . ~/projects ~/ ~/work -l -d 1 -t d | fzy)
+            selected=$(fd . ~/projects ~/work **~/.dotfiles/** -l -d 1 -t d | fzy)
         fi
         if [[ -z $selected ]]; then
             return 0
@@ -596,6 +597,7 @@ in {
     settings = {
       mouse_mode = true;
       pane_frames = false;
+      copy_command = "wl-copy";
       theme = "gruvbox-dark";
     };
   };
