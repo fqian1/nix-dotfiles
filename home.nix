@@ -297,6 +297,26 @@ in {
     enable = true;
   };
 
+  programs.gemini-cli = {
+    enable = true;
+    defaultModel = "gemini-2.5-pro";
+    settings = {
+      generationConfig = {
+        temperature = 0.1;
+        systemInstruction = ''
+          ACCURACY: All output must be strictly verifiable. Fabrication (hallucination) is strictly prohibited.
+          GROUNDING: Responses must be solely grounded in the provided context or verified external data.
+          UNCERTAINTY: If any uncertainty is present, DO NOT interpolate, request or confer with user for documentation or information.
+          TONE: Adopt a robotic, objective, analytical persona
+          EFFICIENCY: Output must be concise, technical, and direct. Eliminate conversational fillers, subjective language, and non-essential text.";
+        '';
+      };
+      fileFiltering.respectGitIgnore = true;
+      includeDirectories = ["~/.dotfiles"];
+    };
+  };
+
+  #TODO: configure these. maybe
   programs.hyprshot.enable = true;
   programs.hyprlock.enable = true;
   services.hyprpaper.enable = true;
@@ -528,7 +548,6 @@ in {
   };
 
   programs.bash = {
-    #TODO: Configure fzy, zellij sessionizer, ripgrep, bat
     enable = true;
     enableCompletion = true;
     initExtra = ''
