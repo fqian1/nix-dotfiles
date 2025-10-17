@@ -40,6 +40,7 @@
     vimPlugins.telescope-frecency-nvim
     vimPlugins.telescope-file-browser-nvim
     vimPlugins.telescope-fzy-native-nvim
+    vimPlugins.obsidian-nvim
   ];
 
   foldPlugins = builtins.foldl' (
@@ -54,17 +55,17 @@
   startPluginsWithDeps = lib.unique (foldPlugins startPlugins);
 
   packpath = runCommandLocal "packpath" {} ''
-  mkdir -p $out/pack/${packageName}/{start,opt}
+    mkdir -p $out/pack/${packageName}/{start,opt}
 
-  ln -vsfT ${./myplugin} $out/pack/${packageName}/start/myplugin
+    ln -vsfT ${./myplugin} $out/pack/${packageName}/start/myplugin
 
-  ${
-    lib.concatMapStringsSep
-    "\n"
-    (plugin: "ln -vsfT ${plugin} $out/pack/${packageName}/start/${lib.getName plugin}")
-    startPluginsWithDeps
-  }
-'';
+    ${
+      lib.concatMapStringsSep
+      "\n"
+      (plugin: "ln -vsfT ${plugin} $out/pack/${packageName}/start/${lib.getName plugin}")
+      startPluginsWithDeps
+    }
+  '';
 in
   symlinkJoin {
     name = "neovim-custom";
