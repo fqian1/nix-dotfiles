@@ -297,10 +297,10 @@ in {
     enable = true;
   };
 
-  programs.hyprpaper.enable = true;
   programs.hyprshot.enable = true;
-  services.hyprpolkitagent.enable = true;
   programs.hyprlock.enable = true;
+  services.hyprpaper.enable = true;
+  services.hyprpolkitagent.enable = true;
   services.hypridle = {
     enable = true;
     settings = {
@@ -535,6 +535,15 @@ in {
       stty susp '^H' #TODO: rebind Ctrl-H to suspend(hide) process. but doesnt work
       bind -m vi-command 'v': # disable pressing v in normal mode to start $editor
 
+      fedit() {
+        local file_to_edit
+        file_to_edit=$(fd --type f "$@" | fzy)
+
+        if [[ -n "$file_to_edit" ]]; then
+          ${EDITOR:-vim} "$file_to_edit"
+        fi
+      }
+
       f() {
         if [[ $# -eq 1 ]]; then
           selected=$1
@@ -598,6 +607,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = true;
 
     settings = {
       env = [
@@ -676,12 +686,6 @@ in {
       "$fileManager" = "dolphin";
       "$browser" = "firefox";
       "$menu" = "wofi --show drun";
-      "workspace = 1, monitor:HDMI-A-1, default:true";
-      "workspace = 2, monitor:DP-1, default:true";
-      "workspace = 3, monitor:DP-1";
-      "workspace = 4, monitor:DP-1";
-      "workspace = 5, monitor:DP-1";
-      "workspace = 6, monitor:DP-1";
 
       bind = [
         "$mainMod, RETURN, exec, $terminal"
@@ -730,6 +734,12 @@ in {
     };
     extraConfig = ''
       ecosystem:no_update_news = true
+      workspace = 1, monitor:HDMI-A-1, default:true
+      workspace = 2, monitor:DP-1, default:true
+      workspace = 3, monitor:DP-1
+      workspace = 4, monitor:DP-1
+      workspace = 5, monitor:DP-1
+      workspace = 6, monitor:DP-1
     '';
   };
 
