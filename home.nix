@@ -565,18 +565,27 @@ in {
       }
       bind -x '"\C-e":fedit'
 
+      gotodot() {
+        if [[ "$ZELLIJ_SESSION_NAME" == "dotfiles" ]]; then
+          return 0
+        else
+          zellij attach --create dotfiles --cwd "$HOME/.dotfiles"
+        fi
+      }
+      bind -x '"\C-o":gotodot'
+
       f() {
         if [[ $# -eq 1 ]]; then
           selected=$1
         else
-            selected=$(fd . ~/projects ~/work **~/.dotfiles/** -l -d 1 -t d | fzy)
+            selected=$(fd . ~/projects ~/work -l -d 1 -t d | fzy)
         fi
         if [[ -z $selected ]]; then
             return 0
         fi
           selected_name=$(basename "$selected" | tr . _)
 
-        zellij attach --create "$selected_name" --working-dir "$selected"
+        zellij attach --create "$selected_name" --cwd "$selected"
       }
       bind -x '"\C-f":f'
     '';
@@ -586,7 +595,6 @@ in {
       port = "cat /var/run/protonvpn-forwarded-port";
       gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
       vim = "nvim";
-      cd = "z";
       ls = "ls -l";
     };
   };
@@ -599,17 +607,30 @@ in {
       copy_command = "wl-copy";
       theme = "gruvbox-dark";
       default_layout = "default";
+      show_startup_tips = false;
     };
-    layouts = {
-      "default" = ''
-        layout {
-          pane split_direction="vertical" {
-            pane
-            pane
-          }
-        }
-      '';
-    };
+    # layouts = {
+    #   "my-default-layout" = ''
+    #     layout {
+    #       default_tab_template {
+    #         pane size=1 borderless=true {
+    #           plugin location="zellij:tab-bar"
+    #         }
+    #         children
+    #         pane size=2 borderless=true {
+    #           plugin location="zellij:status-bar"
+    #         }
+    #       }
+    #
+    #       tab name="dev" {
+    #         pane split_direction="vertical" {
+    #           pane focus=true
+    #           pane
+    #         }
+    #       }
+    #     }
+    #   '';
+    # };
   };
 
   programs.git = {
@@ -627,7 +648,7 @@ in {
       boxDrawingScale = "0.001, 1, 1.5, 2";
       undercurlStyle = "thin-sparse";
       background_opacity = "0.8";
-      shell_integration = "enabled no-cursor";
+      shell_integration = "enabled";
       allow_remote_control = true;
     };
     extraConfig = ''
