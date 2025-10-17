@@ -16,6 +16,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-stable,
     home-manager,
     disko,
     ...
@@ -34,9 +35,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-          };
+          home-manager.extraSpecialArgs = {inherit inputs;};
           home-manager.users.fqian = {
             imports = [
               ./home.nix

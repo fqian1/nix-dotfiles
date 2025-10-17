@@ -537,12 +537,13 @@ in {
 
       fedit() {
         local file_to_edit
-        file_to_edit=$(fd --type f "$@" | fzy)
+        file_to_edit=$(fd --type f "$@" "." "$HOME/.dotfiles" | fzy)
 
         if [[ -n "$file_to_edit" ]]; then
-          ${EDITOR:-vim} "$file_to_edit"
+          vim "$file_to_edit"
         fi
       }
+      bind -x '"\C-e":fedit'
 
       f() {
         if [[ $# -eq 1 ]]; then
@@ -616,11 +617,11 @@ in {
       ];
       exec-once = [
         "nm-applet --indicator"
-        "exec-once = [workspace 1 silent] firefox"
-        "exec-once = [workspace 2 silent] kitty"
-        "exec-once = [workspace 3 silent] firefox"
-        "exec-once = [workspace 4 silent] obsidian"
-        "exec-once = [workspace 5 silent] qbittorrent"
+        "[workspace 1 silent] firefox"
+        "[workspace 2 silent] kitty"
+        "[workspace 3 silent] firefox"
+        "[workspace 4 silent] obsidian"
+        "[workspace 5 silent] qbittorrent"
       ];
 
       monitor = [

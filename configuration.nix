@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./disk-config.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -70,8 +69,6 @@
     vim
     wget
     evtest
-    gawk
-    libnatpmp
   ];
 
   fonts.packages = with pkgs; [
