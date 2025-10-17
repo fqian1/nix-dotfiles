@@ -37,10 +37,6 @@ in {
     alejandra
     nil
     hyprland
-    hyprpaper
-    hypridle
-    hyprshot
-    hyprpolkitagent
     nerd-fonts.fira-code
     p7zip
     fzy #TODO: Customise?
@@ -301,6 +297,9 @@ in {
     enable = true;
   };
 
+  programs.hyprpaper.enable = true;
+  programs.hyprshot.enable = true;
+  services.hyprpolkitagent.enable = true;
   programs.hyprlock.enable = true;
   services.hypridle = {
     enable = true;
@@ -554,6 +553,7 @@ in {
 
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
+      port = "cat /var/run/protonvpn-forwarded-port";
       gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
       vim = "nvim";
       cd = "z";
@@ -565,6 +565,7 @@ in {
     #TODO: customize default disgusting ui
     enable = true;
     settings = {
+      mouse_mode = true;
       pane_frames = false;
       theme = "gruvbox-dark";
     };
@@ -604,8 +605,14 @@ in {
         "HYPRCURSOR_SIZE,${toString config.home.pointerCursor.size}"
       ];
       exec-once = [
-        "hypridle, hyprpolkitagent, nm-applet"
+        "nm-applet --indicator"
+        "exec-once = [workspace 1 silent] firefox"
+        "exec-once = [workspace 2 silent] kitty"
+        "exec-once = [workspace 3 silent] firefox"
+        "exec-once = [workspace 4 silent] obsidian"
+        "exec-once = [workspace 5 silent] qbittorrent"
       ];
+
       monitor = [
         "HDMI-A-1,1920x1080@239.96,0x0,1"
         "DP-1,3440x1440@240,auto-right,1"
@@ -669,6 +676,12 @@ in {
       "$fileManager" = "dolphin";
       "$browser" = "firefox";
       "$menu" = "wofi --show drun";
+      "workspace = 1, monitor:HDMI-A-1, default:true";
+      "workspace = 2, monitor:DP-1, default:true";
+      "workspace = 3, monitor:DP-1";
+      "workspace = 4, monitor:DP-1";
+      "workspace = 5, monitor:DP-1";
+      "workspace = 6, monitor:DP-1";
 
       bind = [
         "$mainMod, RETURN, exec, $terminal"
