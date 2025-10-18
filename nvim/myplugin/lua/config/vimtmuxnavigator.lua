@@ -1,1 +1,1 @@
-require('vim-tmux-navigator').setup()
+require('tmux-navigator').setup()
