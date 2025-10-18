@@ -42,6 +42,7 @@
     vimPlugins.telescope-fzy-native-nvim
     vimPlugins.obsidian-nvim
     vimPlugins.render-markdown-nvim
+    vimPlugins.vim-tmux-navigator
   ];
 
   foldPlugins = builtins.foldl' (

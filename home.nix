@@ -555,6 +555,9 @@ in {
     clock24 = true;
     mouse = true;
     keyMode = "vi";
+    plugins = with pkgs.tmuxPlugins; [
+      vim-tmux-navigator
+    ];
   };
 
   programs.bash = {
