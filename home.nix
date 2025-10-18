@@ -49,6 +49,7 @@ in {
     obsidian
     qbittorrent
     wl-clipboard-rs
+    blesh # better bash
   ];
 
   gtk = {
@@ -537,22 +538,31 @@ in {
     enableBashIntegration = true;
   };
 
-  programs.readline = {
+  # programs.readline = { # Conflicts with ble.sh
+  #   enable = true;
+  #   variables = {
+  #     editing-mode = "vi";
+  #     show-mode-in-prompt = "on";
+  #     keyseq-timeout = 1;
+  #     vi-cmd-mode-string = "\\1\\e[2 q\\2[CMD]"; #FIX: Cursor doesn't change. maybe kitty issue
+  #     vi-ins-mode-string = "\\1\\e[6 q\\2[INS]";
+  #   };
+  # };
+
+  programs.tmux = {
     enable = true;
-    variables = {
-      editing-mode = "vi";
-      show-mode-in-prompt = "on";
-      keyseq-timeout = 1;
-      vi-cmd-mode-string = "\\1\\e[2 q\\2[CMD]"; #FIX: Cursor doesn't change. maybe kitty issue
-      vi-ins-mode-string = "\\1\\e[6 q\\2[INS]";
-    };
+    escapeTime = 10;
+    clock24 = true;
+    mouse = true;
+    keyMode = "vi";
   };
 
   programs.bash = {
     enable = true;
     enableCompletion = true;
+    shellOptions = ["globstar" "extglob"];
     initExtra = ''
-      stty susp '^H' #TODO: rebind Ctrl-H to suspend(hide) process. but doesnt work
+      source ${pkgs.blesh}/share/blesh/ble.sh
       bind -m vi-command 'v': # disable pressing v in normal mode to start $editor
 
       fedit() {
@@ -564,30 +574,6 @@ in {
         fi
       }
       bind -x '"\C-e":fedit'
-
-      gotodot() {
-        if [[ "$ZELLIJ_SESSION_NAME" == "dotfiles" ]]; then
-          return 0
-        else
-          zellij attach --create dotfiles --cwd "$HOME/.dotfiles"
-        fi
-      }
-      bind -x '"\C-o":gotodot'
-
-      f() {
-        if [[ $# -eq 1 ]]; then
-          selected=$1
-        else
-            selected=$(fd . ~/projects ~/work -l -d 1 -t d | fzy)
-        fi
-        if [[ -z $selected ]]; then
-            return 0
-        fi
-          selected_name=$(basename "$selected" | tr . _)
-
-        zellij attach --create "$selected_name" --cwd "$selected"
-      }
-      bind -x '"\C-f":f'
     '';
 
     shellAliases = {
@@ -597,40 +583,6 @@ in {
       vim = "nvim";
       ls = "ls -l";
     };
-  };
-
-  programs.zellij = {
-    enable = true;
-    settings = {
-      mouse_mode = true;
-      pane_frames = false;
-      copy_command = "wl-copy";
-      theme = "gruvbox-dark";
-      default_layout = "default";
-      show_startup_tips = false;
-    };
-    # layouts = {
-    #   "my-default-layout" = ''
-    #     layout {
-    #       default_tab_template {
-    #         pane size=1 borderless=true {
-    #           plugin location="zellij:tab-bar"
-    #         }
-    #         children
-    #         pane size=2 borderless=true {
-    #           plugin location="zellij:status-bar"
-    #         }
-    #       }
-    #
-    #       tab name="dev" {
-    #         pane split_direction="vertical" {
-    #           pane focus=true
-    #           pane
-    #         }
-    #       }
-    #     }
-    #   '';
-    # };
   };
 
   programs.git = {
