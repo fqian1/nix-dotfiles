@@ -40,8 +40,7 @@
         home-manager.extraSpecialArgs = {inherit inputs;};
         home-manager.users.fqian = {
           imports = [
-            ./home.nix
-          ];
+                          ./users/fqian/home.nix          ];
         };
         home-manager.backupFileExtension = "backup";
       }
