@@ -3,14 +3,21 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.trusted-users = ["root" "fqian"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  nix.settings.trusted-users = [
+    "root"
+    "fqian"
+  ];
   hardware.graphics = {
     enable = true;
   };
@@ -26,14 +33,17 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
   };
 
   systemd.services.protonvpn-portforward = {
     description = "ProtonVPN NAT-PMP port forwarding";
-    after = ["wg-quick-protonvpn.service"];
-    wants = ["wg-quick-protonvpn.service"];
-    path = [pkgs.libnatpmp pkgs.gawk];
+    after = [ "wg-quick-protonvpn.service" ];
+    wants = [ "wg-quick-protonvpn.service" ];
+    path = [
+      pkgs.libnatpmp
+      pkgs.gawk
+    ];
     script = ''
       while true; do
         date
@@ -62,7 +72,7 @@
       Type = "simple";
       Restart = "always";
     };
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -81,9 +91,12 @@
     networkmanager.enable = true;
     firewall = {
       enable = true;
-      allowedTCPPorts = [22];
+      allowedTCPPorts = [ 22 ];
       checkReversePath = false;
-      trustedInterfaces = ["wg0" "protonvpn"];
+      trustedInterfaces = [
+        "wg0"
+        "protonvpn"
+      ];
       extraCommands = ''
         iptables -A OUTPUT -d 89.222.96.30 -p udp --dport 51820 -j ACCEPT
         #ip6tables -A OUTPUT -d 89.222.96.30 -p udp --dport 51820 -j ACCEPT
@@ -112,7 +125,7 @@
 
   programs.hyprland.enable = true;
   services = {
-    xserver.videoDrivers = ["nvidia"];
+    xserver.videoDrivers = [ "nvidia" ];
     displayManager.ly.enable = true;
     pipewire = {
       enable = true;
@@ -131,7 +144,7 @@
 
   users.users.fqian = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = [ "wheel" ];
     initialPassword = "password";
   };
 

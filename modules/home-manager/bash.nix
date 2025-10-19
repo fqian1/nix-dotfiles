@@ -7,7 +7,7 @@
       source ${pkgs.blesh}/share/blesh/ble.sh
       set -o vi
       bind -m vi-command 'v': # disable pressing v in normal mode to start $editor
-      bind 'set keyset-timeout 1'
+      bind 'set keyseq-timeout 1'
 
       fedit() {
         local file_to_edit
@@ -59,6 +59,7 @@
       gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
       vim = "nvim";
       ls = "ls -l";
+      cat = "bat";
     };
   };
 }

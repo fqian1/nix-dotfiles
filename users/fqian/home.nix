@@ -4,11 +4,20 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   neovim-custom = import ../../pkgs/nvim/neovim.nix {
-    inherit (pkgs) symlinkJoin neovim-unwrapped makeWrapper runCommandLocal vimPlugins lib;
+    inherit (pkgs)
+      symlinkJoin
+      neovim-unwrapped
+      makeWrapper
+      runCommandLocal
+      vimPlugins
+      lib
+      ;
   };
-in {
+in
+{
   imports = [
     ../../modules/home-manager/starship.nix
     ../../modules/home-manager/firefox.nix
@@ -43,10 +52,11 @@ in {
     neovim-custom
     rust-analyzer
     lua-language-server
+    rustfmt
     clang-tools
     jdt-language-server
     pyright
-    alejandra
+    nixfmt-rfc-style
     nil
     hyprland
     nerd-fonts.fira-code
