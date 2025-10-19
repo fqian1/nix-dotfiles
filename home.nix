@@ -50,6 +50,7 @@ in {
     qbittorrent
     wl-clipboard-rs
     blesh # better bash
+    gemini-cli
   ];
 
   gtk = {
@@ -299,24 +300,17 @@ in {
     enable = true;
   };
 
-  programs.gemini-cli = {
-    enable = true;
-    defaultModel = "gemini-2.5-pro";
-    settings = {
-      generationConfig = {
-        temperature = 0.1;
-        systemInstruction = ''
-          ACCURACY: All output must be strictly verifiable. Fabrication (hallucination) is strictly prohibited.
-          GROUNDING: Responses must be solely grounded in the provided context or verified external data.
-          UNCERTAINTY: If any uncertainty is present, DO NOT interpolate, request or confer with user for documentation or information.
-          TONE: Adopt a robotic, objective, analytical persona
-          EFFICIENCY: Output must be concise, technical, and direct. Eliminate conversational fillers, subjective language, and non-essential text.";
-        '';
-      };
-      fileFiltering.respectGitIgnore = true;
-      includeDirectories = ["~/.dotfiles"];
-    };
-  };
+  # programs.gemini-cli = { # Gemini-cli writes to the same file settings.json, so NRS will clobber the file. Just install gemini-cli in pkgs and let gemini handle settings itself
+  #   enable = true;
+  #   defaultModel = "gemini-2.5-pro";
+  #   settings = {
+  #     generationConfig = {
+  #       temperature = 0.1;
+  #     };
+  #     fileFiltering.respectGitIgnore = true;
+  #     includeDirectories = ["~/.dotfiles"];
+  #   };
+  # };
 
   #TODO: configure these. maybe
   programs.hyprshot.enable = true;
