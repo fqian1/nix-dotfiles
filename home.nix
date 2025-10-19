@@ -533,7 +533,7 @@ in {
   };
 
   programs.zoxide = {
-    #TODO: Configure in bash - autocomp and suggestions
+    # do I need this when fzy?
     enable = true;
     enableBashIntegration = true;
   };
@@ -555,8 +555,11 @@ in {
     clock24 = true;
     mouse = true;
     keyMode = "vi";
+    baseIndex = 1;
     plugins = with pkgs.tmuxPlugins; [
+      sensible
       vim-tmux-navigator
+      yank
     ];
     extraConfig = ''
       vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzf)(diff)?(-wrapped)?'
@@ -585,6 +588,7 @@ in {
     shellOptions = ["globstar" "extglob"];
     initExtra = ''
       source ${pkgs.blesh}/share/blesh/ble.sh
+      set -o vi
       bind -m vi-command 'v': # disable pressing v in normal mode to start $editor
 
       fedit() {
@@ -612,27 +616,27 @@ in {
         tmux_running=$(pgrep tmux)
 
         if [[ -z $TMUX ]]; then
-            # Not inside tmux
             if tmux has-session -t="$selected_name" 2>/dev/null; then
                 tmux attach-session -t "$selected_name"
             else
-                tmux new-session -s "$selected_name" -c "$selected"
+                tmux new-session -s "$selected_name" -c "$selected" \; split-window -h -p 40
             fi
         else
-            # Inside tmux
             if tmux has-session -t="$selected_name" 2>/dev/null; then
                 tmux switch-client -t "$selected_name"
             else
-                tmux new-session -ds "$selected_name" -c "$selected"
+                tmux new-session -ds "$selected_name" -c "$selected" \; split-window -h -p 40
                 tmux switch-client -t "$selected_name"
             fi
         fi
       }
-      bind -x '"\C-f":f'
+      bind -m vi-insert -x '"\C-f":f'
+      bind -m vi-command -x '"\C-f":f'
     '';
 
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
+      nrb = "sudo nixos-rebuild boot --flake ~/.dotfiles/#nixos && reboot";
       port = "cat /var/run/protonvpn-forwarded-port";
       gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
       vim = "nvim";
