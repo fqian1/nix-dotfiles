@@ -560,7 +560,7 @@ in {
     ];
     extraConfig = ''
       vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzf)(diff)?(-wrapped)?'
-      is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +${vim_pattern}$'"
+      is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +''${vim_pattern}$'"
       bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
       bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
       bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
@@ -579,6 +579,8 @@ in {
     '';
   };
 
+  programs.blesh.enable = true;
+
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -596,6 +598,33 @@ in {
         fi
       }
       bind -x '"\C-e":fedit'
+
+      f() {
+        if [[ $# -eq 1 ]]; then
+            selected=$1
+        else
+            selected=$(fd ~/work ~/projects --exact-depth 1 -td; echo ~/.dotfiles | fzy)
+        fi
+
+        if [[ -z $selected ]]; then
+            exit 0
+        fi
+
+        selected_name=$(basename "$selected" | tr . _)
+        tmux_running=$(pgrep tmux)
+
+        if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+            tmux new-session -s $selected_name -c $selected
+            exit 0
+        fi
+
+        if ! tmux has-session -t=$selected_name 2> /dev/null; then
+            tmux new-session -ds $selected_name -c $selected
+        fi
+
+        tmux switch-client -t $selected_name
+      }
+      bind -x '"\C-f":f'
     '';
 
     shellAliases = {
