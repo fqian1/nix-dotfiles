@@ -579,8 +579,6 @@ in {
     '';
   };
 
-  programs.blesh.enable = true;
-
   programs.bash = {
     enable = true;
     enableCompletion = true;
