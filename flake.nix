@@ -11,6 +11,13 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -19,31 +26,44 @@
     nixpkgs-stable,
     home-manager,
     disko,
+    impermanence,
+    nix-darwin,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+    sharedModules = [
+      disko.nixosModules.disko
+      ./disk-config.nix
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = {inherit inputs;};
+        home-manager.users.fqian = {
+          imports = [
+            ./home.nix
+          ];
+        };
+        home-manager.backupFileExtension = "backup";
+      }
+    ];
   in {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = {inherit inputs;};
-      modules = [
-        disko.nixosModules.disko
-        ./configuration.nix
-        ./disk-config.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {inherit inputs;};
-          home-manager.users.fqian = {
-            imports = [
-              ./home.nix
-            ];
-          };
-          home-manager.backupFileExtension = "backup";
-        }
-      ];
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [./hosts/nixos/configuration.nix] ++ sharedModules;
+      };
+      nixos-stable = nixpkgs-stable.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [./hosts/nixos/configuration.nix] ++ sharedModules;
+      };
     };
+    # Example for a future macos machine
+    # darwinConfigurations."macos" = nix-darwin.lib.darwinSystem {
+    #   system = "aarch64-darwin";
+    #   specialArgs = { inherit inputs; };
+    #   modules = [ ./hosts/macos/configuration.nix ];
+    # };
   };
 }
