@@ -49,5 +49,11 @@ vim.lsp.config("nil_ls", {
   capabilities = capabilities,
 })
 
+vim.lsp.enable('rust-analyzer')
+vim.lsp.enable('nil_ls')
+vim.lsp.enable('jdtls')
+vim.lsp.enable('clangd')
+vim.lsp.enable('pyright')
+
 vim.diagnostic.config({ virtual_text = false })
 

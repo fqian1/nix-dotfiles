@@ -53,12 +53,12 @@
         show_always = true;
         style_user = "fg:color_orange";
         style_root = "fg:color_orange";
-        format = "\[[$user]($style)\]";
+        format = "\\[[$user]($style)\\]";
       };
 
       directory = {
         style = "fg:color_yellow";
-        format = "\[[$path]($style)\]";
+        format = "\\[[$path]($style)\\]";
         truncation_length = 3;
         truncation_symbol = "…/";
         substitutions = {
@@ -73,96 +73,96 @@
       git_branch = {
         symbol = "";
         style = "fg:color_aqua";
-        format = "\[[$symbol $branch]($style)";
+        format = "\\[[$symbol $branch]($style)";
       };
 
       git_status = {
         style = "fg:color_aqua";
-        format = "[($all_status$ahead_behind )]($style)\]";
+        format = "[($all_status$ahead_behind )]($style)\\]";
       };
 
       nodejs = {
         symbol = "";
         style = "fg:color_blue";
-        format = "\[[$symbol($version)]($style)\]";
+        format = "\\[[$symbol($version)]($style)\\]";
       };
 
       c = {
         symbol = " ";
         style = "fg:color_blue";
-        format = "\[[$symbol($version)]($style)\]";
+        format = "\\[[$symbol($version)]($style)\\]";
       };
 
       cpp = {
         symbol = " ";
         style = "fg:color_blue";
-        format = "\[[$symbol($version)]($style)\]";
+        format = "\\[[$symbol($version)]($style)\\]";
       };
 
       rust = {
         symbol = "";
         style = "fg:color_blue";
-        format = "\[[$symbol($version)]($style)\]";
+        format = "\\[[$symbol($version)]($style)\\]";
       };
 
       golang = {
         symbol = "";
         style = "fg:color_blue";
-        format = "\[[$symbol($version)]($style)\]";
+        format = "\\[[$symbol($version)]($style)\\]";
       };
 
       php = {
         symbol = "";
         style = "fg:color_blue";
-        format = "\[[$symbol($version)]($style)\]";
+        format = "\\[[$symbol($version)]($style)\\]";
       };
 
       java = {
         symbol = "";
         style = "fg:color_blue";
-        format = "\[[$symbol($version)]($style)\]";
+        format = "\\[[$symbol($version)]($style)\\]";
       };
 
       kotlin = {
         symbol = "";
         style = "fg:color_blue";
-        format = "\[[$symbol($version)]($style)\]";
+        format = "\\[[$symbol($version)]($style)\\]";
       };
 
       haskell = {
         symbol = "";
         style = "fg:color_blue";
-        format = "\[[$symbol($version)]($style)\]";
+        format = "\\[[$symbol($version)]($style)\\]";
       };
 
       python = {
         symbol = "";
         style = "fg:color_blue";
-        format = "\[[$symbol($version)]($style)\]";
+        format = "\\[[$symbol($version)]($style)\\]";
       };
 
       docker_context = {
         symbol = "";
         style = "fg:color_blue";
-        format = "\[[$symbol($context)]($style)\]";
+        format = "\\[[$symbol($context)]($style)\\]";
       };
 
       conda = {
         symbol = "";
         style = "fg:color_blue";
-        format = "\[[$symbol($environment)]($style)\]";
+        format = "\\[[$symbol($environment)]($style)\\]";
       };
 
       pixi = {
         style = "fg:color_blue";
-        format = "\[[$symbol($version)($environment)]($style)\]";
+        format = "\\[[$symbol($version)($environment)]($style)\\]";
       };
 
       time = {
         disabled = false;
         time_format = "%R";
         style = "fg:color_bg3";
-        format = "\[[ $time]($style)\]";
+        format = "\\[[ $time]($style)\\]";
       };
 
       line_break = {

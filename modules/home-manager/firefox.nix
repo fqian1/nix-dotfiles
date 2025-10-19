@@ -224,6 +224,5 @@
         "mousewheel.default.delta_multiplier_y" = 300;
       };
     };
-  }
+  };
 }
-
