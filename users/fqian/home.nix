@@ -3,13 +3,13 @@
     ../../modules/home-manager/starship.nix
     ../../modules/home-manager/firefox.nix
     ../../modules/home-manager/gtk.nix
-  ],
+  ];
   config,
   pkgs,
   inputs,
   lib,
   ...
-in let
+}: let
   neovim-custom = import ../../pkgs/nvim/neovim.nix {
     inherit (pkgs) symlinkJoin neovim-unwrapped makeWrapper runCommandLocal vimPlugins lib;
   };
@@ -104,12 +104,6 @@ in {
         # }
       ];
     };
-  };
-
-  programs.zoxide = {
-    #TODO: Configure in bash - autocomp and suggestions
-    enable = true;
-    enableBashIntegration = true;
   };
 
   programs.zoxide = {
