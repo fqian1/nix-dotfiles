@@ -3,7 +3,7 @@
     ../../modules/home-manager/starship.nix
     ../../modules/home-manager/firefox.nix
     ../../modules/home-manager/gtk.nix
-  ];
+  ],
   config,
   pkgs,
   inputs,
