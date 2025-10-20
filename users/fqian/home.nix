@@ -74,8 +74,8 @@ in
     blesh
     gemini-cli
     vscode-fhs
+    discord
   ];
-  programs.discord.enable = true;
   programs.wofi.enable = true;
   programs.hyprshot.enable = true;
   programs.hyprlock.enable = true;
