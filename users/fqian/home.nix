@@ -73,7 +73,9 @@ in
     wl-clipboard-rs
     blesh
     gemini-cli
+    vscode-fhs
   ];
+  programs.discord.enable = true;
   programs.wofi.enable = true;
   programs.hyprshot.enable = true;
   programs.hyprlock.enable = true;

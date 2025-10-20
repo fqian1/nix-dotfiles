@@ -62,11 +62,10 @@
           modules = [ ./hosts/nixos/configuration.nix ] ++ sharedModules;
         };
       };
-      # Example for a future macos machine
-      # darwinConfigurations."macos" = nix-darwin.lib.darwinSystem {
-      #   system = "aarch64-darwin";
-      #   specialArgs = { inherit inputs; };
-      #   modules = [ ./hosts/macos/configuration.nix ];
-      # };
+      darwinConfigurations."macos" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = { inherit inputs; };
+        modules = [ ./hosts/macos/configuration.nix ];
+      };
     };
 }

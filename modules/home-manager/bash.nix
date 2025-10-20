@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    shellOptions = ["globstar" "extglob"];
+    shellOptions = [
+      "globstar"
+      "extglob"
+    ];
     initExtra = ''
       source ${pkgs.blesh}/share/blesh/ble.sh
       set -o vi
@@ -23,7 +27,7 @@
         if [[ $# -eq 1 ]]; then
             selected=$1
         else
-            selected=$( (fd . ~/work ~/projects --exact-depth 1 -td; echo ~/.dotfiles) | fzy)
+            selected=$( (fd . ~/work ~/projects ~/temp --exact-depth 1 -td; echo ~/.dotfiles ) | fzy)
         fi
 
         if [[ -z $selected ]]; then
