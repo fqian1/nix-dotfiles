@@ -1,71 +1,106 @@
 {
-  description = "fqian's nixos flake";
+  description = "fqian's nixos configuration";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
       url = "github:nix-community/impermanence";
     };
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    darwin = {
+      url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
   outputs =
     {
       self,
       nixpkgs,
-      nixpkgs-stable,
       home-manager,
-      disko,
       impermanence,
-      nix-darwin,
+      disko,
+      darwin,
       ...
     }@inputs:
     let
+      inherit (self) outputs;
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
+
       sharedModules = [
+        ./modules/common
+      ];
+
+      nixosModules = [
         disko.nixosModules.disko
-        ./disk-config.nix
+        impermanence.nixosModules.impermanence
         home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.users.fqian = {
-            imports = [
-              ./users/fqian/home.nix
-            ];
-          };
-          home-manager.backupFileExtension = "backup";
-        }
+        ./modules/nixos
+      ];
+
+      darwinModules = [
+        home-manager.darwinModules.home-manager
+        ./modules/darwin
       ];
     in
     {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [ ./hosts/nixos/configuration.nix ] ++ sharedModules;
-        };
-        nixos-stable = nixpkgs-stable.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [ ./hosts/nixos/configuration.nix ] ++ sharedModules;
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          myPkgs = import ./pkgs {
+            inherit pkgs;
+            inherit system;
+          };
+        in
+        {
+          neovim-custom = myPkgs.nvim.neovim-custom;
+        }
+      );
+
+      overlays = {
+        neovim-custom = final: prev: {
+          neovim-custom = self.packages.${final.system}.neovim-custom;
         };
       };
-      darwinConfigurations."macos" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = { inherit inputs; };
-        modules = [ ./hosts/macos/configuration.nix ];
+
+      darwinConfigurations = {
+        "darwin" = darwin.lib.darwinSystem {
+          specialArgs = {
+            inherit inputs outputs;
+            lib = nixpkgs.lib;
+          };
+          modules = sharedModules ++ darwinModules ++ [ ./hosts/darwin/default.nix ];
+        };
+      };
+
+      nixosConfigurations = {
+        "nixos" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+            lib = nixpkgs.lib;
+          };
+          modules =
+            sharedModules
+            ++ nixosModules
+            ++ [
+              ./hosts/nixos/default.nix
+              (
+                { pkgs, ... }:
+                {
+                  nixpkgs.overlays = [ self.overlays.neovim-custom ];
+                }
+              )
+            ];
+        };
       };
     };
 }

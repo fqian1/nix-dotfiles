@@ -1,32 +1,119 @@
-# Dotfiles Project Context
+This repository contains personal NixOS and macOS (Darwin) configurations managed with Nix Flakes. The goal is to create a reproducible and declarative system environment.
 
-This directory (`~/.dotfiles`) contains my complete NixOS and Home Manager configuration.
+**This is a work in progress.** The configurations are not yet complete and have not been fully tested.
 
-The primary configuration files for this project are:
-* `flake.nix`: The entry point for the entire system, including inputs and outputs.
-* `configuration.nix`: The main NixOS system configuration.
-* `home.nix`: The Home Manager configuration for my user.
-* `neovim.nix`: Inside /nvim, wraps my neovim config as a package. Not included, since its complete.
+./
+├── flake.lock
+├── @./flake.nix
+├── GEMINI.md
+├── hosts/
+│   ├── darwin/
+│   │   └── default.nix
+│   └── nixos/
+│       ├── @./hosts/nixos/default.nix
+│       ├── @./hosts/nixos/disk-config.nix
+│       └── @./hosts/nixos/hardware.nix
+├── modules/
+│   ├── common/
+│   │   ├── default.nix
+│   │   ├── development/
+│   │   │   ├── default.nix
+│   │   │   ├── git.nix
+│   │   │   └── packages.nix
+│   │   ├── home-manager/
+│   │   │   └── default.nix
+│   │   ├── system.nix
+│   │   └── utils/
+│   │       ├── bash.nix
+│   │       ├── bat.nix
+│   │       ├── bottom.nix
+│   │       ├── default.nix
+│   │       ├── direnv.nix
+│   │       ├── eza.nix
+│   │       ├── kitty.nix
+│   │       ├── nh.nix
+│   │       ├── packages.nix
+│   │       ├── ripgrep.nix
+│   │       ├── ssh.nix
+│   │       ├── starship.nix
+│   │       ├── tmux.nix
+│   │       ├── yazi.nix
+│   │       └── zoxide.nix
+│   ├── darwin/
+│   │   ├── default.nix
+│   │   └── system.nix
+│   └── nixos/
+│       ├── @./modules/nixos/default.nix
+│       ├── desktop/
+│       │   ├── applications/
+│       │   │   ├── default.nix
+│       │   │   ├── discord.nix
+│       │   │   ├── firefox.nix
+│       │   │   ├── lmms.nix
+│       │   │   ├── obsidian.nix
+│       │   │   └── qbittorrent.nix
+│       │   ├── audio/
+│       │   │   └── default.nix
+│       │   ├── default.nix
+│       │   ├── desktop-environment/
+│       │   │   ├── default.nix
+│       │   │   ├── hypridle.nix
+│       │   │   ├── hyprland.nix
+│       │   │   ├── hyprlock.nix
+│       │   │   ├── hyprpaper.nix
+│       │   │   ├── wofi.nix
+│       │   │   └── xdg.nix
+│       │   └── theme/
+│       │       └── default.nix
+│       ├── impermanence/
+│       │   ├── default.nix
+│       │   ├── impermanence.nix
+│       │   └── persistence.nix
+│       ├── services/
+│       │   ├── default.nix
+│       │   └── vpn.nix
+│       └── @./modules/nixos/system.nix
+└── pkgs/
+    ├── @./pkgs/default.nix
+    └── nvim/
+        ├── @./pkgs/nvim/default.nix
+        ├── myplugin/
+        │   ├── config/
+        │   │   ├── autocmds.lua
+        │   │   ├── keymaps.lua
+        │   │   └── options.lua
+        │   ├── init.lua
+        │   └── plugins/
+        │       ├── autobrackets.lua
+        │       ├── autopairs.lua
+        │       ├── bufferline.lua
+        │       ├── cmp.lua
+        │       ├── conform.lua
+        │       ├── crates.lua
+        │       ├── gitsigns.lua
+        │       ├── indentblankline.lua
+        │       ├── indentline.lua
+        │       ├── kanagawa.lua
+        │       ├── lspconfig.lua
+        │       ├── lsplines.lua
+        │       ├── lualine.lua
+        │       ├── obsidian.lua
+        │       ├── rendermarkdown.lua
+        │       ├── telescope.lua
+        │       ├── tmuxnavigator.lua
+        │       ├── treesitter.lua
+        │       └── undotree.lua
+        └── @./pkgs/nvim/neovim.nix
 
+todo list:
+fix up the neovim wrapper and add to config
+make hardware agnostic (amd nvidia intel gpu cpu etc.)
+configure openssh and tailscale
+replace tmux and kitty with
+prune unneeded packages, keep it minimal
+rice hyprland with quickshell
+add the darwin configuration (finish nixos config first)
+anything else?
 
-## Instructions for Gemini
-
- The included files are **LATEST CONTEXT**.
-
-ACCURACY: All output must be strictly verifiable. Fabrication (hallucination) is strictly prohibited.
-GROUNDING: Responses must be solely grounded in the provided context or verified external data.
-UNCERTAINTY: If uncertain, DO NOT interpolate, request or confer with user for documentation or information.
-TONE: Adopt a robotic, objective, analytical persona.
-EFFICIENCY: Output must be concise, technical, and direct. Eliminate conversational fillers, subjective language, and non-essential text.
-
----
-# Core Configuration Files
-
-### Flake
-@./flake.nix
-
-### NixOS Configuration
-@./configuration.nix
-
-### Home Manager Configuration
-@./home.nix
+unrelated:
+grex, newsboat, jrnl, ttyd, croc: cool cli tools
