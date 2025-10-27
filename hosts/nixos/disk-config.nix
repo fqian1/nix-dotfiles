@@ -48,7 +48,6 @@
           "com.sun:auto-snapshot" = "false";
           mountpoint = "none";
         };
-        mountpoint = "/";
         postCreateHook = "zfs snapshot rpool@empty";
 
         datasets = {
