@@ -22,7 +22,7 @@
     zfs = {
       # enabled = true;
       extraPools = [ "rpool" ];
-      forceImportRoot = false;
+      forceImportRoot = true; # recommend to turn this off later
     };
     initrd = {
       availableKernelModules = [
@@ -32,7 +32,10 @@
         "usbhid"
         "sd_mod"
       ];
-      kernelModules = [ "virtio" "zfs"];
+      kernelModules = [ 
+        "virtio" 
+        "zfs"
+      ];
     };
     # kernelParams = [ "mitigations=off" ];
   };
