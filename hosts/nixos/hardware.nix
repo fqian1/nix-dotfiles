@@ -32,7 +32,7 @@
         "usbhid"
         "sd_mod"
       ];
-      kernelModules = [ "virtio" ];
+      kernelModules = [ "virtio" "zfs"];
     };
     # kernelParams = [ "mitigations=off" ];
   };
