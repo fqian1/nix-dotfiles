@@ -80,7 +80,7 @@
           };
           "persist" = {
             type = "zfs_fs";
-            mountpoint = "/persist";
+            mountpoint = "/persistent";
             options = {
               "com.sun:auto-snapshot" = "false";
               "mountpoint" = "legacy";
