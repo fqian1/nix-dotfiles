@@ -54,13 +54,19 @@
           "root" = {
             type = "zfs_fs";
             mountpoint = "/";
-            options."com.sun:auto-snapshot" = "false";
+            options = {
+              "com.sun:auto-snapshot" = "false";
+              "mountpoint" = "legacy";
+            };
             postCreateHook = "zfs snapshot rpool/root@empty";
           };
           "var" = {
             type = "zfs_fs";
             mountpoint = "/var";
-            options."com.sun:auto-snapshot" = "false";
+            options = {
+              "com.sun:auto-snapshot" = "false";
+              "mountpoint" = "legacy";
+            };
             postCreateHook = "zfs snapshot rpool/var@empty";
           };
           "nix" = {
@@ -69,17 +75,24 @@
             options = {
               atime = "off";
               "com.sun:auto-snapshot" = "false";
+              "mountpoint" = "legacy";
             };
           };
           "persist" = {
             type = "zfs_fs";
             mountpoint = "/persist";
-            options."com.sun:auto-snapshot" = "false";
+            options = {
+              "com.sun:auto-snapshot" = "false";
+              "mountpoint" = "legacy";
+            };
           };
           "home" = {
             type = "zfs_fs";
             mountpoint = "/home";
-            options."com.sun:auto-snapshot" = "false";
+            options = {
+              "com.sun:auto-snapshot" = "false";
+              "mountpoint" = "legacy";
+            };
           };
         };
       };
