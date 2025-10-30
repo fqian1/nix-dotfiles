@@ -78,7 +78,7 @@
               "mountpoint" = "legacy";
             };
           };
-          "persisttent" = {
+          "persistent" = {
             type = "zfs_fs";
             mountpoint = "/persistent";
             options = {
