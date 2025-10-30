@@ -11,7 +11,7 @@
       "/var/lib/NetworkManager"
       "/etc/ssh"
       "/etc/NetworkManager/system-connections"
-      "/etc/wireguard/wg-CH-850.conf"
+      "/etc/wireguard/"
     ];
 
     files = [
