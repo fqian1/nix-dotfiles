@@ -24,6 +24,7 @@
       gemini-cli
       cloudflared
       neovim-custom
+      swaylock
     ];
   };
 }
