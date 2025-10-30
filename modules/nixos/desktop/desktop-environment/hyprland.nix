@@ -37,8 +37,8 @@
           ];
 
           monitor = [
-            "HDMI-A-1,1920x1080@239.96,0x0,1"
-            "DP-1,3440x1440@240,auto-right,1"
+            ",highrr,0x0,1"
+            ",highrr,auto-right,1"
           ];
 
           input = {
