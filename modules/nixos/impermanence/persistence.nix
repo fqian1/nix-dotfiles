@@ -21,4 +21,5 @@
       "/etc/ssh/ssh_host_ed25519_key"
     ];
   };
+  filesystems."/persistent".neededForBoot = true;
 }
