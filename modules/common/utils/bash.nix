@@ -63,8 +63,8 @@
         '';
 
         shellAliases = {
-          nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
-          nrb = "sudo nixos-rebuild boot --flake ~/.dotfiles/#nixos && reboot";
+          nrs = "doas nixos-rebuild switch --flake ~/.dotfiles/#nixos";
+          nrb = "doas nixos-rebuild boot --flake ~/.dotfiles/#nixos && reboot";
           port = "cat /var/run/protonvpn-forwarded-port";
           gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
           vim = "nvim";
