@@ -39,8 +39,8 @@
         comma
         autojump
         bitwarden-desktop
-        cloudflared
         ffmpeg
+        swaylock
       ];
     };
   };
