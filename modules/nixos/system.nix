@@ -14,6 +14,7 @@
       extraRules = [
         {
           users = [ "fqian" ];
+          groups = [ "wheel" ];
           noPass = true;
           keepEnv = true;
           # persist = true; conflicts with noPass

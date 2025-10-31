@@ -24,4 +24,15 @@ in
       programs.home-manager.enable = true;
     };
   };
+  home-manager.users.root = {
+    programs.git = {
+      enable = true;
+      settings = {
+        safe = {
+          directory = "~/.dotfiles";
+        };
+      };
+    };
+    home.stateVersion = "25.05";
+  };
 }
