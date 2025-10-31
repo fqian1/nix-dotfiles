@@ -5,6 +5,7 @@
   runCommandLocal,
   vimPlugins,
   lib,
+  pkgs,
 }:
 let
   packageName = "mypackage";
@@ -46,6 +47,15 @@ let
     vimPlugins.vim-tmux-navigator
   ];
 
+  externalTools = [
+    pkgs.ripgrep
+    pkgs.nixfmt
+    pkgs.stylua
+    pkgs.alejandra
+    pkgs.rust-analyzer
+    pkgs.rustfmt
+  ];
+
   foldPlugins = builtins.foldl' (
     acc: next:
     acc
@@ -70,7 +80,7 @@ in
 symlinkJoin {
   name = "neovim-custom";
   paths = [ neovim-unwrapped ];
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [ makeWrapper ] ++ externalTools;
   postBuild = ''
     wrapProgram $out/bin/nvim \
       --add-flags '-u' \

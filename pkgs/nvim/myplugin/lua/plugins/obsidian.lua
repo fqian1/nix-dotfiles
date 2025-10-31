@@ -5,6 +5,7 @@ require("obsidian").setup({
             path = "~/projects/obsidian-vault", -- The path to your vault
         },
     },
+  ui = {enable = false}
 
     -- OPTIONAL: Add common options here
     -- For example, to set up keybindings:

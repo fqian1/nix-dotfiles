@@ -5,6 +5,7 @@
   runCommandLocal,
   vimPlugins,
   lib,
+  pkgs,
 }:
 let
   neovim-custom = (import ./neovim.nix) {
@@ -15,6 +16,7 @@ let
       runCommandLocal
       vimPlugins
       lib
+      pkgs
       ;
   };
 in
