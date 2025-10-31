@@ -9,10 +9,12 @@
             Name = "fqian";
             Email = "francois.qian2@gmail.com";
           };
-	  extraConfig = [
-	    "~/.dotfiles"
-       	  ];
         };
+	extraConfig = {
+	  safe.directory = [
+	    "~/.dotfiles"
+	  ];
+	};
       };
 
       lazygit = {
