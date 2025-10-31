@@ -29,7 +29,7 @@ in
       enable = true;
       settings = {
         safe = {
-          directory = "~/.dotfiles";
+          directory = [ "/home/fqian/.dotfiles" ];
         };
       };
     };
