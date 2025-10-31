@@ -21,5 +21,12 @@
       "/etc/ssh/ssh_host_ed25519_key"
     ];
   };
+  home-manager.users.fqian.home.persistence."/persistent/home/fqian" = {
+    allowOther = true;
+    directories = [
+      ".config"
+      ".local/share"
+    ];
+  };
   fileSystems."/persistent".neededForBoot = true;
 }
