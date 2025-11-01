@@ -9,11 +9,6 @@
             Name = "fqian";
             Email = "francois.qian2@gmail.com";
           };
-          safe = {
-            directory = [
-              "~/.dotfiles"
-            ];
-          };
         };
       };
 

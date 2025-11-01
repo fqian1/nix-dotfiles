@@ -7,19 +7,7 @@
 {
   security = {
     sudo = {
-      enable = false;
-    };
-    doas = {
       enable = true;
-      extraRules = [
-        {
-          users = [ "fqian" ];
-          groups = [ "wheel" ];
-          noPass = true;
-          keepEnv = true;
-          # persist = true; conflicts with noPass
-        }
-      ];
     };
     polkit = {
       enable = true;
