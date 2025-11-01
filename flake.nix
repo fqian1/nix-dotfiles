@@ -13,10 +13,6 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
   outputs =
     {
@@ -25,81 +21,34 @@
       home-manager,
       impermanence,
       disko,
-      darwin,
       ...
     }@inputs:
     let
       inherit (self) outputs;
-      forAllSystems = nixpkgs.lib.genAttrs [
+      systems = [
+        "aarch64-linux"
+        "i686-linux"
         "x86_64-linux"
         "aarch64-darwin"
+        "x86_64-darwin"
       ];
-
-      sharedModules = [
-        ./modules/common
-      ];
-
-      nixosModules = [
-        disko.nixosModules.disko
-        impermanence.nixosModules.impermanence
-        home-manager.nixosModules.home-manager
-        ./modules/nixos
-      ];
-
-      darwinModules = [
-        home-manager.darwinModules.home-manager
-        ./modules/darwin
-      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
-      packages = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-          myPkgs = import ./pkgs {
-            inherit pkgs;
-            inherit system;
-          };
-        in
-        {
-          neovim-custom = myPkgs.nvim.neovim-custom;
-        }
-      );
-
-      overlays = {
-        neovim-custom = final: prev: {
-          neovim-custom = self.packages.${final.system}.neovim-custom;
-        };
-      };
-
-      darwinConfigurations = {
-        "darwin" = darwin.lib.darwinSystem {
-          specialArgs = {
-            inherit inputs outputs;
-            lib = nixpkgs.lib;
-          };
-          modules = sharedModules ++ darwinModules ++ [ ./hosts/darwin/default.nix ];
-        };
-      };
+      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+      overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = {
         "nixos" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
-            lib = nixpkgs.lib;
-          };
-          modules =
-            sharedModules
-            ++ nixosModules
-            ++ [
-              ./hosts/nixos/default.nix
-              (
-                { pkgs, ... }:
-                {
-                  nixpkgs.overlays = [ self.overlays.neovim-custom ];
-                }
-              )
-            ];
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            disko.nixosModules.disko
+            impermanence.nixosModules.impermanence
+            home-manager.nixosModules.home-manager
+            ./modules/nixos
+            ./modules/home-manager
+            ./hosts/nixos/default.nix
+          ];
         };
       };
     };

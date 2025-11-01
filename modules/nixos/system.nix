@@ -5,37 +5,58 @@
   ...
 }:
 {
-  security = {
-    sudo = {
-      enable = true;
-    };
-    polkit = {
-      enable = true;
-    };
+  nixpkgs.config = {
+    allowUnfree = true;
   };
 
-  services = {
-    fwupd = {
-      enable = true;
-    };
-  };
+  time.timeZone = "Europe/London";
 
-  console = {
-    font = "Lat2-Terminus16";
-    # keyMap = "uk";
-    useXkbConfig = true;
-  };
+  programs.bash.enable = true;
 
-  i18n = {
-    defaultLocale = "en_GB.UTF-8";
-    extraLocaleSettings = {
-      LC_ALL = "en_GB.UTF-8";
-      LANGUAGE = "en_US.UTF-8";
-      LC_TIME = "en_GB.UTF-8";
-    };
-    supportedLocales = [
-      "en_GB.UTF-8/UTF-8"
-      "en_US.UTF-8/UTF-8"
+  environment.variables.EDITOR = "nvim";
+
+  fonts = {
+    packages = with pkgs; [
+      nerd-fonts.fira-code
     ];
+  };
+
+  users.users.fqian = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
+    initialPassword = "password";
+    shell = pkgs.bash;
+  };
+
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  nix = {
+    enable = true;
+    package = pkgs.nix;
+    settings = {
+      trusted-users = [
+        "root"
+        "fqian"
+      ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      warn-dirty = false;
+      auto-optimise-store = false;
+    };
+
+    gc = {
+      automatic = true;
+      dates = [ "weekly" ];
+      options = "--delete-older-than 7d";
+    };
   };
 }

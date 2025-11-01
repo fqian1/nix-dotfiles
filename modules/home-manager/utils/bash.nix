@@ -33,7 +33,7 @@
             if [[ $# -eq 1 ]]; then
                 selected=$1
             else
-                selected=$( (fd . ~/work ~/projects ~/temp --exact-depth 1 -td; echo ~/.dotfiles ) | fzy)
+                selected=$( (fd . ~/projects --exact-depth 1 -td; echo ~/.dotfiles ) | sed "s|^$HOME/||" | sk --margin 10% --color="bw")
             fi
 
             if [[ -z $selected ]]; then

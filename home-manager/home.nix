@@ -1,13 +1,24 @@
 {
-  config,
+  inputs,
+  outputs,
   lib,
+  config,
   pkgs,
   ...
 }:
-let
-  isDarwin = pkgs.stdenv.isDarwin;
-in
 {
+  imports = [
+  ];
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modification
+      outputs.overlays.unstable-packages
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -16,23 +27,13 @@ in
       home = {
         stateVersion = "25.05";
         username = "fqian";
-        homeDirectory = if isDarwin then "/Users/fqian" else "/home/fqian";
+        homeDirectory = "/Users/fqian";
         # sessionVariables = {
         #   SOPS_AGE_KEY_FILE = something + "/.config/sops/age/keys.txt";
         # };
       };
       programs.home-manager.enable = true;
+      systemd.user.startServices = "sd-switch";
     };
-  };
-  home-manager.users.root = {
-    programs.git = {
-      enable = true;
-      settings = {
-        safe = {
-          directory = [ "/home" ];
-        };
-      };
-    };
-    home.stateVersion = "25.05";
   };
 }

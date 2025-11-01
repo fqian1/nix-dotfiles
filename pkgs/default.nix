@@ -1,7 +1,3 @@
-{ pkgs, ... }:
-pkgs.callPackage (
-  { callPackage }:
-  {
-    nvim = callPackage ./nvim { };
-  }
-) { }
+pkgs: {
+  nvim = pkgs.callPackage ./nvim { };
+}

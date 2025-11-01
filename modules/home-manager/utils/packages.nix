@@ -39,6 +39,7 @@
         comma
         autojump
         bitwarden-desktop
+        skim
         ffmpeg
         swaylock
       ];
