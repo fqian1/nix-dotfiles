@@ -25,6 +25,7 @@
       cloudflared
       neovim-custom
       swaylock
+      nvim
     ];
   };
 }
