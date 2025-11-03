@@ -10,7 +10,6 @@
     ./nh.nix
     ./packages.nix
     ./ripgrep.nix
-    ./ssh.nix
     ./starship.nix
     ./tmux.nix
     ./yazi.nix

@@ -40,21 +40,6 @@
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
 
-  security = {
-    sudo = {
-      enable = true;
-    };
-    polkit = {
-      enable = true;
-    };
-  };
-
-  services = {
-    fwupd = {
-      enable = true;
-    };
-  };
-
   console = {
     font = "Lat2-Terminus16";
     # keyMap = "uk";
@@ -76,16 +61,6 @@
 
   time.timeZone = "Europe/London";
 
-  programs.bash.enable = true;
-
-  environment.variables.EDITOR = "nvim";
-
-  fonts = {
-    packages = with pkgs; [
-      nerd-fonts.fira-code
-    ];
-  };
-
   users.users.fqian = {
     isNormalUser = true;
     extraGroups = [
@@ -94,13 +69,6 @@
     ];
     initialPassword = "password";
     shell = pkgs.bash;
-    # openssh.authorizedKeys.keys = [ ];
-  };
-
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
   };
 
   networking = {
@@ -122,6 +90,10 @@
       PermitRootLogin = "prohibit-password";
     };
   };
+
+  services.fwupd.enable = true;
+
+  programs.nix-ld.enable = true; # Just in case
 
   system.stateVersion = "25.05";
 }

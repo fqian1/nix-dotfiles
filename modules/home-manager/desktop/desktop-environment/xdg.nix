@@ -3,7 +3,6 @@
   ...
 }:
 {
-
   xdg = {
     portal = {
       enable = true;

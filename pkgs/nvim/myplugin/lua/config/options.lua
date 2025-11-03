@@ -129,6 +129,15 @@ vim.cmd('filetype plugin on') -- Enable filetype plugins
 vim.cmd('filetype indent on') -- Enable filetype-based indenting
 
 ---------------------
+--- NETRW SETTINGS---
+---------------------
+vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
+vim.g.netrw_winsize = 50
+vim.g.netrw_keepdir = 0
+
+---------------------
 --- MISCELLANEOUS ---
 ---------------------
 

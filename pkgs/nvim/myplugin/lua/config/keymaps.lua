@@ -14,7 +14,7 @@ map("n", "<leader>8", ':execute "normal! mH"<CR>', opts)
 map("n", "<leader>9", ':execute "normal! mI"<CR>', opts)
 map("n", "<leader>0", ':execute "normal! mJ"<CR>', opts)
 
--- Jump to marks using Ctrl + number
+-- Jump to marks using Ctrl + number and jump to recent position
 map("n", "<C-1>", "'A'\"", opts)
 map("n", "<C-2>", "'B'\"", opts)
 map("n", "<C-3>", "'C'\"", opts)

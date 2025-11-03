@@ -34,7 +34,7 @@ let
     vimPlugins.conform-nvim
     vimPlugins.gitsigns-nvim
     vimPlugins.indent-blankline-nvim
-    vimPlugins.lsp_lines-nvim
+    vimPlugins.lsp_lines-nvim # Replace with tiny-inline-diagnostic.nvim when its added to nixpkgs
     vimPlugins.lualine-nvim
     vimPlugins.telescope-nvim
     vimPlugins.telescope-ui-select-nvim
@@ -44,6 +44,7 @@ let
     vimPlugins.obsidian-nvim
     vimPlugins.render-markdown-nvim
     vimPlugins.vim-tmux-navigator
+    vimPlugins.tiny-glimmer-nvim # TODO configure
   ];
 
   foldPlugins = builtins.foldl' (
