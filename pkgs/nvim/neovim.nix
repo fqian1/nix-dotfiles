@@ -39,7 +39,6 @@ let
     vimPlugins.telescope-nvim
     vimPlugins.telescope-ui-select-nvim
     vimPlugins.telescope-frecency-nvim
-    vimPlugins.telescope-file-browser-nvim
     vimPlugins.telescope-fzy-native-nvim
     vimPlugins.obsidian-nvim
     vimPlugins.render-markdown-nvim

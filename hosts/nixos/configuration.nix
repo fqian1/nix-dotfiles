@@ -11,6 +11,8 @@
     outputs.nixosModules.vpn
     outputs.nixosModules.impermanence
     outputs.nixosModules.packages
+    outputs.nixosModules.audio
+    outputs.nixosModules.xdg
     ./hardware.nix
   ];
 
@@ -47,6 +49,11 @@
     font = "Lat2-Terminus16";
     # keyMap = "uk";
     useXkbConfig = true;
+  };
+
+  fonts = {
+    fontconfig.enable = true;
+    fontDir.enable = true;
   };
 
   i18n = {
