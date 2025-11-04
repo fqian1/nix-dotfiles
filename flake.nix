@@ -44,11 +44,11 @@
 
       nixosConfigurations = {
         "nixos" = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
           modules = [
             disko.nixosModules.disko
             impermanence.nixosModules.impermanence
             ./hosts/nixos/configuration.nix
-            ./home-manager/home.nix
           ];
         };
       };
@@ -56,7 +56,7 @@
       homeConfigurations = {
         "fqian@nixos" = nixpkgs.lib.nixosSystem {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          specialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home-manager/home.nix
           ];
