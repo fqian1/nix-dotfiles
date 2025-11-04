@@ -20,6 +20,7 @@
       allowUnfree = true;
     };
   };
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -29,13 +30,16 @@
         stateVersion = "25.05";
         username = "fqian";
         homeDirectory = "/Users/fqian";
-        # sessionVariables = {
-        #   SOPS_AGE_KEY_FILE = something + "/.config/sops/age/keys.txt";
-        # };
+        sessionVariables = {
+          EDITOR = "nvim";
+          # SOPS_AGE_KEY_FILE = "/.config/sops/age/keys.txt";
+        };
       };
-      programs.home-manager.enable = true;
+
       systemd.user.startServices = "sd-switch";
+
       programs = {
+        home-manager.enable = true;
         git = {
           enable = true;
           settings = {
@@ -46,7 +50,27 @@
           };
         };
       };
-      home.sessionVariables.EDITOR = "nvim";
+
+      packages = with pkgs; [
+        xdg-user-dirs
+        xdg-utils
+      ];
+
+      xdg = {
+        enable = true;
+        userDirs = {
+          enable = true;
+          createDirectories = true;
+          desktop = "$HOME/desktop";
+          documents = "$HOME/documents";
+          download = "$HOME/downloads";
+          music = "$HOME/music";
+          pictures = "$HOME/pictures";
+          publicShare = "$HOME/desktop";
+          templates = "$HOME/templates";
+          videos = "$HOME/videos";
+        };
+      };
     };
   };
 }
