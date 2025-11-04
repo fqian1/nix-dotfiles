@@ -1,17 +1,10 @@
 { ... }:
 {
-  imports = [
-    ./bash.nix
-    ./bat.nix
-    ./bottom.nix
-    ./direnv.nix
-    ./eza.nix
-    ./nh.nix
-    ./packages.nix
-    ./ripgrep.nix
-    ./starship.nix
-    ./tmux.nix
-    ./yazi.nix
-    ./zoxide.nix
-  ];
+  bash = import ./bash.nix;
+  direnv = import ./direnv.nix;
+  packages = import ./packages.nix;
+  starship = import ./starship.nix;
+  tmux = import ./tmux.nix;
+  yazi = import ./yazi.nix;
+  lazygit = import ./lazygit.nix;
 }

@@ -3,7 +3,7 @@
 
 # todo list:
  - make hardware agnostic (amd nvidia intel gpu cpu etc.)
- - configure ssh and openssh service for users.users and home-manager.users. no need for cloudflared or tailscale
+ - configure ssh and openssh service for users.users and home-manager.users.
  - prune unneeded packages, keep it minimal. fzf, fzy and skim all same thing. use find over fd? maybe keep fd. bat, zoxide can go. maybe even ripgrep? but then have to edit bash scripts. what to do.
  - create dev shells. how it works? direnv?
  - configure impermanence for home directory so i can do imperative stuff 👹

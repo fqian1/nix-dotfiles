@@ -8,8 +8,23 @@
 }:
 {
   imports = [
-    outputs.homeManagerModules
+    outputs.homeManagerModules.cli.packages
+    outputs.homeManagerModules.cli.bash
+    outputs.homeManagerModules.cli.direnv
+    outputs.homeManagerModules.cli.lazygit
+    outputs.homeManagerModules.cli.starship
+    outputs.homeManagerModules.cli.tmux
+    outputs.homeManagerModules.cli.yazi
+
+    outputs.homeManagerModules.desktop.hyprland
+    outputs.homeManagerModules.desktop.theme
+    outputs.homeManagerModules.desktop.applications.firefox
+    outputs.homeManagerModules.desktop.applications.discord
+    outputs.homeManagerModules.desktop.applications.kitty
+    outputs.homeManagerModules.desktop.applications.obsidian
+    outputs.homeManagerModules.desktop.applications.qbittorrent
   ];
+
   nixpkgs = {
     overlays = [
       outputs.overlays.additions

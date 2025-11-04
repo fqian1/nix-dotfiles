@@ -11,7 +11,6 @@
     outputs.nixosModules.vpn
     outputs.nixosModules.impermanence
     outputs.nixosModules.packages
-    outputs.nixosModules.audio
     outputs.nixosModules.xdg
     ./hardware.nix
   ];
@@ -79,6 +78,21 @@
     ];
     initialPassword = "password";
     shell = pkgs.bash;
+  };
+
+  environment.systemPackages = with pkgs; [
+    wget
+    curl
+    unzip
+    p7zip
+    nmap
+    git
+    tree
+  ];
+
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
   };
 
   networking = {

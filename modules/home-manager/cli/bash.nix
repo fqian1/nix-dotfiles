@@ -61,15 +61,14 @@
 
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
+      hrs = "home-manager --flake ~/.dotfiles/#fqian@nixos";
       nrb = "sudo nixos-rebuild boot --flake ~/.dotfiles/#nixos && reboot";
       port = "cat /var/run/protonvpn-forwarded-port";
       gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
+      lock = "swaylock -c 000000";
       tree = "tree -F --dirsfirst";
       vim = "nvim";
       ls = "ls -l";
-      cat = "bat";
-      top = "btm";
-      cd = "z";
     };
   };
 }
