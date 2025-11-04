@@ -1,9 +1,14 @@
 { ... }:
 {
   imports = [
-    ./audio
+    ./audio.nix
     ./applications
     ./desktop-environment
-    ./theme
+    ./theme.nix
+    ./xdg.nix
+    ./wofi.nix
+    ./hyprland.nix
+    ./hypridle.nix
+    ./hyprlock.nix
   ];
 }

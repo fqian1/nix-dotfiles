@@ -3,7 +3,8 @@
 }:
 {
   imports = [
-    ./services
-    ./impermanence
+    ./vpn.nix
+    ./impermanence.nix
+    ./packages.nix
   ];
 }

@@ -17,3 +17,26 @@ unrelated:
 grex, newsboat, jrnl, ttyd, croc: cool cli tools
 coreboot + some payload. sixos
 nextcloud + homeserver.
+https://github.com/pd3v/line
+
+./
+├── home-manager/
+│   └── home.nix
+├── hosts/
+│   └── nixos/
+│       ├── default.nix
+│       ├── disk-config.nix
+│       └── hardware.nix
+├── modules/
+│   ├── home-manager/
+│   │   └── default.nix
+│   └── nixos/
+│       └── default.nix
+├── overlays/
+│   └── default.nix
+├── pkgs/
+│   └── default.nix
+├── flake.lock
+├── flake.nix
+├── install.sh
+└── README.md

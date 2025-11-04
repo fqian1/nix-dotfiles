@@ -8,7 +8,7 @@
 }:
 {
   imports = [
-    ./git.nix
+    outputs.homeManagerModules
   ];
   nixpkgs = {
     overlays = [
@@ -35,6 +35,17 @@
       };
       programs.home-manager.enable = true;
       systemd.user.startServices = "sd-switch";
+      programs = {
+        git = {
+          enable = true;
+          settings = {
+            user = {
+              Name = "fqian";
+              Email = "francois.qian2@gmail.com";
+            };
+          };
+        };
+      };
       home.sessionVariables.EDITOR = "nvim";
     };
   };

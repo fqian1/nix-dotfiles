@@ -22,7 +22,6 @@
       uv
       pre-commit
       gemini-cli
-      cloudflared
       neovim-custom
       swaylock
       nvim

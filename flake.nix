@@ -38,17 +38,27 @@
     {
       packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
       overlays = import ./overlays { inherit inputs; };
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
         "nixos" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
           modules = [
             disko.nixosModules.disko
             impermanence.nixosModules.impermanence
-            home-manager.nixosModules.home-manager
-            ./modules/nixos
-            ./modules/home-manager
             ./hosts/nixos/default.nix
+            ./home-manager/home.nix
+          ];
+        };
+      };
+
+      homeConfigurations = {
+        "fqian@nixos" = nixpkgs.lib.nixosSystem {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home-manager/home.nix
           ];
         };
       };

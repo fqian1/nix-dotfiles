@@ -194,12 +194,11 @@
           "browser.menu.showViewImageInfo" = true;
           "findbar.highlightAll" = true;
           "layout.word_select.eat_space_to_next_word" = false;
+          "browser.tabs.allowTabDetach" = false;
 
           # /****************************************************************************
           #  * START: MY OVERRIDES                                                      *
           # ****************************************************************************/
-          # Note: Nix will automatically use these values, overriding any identical
-          # keys defined earlier in this set.
           "signon.formlessCapture.enabled" = true;
           "signon.privateBrowsingCapture.enabled" = true;
           "signon.autofillForms" = true;

@@ -67,6 +67,7 @@
           nrb = "sudo nixos-rebuild boot --flake ~/.dotfiles/#nixos && reboot";
           port = "cat /var/run/protonvpn-forwarded-port";
           gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
+          tree = "tree -F --dirsfirst";
           vim = "nvim";
           ls = "ls -l";
           cat = "bat";
