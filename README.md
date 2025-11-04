@@ -1,11 +1,12 @@
+# NIX CONFIG!!!
+ - remember to edit hosts/<host>/disk-config.nix with correct drive!
+
 # todo list:
- - minimalise hosts/nixos, maybe add hosts/common/ for non user specific things
- - clear separation between users.users and home-manager.users, and home-manager common modules and home-manager user specific (e.g. ssh contains PII vs starship)
  - make hardware agnostic (amd nvidia intel gpu cpu etc.)
  - configure ssh and openssh service for users.users and home-manager.users. no need for cloudflared or tailscale
  - prune unneeded packages, keep it minimal. fzf, fzy and skim all same thing. use find over fd? maybe keep fd. bat, zoxide can go. maybe even ripgrep? but then have to edit bash scripts. what to do.
  - create dev shells. how it works? direnv?
- - configure impermanence for home directory so i can do imperative stuff *ogre emoji*
+ - configure impermanence for home directory so i can do imperative stuff 👹
  - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
  - migrate to dwl, make everything suckless. remember to change key repeat delay and repeat rate
  - rice with quickshell, stylix?
