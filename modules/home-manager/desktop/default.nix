@@ -1,8 +1,5 @@
-{ ... }:
 {
-  imports = [
-    ./applications
-    ./theme.nix
-    ./hyprland.nix
-  ];
+  applications = import ./applications;
+  hyprland = import ./hyprland.nix;
+  theme = import ./theme.nix;
 }

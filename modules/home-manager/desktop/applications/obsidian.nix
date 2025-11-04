@@ -1,6 +1,4 @@
 { ... }:
 {
-  home-manager.users.fqian = {
-    programs.obsidian.enable = true;
-  };
+  programs.obsidian.enable = true;
 }

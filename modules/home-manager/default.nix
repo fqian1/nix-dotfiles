@@ -1,10 +1,4 @@
 {
-  ...
-}:
-{
-  imports = [
-    ./utils
-    ./development
-    ./desktop
-  ];
+  cli = import ./cli;
+  desktop = import ./desktop;
 }

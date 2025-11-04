@@ -8,4 +8,5 @@
       configPackages = with pkgs; [ xdg-desktop-portal-hyprland ];
     };
   };
+  programs.dconf.enable = true;
 }

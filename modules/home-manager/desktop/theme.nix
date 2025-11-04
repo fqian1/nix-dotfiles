@@ -28,8 +28,6 @@
     };
   };
 
-  programs.dconf.enable = true;
-
   home-manager.users.fqian =
     { pkgs, ... }:
     {

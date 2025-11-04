@@ -47,7 +47,7 @@
           modules = [
             disko.nixosModules.disko
             impermanence.nixosModules.impermanence
-            ./hosts/nixos/default.nix
+            ./hosts/nixos/configuration.nix
             ./home-manager/home.nix
           ];
         };

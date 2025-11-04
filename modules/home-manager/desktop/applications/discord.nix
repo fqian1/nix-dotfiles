@@ -1,8 +1,4 @@
 { pkgs, ... }:
 {
-  home-manager.users.fqian = {
-    home.packages = with pkgs; [
-      discord
-    ];
-  };
+  programs.vesktop.enable = true;
 }
