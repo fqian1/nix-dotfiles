@@ -1,5 +1,5 @@
 # NIX CONFIG!!!
- - remember to edit hosts/<host>/disk-config.nix with correct drive!
+ - remember to edit hosts/nixos/disk-config.nix with correct drive!
 
 # todo list:
  - make hardware agnostic (amd nvidia intel gpu cpu etc.)

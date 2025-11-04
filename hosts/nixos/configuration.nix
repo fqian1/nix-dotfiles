@@ -10,14 +10,13 @@
   imports = [
     outputs.nixosModules.vpn
     outputs.nixosModules.impermanence
-    outputs.nixosModules.xdg
     ./hardware.nix
   ];
 
   nixpkgs = {
     overlays = [
       outputs.overlays.additions
-      outputs.overlays.modification
+      outputs.overlays.modifications
       outputs.overlays.unstable-packages
     ];
     config.allowUnfree = true;
@@ -113,6 +112,17 @@
       PermitRootLogin = "prohibit-password";
     };
   };
+
+  xdg = {
+    portal = {
+      enable = true;
+      wlr.enable = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+      configPackages = with pkgs; [ xdg-desktop-portal-hyprland ];
+    };
+  };
+
+  programs.dconf.enable = true;
 
   services.fwupd.enable = true;
 
