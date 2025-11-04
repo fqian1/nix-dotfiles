@@ -26,17 +26,78 @@
 │   └── home.nix
 ├── hosts/
 │   └── nixos/
-│       ├── default.nix
+│       ├── configuration.nix
 │       ├── disk-config.nix
 │       └── hardware.nix
 ├── modules/
 │   ├── home-manager/
+│   │   ├── cli/
+│   │   │   ├── bash.nix
+│   │   │   ├── bat.nix
+│   │   │   ├── bottom.nix
+│   │   │   ├── default.nix
+│   │   │   ├── direnv.nix
+│   │   │   ├── eza.nix
+│   │   │   ├── lazygit.nix
+│   │   │   ├── nh.nix
+│   │   │   ├── packages.nix
+│   │   │   ├── ripgrep.nix
+│   │   │   ├── starship.nix
+│   │   │   ├── tmux.nix
+│   │   │   ├── yazi.nix
+│   │   │   └── zoxide.nix
+│   │   ├── desktop/
+│   │   │   ├── applications/
+│   │   │   │   ├── default.nix
+│   │   │   │   ├── discord.nix
+│   │   │   │   ├── firefox.nix
+│   │   │   │   ├── kitty.nix
+│   │   │   │   ├── lmms.nix
+│   │   │   │   ├── obsidian.nix
+│   │   │   │   └── qbittorrent.nix
+│   │   │   ├── default.nix
+│   │   │   ├── hyprland.nix
+│   │   │   └── theme.nix
 │   │   └── default.nix
 │   └── nixos/
-│       └── default.nix
+│       ├── audio.nix
+│       ├── default.nix
+│       ├── impermanence.nix
+│       ├── packages.nix
+│       ├── vpn.nix
+│       └── xdg.nix
 ├── overlays/
 │   └── default.nix
 ├── pkgs/
+│   ├── nvim/
+│   │   ├── myplugin/
+│   │   │   ├── lua/
+│   │   │   │   ├── config/
+│   │   │   │   │   ├── autocmds.lua
+│   │   │   │   │   ├── keymaps.lua
+│   │   │   │   │   └── options.lua
+│   │   │   │   └── plugins/
+│   │   │   │       ├── autopairs.lua
+│   │   │   │       ├── bufferline.lua
+│   │   │   │       ├── cmp.lua
+│   │   │   │       ├── conform.lua
+│   │   │   │       ├── crates.lua
+│   │   │   │       ├── gitsigns.lua
+│   │   │   │       ├── indentblankline.lua
+│   │   │   │       ├── kanagawa.lua
+│   │   │   │       ├── lspconfig.lua
+│   │   │   │       ├── lsplines.lua
+│   │   │   │       ├── lualine.lua
+│   │   │   │       ├── obsidian.lua
+│   │   │   │       ├── rendermarkdown.lua
+│   │   │   │       ├── telescope.lua
+│   │   │   │       ├── tmuxnavigator.lua
+│   │   │   │       ├── treesitter.lua
+│   │   │   │       └── undotree.lua
+│   │   │   └── plugin/
+│   │   │       └── init.lua
+│   │   ├── default.nix
+│   │   └── neovim.nix
 │   └── default.nix
 ├── flake.lock
 ├── flake.nix
