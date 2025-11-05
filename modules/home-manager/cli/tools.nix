@@ -47,6 +47,5 @@
     # Tools
     hyperfine
     ffmpeg
-    swaylock
   ];
 }

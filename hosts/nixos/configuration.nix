@@ -118,6 +118,13 @@
   };
   networking.firewall.allowedTCPPorts = [ 22 ];
 
+  services = {
+    xserver.videoDrivers = [ "nvidia" ];
+    displayManager.ly.enable = true;
+    # printing.enable = true; # Printing
+    # libinput.enable = true; # Touchpad support
+  };
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
