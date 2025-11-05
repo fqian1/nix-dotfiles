@@ -8,13 +8,10 @@
 }:
 {
   imports = [
-    outputs.homeManagerModules.cli.packages
+    outputs.homeManagerModules.cli.tools
     outputs.homeManagerModules.cli.bash
-    outputs.homeManagerModules.cli.direnv
-    outputs.homeManagerModules.cli.lazygit
     outputs.homeManagerModules.cli.starship
     outputs.homeManagerModules.cli.tmux
-    outputs.homeManagerModules.cli.yazi
 
     outputs.homeManagerModules.desktop.hyprland
     outputs.homeManagerModules.desktop.theme

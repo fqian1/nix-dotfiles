@@ -1,8 +1,18 @@
 { pkgs, ... }:
+let
+  tmux-sessionizer = ./scripts/tmux-sessionizer.sh;
+  init-rust-project = ./scripts/init-rust-project.sh;
+  find-edit = ./scripts/find-edit.sh;
+in
 {
   home.packages = with pkgs; [
     blesh
+    nvim
+    skim
+    fd
+    fzy
   ];
+
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -16,47 +26,14 @@
       bind -m vi-command 'v': # disable pressing v in normal mode to start $editor
       bind 'set keyseq-timeout 1'
 
-      fedit() {
-        local file_to_edit
-        file_to_edit=$(fd $@ . ~/.dotfiles -tf | fzy)
+      source ${tmux-sessionizer}
+      source ${init-rust-project}
+      source ${find-edit}
 
-        if [[ -n "$file_to_edit" ]]; then
-          vim "$file_to_edit"
-        fi
-      }
-      bind -x '"\C-e":fedit'
-
-      sessionizer() {
-        if [[ $# -eq 1 ]]; then
-            selected=$1
-        else
-            selected=$( (fd . ~/projects --exact-depth 1 -td; echo ~/.dotfiles ) | sed "s|^$HOME/||" | sk --margin 10% --color="bw")
-        fi
-
-        if [[ -z $selected ]]; then
-            return 0
-        fi
-
-        selected_name=$(basename "$selected" | tr . _)
-        tmux_running=$(pgrep tmux)
-
-        if [[ -z $TMUX ]]; then
-            if tmux has-session -t="$selected_name" 2>/dev/null; then
-                tmux attach-session -t "$selected_name"
-            else
-                tmux new-session -s "$selected_name" -c "$selected" \; split-window -h -p 40
-            fi
-        else
-            if tmux has-session -t="$selected_name" 2>/dev/null; then
-                tmux switch-client -t "$selected_name"
-            else
-                tmux new-session -ds "$selected_name" -c "$selected" \; split-window -h -p 40
-                tmux switch-client -t "$selected_name"
-            fi
-        fi
-      }
-      bind -m vi-insert -x '"\C-f":sessionizer'
-      bind -m vi-command -x '"\C-f":sessionizer'
+      bind -m vi-insert '"\C-e":find-edit'
+      bind -m vi-command '"\C-e":find-edit'
+      bind -m vi-insert -x '"\C-f":tmux-sessionizer'
+      bind -m vi-command -x '"\C-f":tmux-sessionizer'
     '';
 
     shellAliases = {

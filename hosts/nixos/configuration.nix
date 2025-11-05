@@ -113,18 +113,14 @@
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "prohibit-password";
-      kbdInteractiveAuthentication = false;
+      KbdInteractiveAuthentication = false;
     };
   };
   networking.firewall.allowedTCPPorts = [ 22 ];
 
-  xdg = {
-    portal = {
-      enable = true;
-      wlr.enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
-      configPackages = with pkgs; [ xdg-desktop-portal-hyprland ];
-    };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
   };
 
   programs.dconf.enable = true;

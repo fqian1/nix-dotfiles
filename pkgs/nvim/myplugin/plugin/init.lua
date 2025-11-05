@@ -3,7 +3,7 @@ vim.g.maplocalleader = "\\"
 require("config.autocmds")
 require("config.options")
 require("config.keymaps")
-require("plugins.bufferline")
+-- require("plugins.bufferline")
 require("plugins.cmp")
 require("plugins.conform")
 require("plugins.crates")
