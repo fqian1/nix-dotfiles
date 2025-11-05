@@ -26,7 +26,7 @@
       }
       bind -x '"\C-e":fedit'
 
-      f() {
+      sessionizer() {
         if [[ $# -eq 1 ]]; then
             selected=$1
         else
@@ -55,8 +55,8 @@
             fi
         fi
       }
-      bind -m vi-insert -x '"\C-f":f'
-      bind -m vi-command -x '"\C-f":f'
+      bind -m vi-insert -x '"\C-f":sessionizer'
+      bind -m vi-command -x '"\C-f":sessionizer'
     '';
 
     shellAliases = {

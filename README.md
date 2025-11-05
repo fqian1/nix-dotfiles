@@ -4,16 +4,17 @@
 # todo list:
  - make hardware agnostic (amd nvidia intel gpu cpu etc.)
  - configure ssh and openssh service for users.users and home-manager.users.
- - prune unneeded packages, keep it minimal. fzf, fzy and skim all same thing. use find over fd? maybe keep fd. bat, zoxide can go. maybe even ripgrep? but then have to edit bash scripts. what to do.
- - create dev shells. how it works? direnv?
- - configure impermanence for home directory so i can do imperative stuff 👹
+  - configure sops-nix for wireguard conf and ssh
+ - prune unneeded packages, keep it minimal, suckless.
+ - create dev shells. how it works? direnv? nix-direnv
+ - migrate to dwl, make everything suckless. remember to change key repeat delay and repeat rate. foot term, wl clipboard, grim, slurp, librewolf
  - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
- - migrate to dwl, make everything suckless. remember to change key repeat delay and repeat rate
+ - switch from firefox to librewolf. remember to add user.js config
+ - configure impermanence for home directory so i can do imperative stuff 👹
  - rice with quickshell, stylix?
  - add programs: blender gimp audacity obs-studio
  - create a shader and use as desktop background monstercat smoke https://github.com/1ay1/neowall
  - fwupdmgr service / script
- - switch from firefox to librewolf. remember to add user.js config
 
 # unrelated:
  - grex, newsboat, jrnl, ttyd, croc: cool cli tools
@@ -34,19 +35,13 @@
 │   ├── home-manager/
 │   │   ├── cli/
 │   │   │   ├── bash.nix
-│   │   │   ├── bat.nix
-│   │   │   ├── bottom.nix
 │   │   │   ├── default.nix
 │   │   │   ├── direnv.nix
-│   │   │   ├── eza.nix
 │   │   │   ├── lazygit.nix
-│   │   │   ├── nh.nix
 │   │   │   ├── packages.nix
-│   │   │   ├── ripgrep.nix
 │   │   │   ├── starship.nix
 │   │   │   ├── tmux.nix
-│   │   │   ├── yazi.nix
-│   │   │   └── zoxide.nix
+│   │   │   └── yazi.nix
 │   │   ├── desktop/
 │   │   │   ├── applications/
 │   │   │   │   ├── default.nix
@@ -61,12 +56,9 @@
 │   │   │   └── theme.nix
 │   │   └── default.nix
 │   └── nixos/
-│       ├── audio.nix
 │       ├── default.nix
 │       ├── impermanence.nix
-│       ├── packages.nix
-│       ├── vpn.nix
-│       └── xdg.nix
+│       └── vpn.nix
 ├── overlays/
 │   └── default.nix
 ├── pkgs/
@@ -102,6 +94,8 @@
 │   └── default.nix
 ├── flake.lock
 ├── flake.nix
+├── GEMINI.md
 ├── install.sh
 └── README.md
+
 ```

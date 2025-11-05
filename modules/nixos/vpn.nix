@@ -3,7 +3,6 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 22 ];
       checkReversePath = false;
       trustedInterfaces = [
         "wg0"

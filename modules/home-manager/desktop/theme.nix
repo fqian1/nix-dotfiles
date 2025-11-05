@@ -15,6 +15,7 @@
           "Noto Sans"
         ];
         serif = [ "Noto Serif" ];
+        # add font helvetica for ricing
       };
     };
   };

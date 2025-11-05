@@ -18,6 +18,7 @@
 
     outputs.homeManagerModules.desktop.hyprland
     outputs.homeManagerModules.desktop.theme
+
     outputs.homeManagerModules.desktop.applications.firefox
     outputs.homeManagerModules.desktop.applications.discord
     outputs.homeManagerModules.desktop.applications.kitty
@@ -44,7 +45,7 @@
       home = {
         stateVersion = "25.05";
         username = "fqian";
-        homeDirectory = "/Users/fqian";
+        homeDirectory = "/home/fqian";
         sessionVariables = {
           EDITOR = "nvim";
           # SOPS_AGE_KEY_FILE = "/.config/sops/age/keys.txt";
@@ -55,6 +56,41 @@
 
       programs = {
         home-manager.enable = true;
+        ssh = {
+          enable = true;
+          startAgent = true;
+          matchBlocks = {
+            "github" = {
+              hostname = "github.com";
+              user = "git";
+            };
+
+            "nixos" = {
+              hostname = "nixos";
+              user = "fqian";
+              port = 2222;
+              identityFile = "~/.ssh/id_nixos";
+              extraOptions = {
+                ForwardAgent = "yes";
+              };
+              "*" = {
+                extraOptions = {
+                  ServerAliveInterval = "60";
+                };
+              };
+            };
+          };
+
+          knownHosts = {
+            "github.com" = {
+              publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2TpTZhKVF3HvwepYu0LbeavbGjG8iF3cANfg2BLJ9o francois.qian2@gmail.com";
+            };
+            "nixos" = {
+              publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILYmIuYxMUnrHQWW5LcUGqKsNfonYf/7Vjqz+kNKPMo2 fqian@nixos";
+            };
+          };
+        };
+
         git = {
           enable = true;
           settings = {
@@ -67,6 +103,7 @@
       };
 
       packages = with pkgs; [
+        nvim
         xdg-user-dirs
         xdg-utils
       ];
@@ -75,7 +112,6 @@
         enable = true;
         userDirs = {
           enable = true;
-          createDirectories = true;
           desktop = "$HOME/desktop";
           documents = "$HOME/documents";
           download = "$HOME/downloads";
@@ -84,6 +120,7 @@
           publicShare = "$HOME/desktop";
           templates = "$HOME/templates";
           videos = "$HOME/videos";
+          createDirectories = true;
         };
       };
     };
