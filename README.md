@@ -3,21 +3,20 @@
 
 # todo list:
  - make hardware agnostic (amd nvidia intel gpu cpu etc.)
- - configure ssh and openssh service for users.users and home-manager.users.
-  - configure sops-nix for wireguard conf and ssh
  - prune unneeded packages, keep it minimal, suckless.
  - create dev shells. how it works? direnv? nix-direnv
  - migrate to dwl, make everything suckless. remember to change key repeat delay and repeat rate. foot term, wl clipboard, grim, slurp, librewolf
- - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
+ - use agenix for wireguard conf file and ssh
  - switch from firefox to librewolf. remember to add user.js config
- - configure impermanence for home directory so i can do imperative stuff 👹
  - rice with quickshell, stylix?
+ - fwupdmgr service / script
  - add programs: blender gimp audacity obs-studio
  - create a shader and use as desktop background monstercat smoke https://github.com/1ay1/neowall
- - fwupdmgr service / script
+ - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
+ - configure impermanence for home directory so i can do imperative stuff 👹
 
 # unrelated:
- - grex, newsboat, jrnl, ttyd, croc: cool cli tools
+ - grex, newsboat, jrnl, ttyd, croc, tealdeer, bat: cool cli tools
  - coreboot + some payload. sixos
  - nextcloud + homeserver.
  - https://github.com/pd3v/line

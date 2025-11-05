@@ -73,10 +73,11 @@
               extraOptions = {
                 ForwardAgent = "yes";
               };
-              "*" = {
-                extraOptions = {
-                  ServerAliveInterval = "60";
-                };
+            };
+
+            "*" = {
+              extraOptions = {
+                ServerAliveInterval = "60";
               };
             };
           };
