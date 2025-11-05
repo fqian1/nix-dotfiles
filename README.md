@@ -5,6 +5,7 @@
  - migrate to dwl, make everything suckless. remember to change key repeat delay and repeat rate. foot term, wl clipboard, grim, slurp, librewolf
  - use agenix for wireguard conf file and ssh
  - switch from firefox to librewolf. remember to add user.js config
+  - split modules/home-manager/cli packages to dev pkgs and qol pkgs (
  - make dmenu script YOURSELF! dwl -> open floating term -> fd -> skim -> nohup $app &
  - make hardware agnostic (amd nvidia intel gpu cpu integrated graphics etc.)
  - rice with quickshell, stylix?

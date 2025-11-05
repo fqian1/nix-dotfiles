@@ -1,41 +1,51 @@
-self: super: {
-  neowall = super.stdenv.mkDerivation rec {
-    pname = "neowall";
-    version = "unstable-2024-05-22"; # Use date of latest commit
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  pkg-config,
+  wayland,
+  mesa,
+  libpng,
+  libjpeg,
+  libglvnd,
+  wayland-protocols,
+}:
 
-    src = super.fetchFromGitHub {
-      owner = "1ay1";
-      repo = "neowall";
-      rev = "386243d053ca42879ab6873265d3d53a996265d3"; # Latest commit hash as of writing
-      hash = "sha256-2333333333333333333333333333333333333333333333333333"; # Replace with actual hash
-    };
+stdenv.mkDerivation rec {
+  pname = "neowall";
+  version = "";
 
-    nativeBuildInputs = [
-      super.make
-      super.pkg-config
-    ];
+  src = fetchFromGitHub {
+    owner = "1ay1";
+    repo = "neowall";
+    rev = "494afb1e341761d97c8bee9ac07f0d391df3df58";
+    sha256 = "sha256-z2nNg5xIOQM2YHQahJMW5ikCbgLTkdZkQOGBTqqEOs4=";
+  };
 
-    buildInputs = [
-      super.wayland
-      super.mesa
-      super.libpng
-      super.libjpeg
-      super.wayland-protocols
-    ];
+  nativeBuildInputs = [
+    pkg-config
+  ];
 
-    installPhase = ''
-      runHook preInstall
-      make install PREFIX=$out
-      runHook postInstall
-    '';
+  buildInputs = [
+    wayland
+    mesa
+    libglvnd
+    libpng
+    libjpeg
+    wayland-protocols
+  ];
 
-    meta = with super.lib; {
-      description = "GPU shaders as Wayland wallpapers";
-      homepage = "https://github.com/1ay1/neowall";
-      license = licenses.mit;
-      maintainers = with maintainers; [ your-github-username ]; # Replace with your username
-      platforms = platforms.linux;
-      mainProgram = "neowall";
-    };
+  installPhase = ''
+    runHook preInstall
+    install -Dm755 build/bin/neowall $out/bin/neowall
+    runHook postInstall
+  '';
+
+  meta = with lib; {
+    description = "🎨 A reliable Wayland wallpaper engine written in C. Multi-monitor support, smooth transitions, hot-reload. For Sway, Hyprland, River.";
+    homepage = "https://github.com/1ay1/neowall";
+    license = licenses.mit;
+    platforms = platforms.linux;
+    maintainers = [ ];
   };
 }

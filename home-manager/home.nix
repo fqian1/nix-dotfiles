@@ -14,6 +14,7 @@
     outputs.homeManagerModules.cli.tmux
 
     outputs.homeManagerModules.desktop.hyprland
+    outputs.homeManagerModules.desktop.neowall
     outputs.homeManagerModules.desktop.theme
 
     outputs.homeManagerModules.desktop.applications.firefox
