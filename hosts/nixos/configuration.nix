@@ -109,50 +109,6 @@
   };
 
   services.openssh = {
-      programs = {
-        home-manager.enable = true;
-        ssh = {
-          enable = true;
-          startAgent = true;
-          matchBlocks = {
-            "github" = {
-              hostname = "github.com";
-              user = "git";
-            };
-
-            "nixos" = {
-              hostname = "nixos";
-              user = "fqian";
-              port = 2222;
-              identityFile = "~/.ssh/id_nixos";
-              extraOptions = {
-                ForwardAgent = "yes";
-              };
-              "*" = {
-                extraOptions = {
-                  ServerAliveInterval = "60";
-                };
-              };
-            };
-          };
-
-          knownHosts = {
-            "github.com" = {
-              publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2TpTZhKVF3HvwepYu0LbeavbGjG8iF3cANfg2BLJ9o francois.qian2@gmail.com";
-            };
-          };
-        };
-
-        git = {
-          enable = true;
-          settings = {
-            user = {
-              Name = "fqian";
-              Email = "francois.qian2@gmail.com";
-            };
-          };
-        };
-      };
     enable = true;
     settings = {
       PasswordAuthentication = false;
