@@ -22,8 +22,11 @@
  - configure impermanence for home directory so i can do imperative stuff 👹
  - INSTRUMENTALISM! PRAGMATISM! MINIMALISM! Lix.
 
+p = (1-p)^(n-1)
+
 # unrelated:
  - grex, newsboat, jrnl, ttyd, croc, bat: cool cli tools
+ - stui, btop, bottom, htop, atop, iftop, iotop, csysdig, nvtop, perf, wavemon
  - coreboot + some payload. sixos
  - nextcloud + homeserver.
  - https://github.com/pd3v/line
@@ -40,25 +43,27 @@
 ├── modules/
 │   ├── home-manager/
 │   │   ├── cli/
+│   │   │   ├── scripts/
+│   │   │   │   ├── find-edit.sh
+│   │   │   │   ├── init-rust-project.sh
+│   │   │   │   └── tmux-sessionizer.sh
 │   │   │   ├── bash.nix
 │   │   │   ├── default.nix
-│   │   │   ├── direnv.nix
-│   │   │   ├── lazygit.nix
-│   │   │   ├── packages.nix
 │   │   │   ├── starship.nix
 │   │   │   ├── tmux.nix
-│   │   │   └── yazi.nix
+│   │   │   └── tools.nix
 │   │   ├── desktop/
 │   │   │   ├── applications/
 │   │   │   │   ├── default.nix
 │   │   │   │   ├── discord.nix
-│   │   │   │   ├── firefox.nix
 │   │   │   │   ├── kitty.nix
+│   │   │   │   ├── librewolf.nix
 │   │   │   │   ├── lmms.nix
 │   │   │   │   ├── obsidian.nix
 │   │   │   │   └── qbittorrent.nix
 │   │   │   ├── default.nix
 │   │   │   ├── hyprland.nix
+│   │   │   ├── neowall.nix
 │   │   │   └── theme.nix
 │   │   └── default.nix
 │   └── nixos/
@@ -68,6 +73,8 @@
 ├── overlays/
 │   └── default.nix
 ├── pkgs/
+│   ├── neowall/
+│   │   └── default.nix
 │   ├── nvim/
 │   │   ├── myplugin/
 │   │   │   ├── lua/
@@ -100,8 +107,8 @@
 │   └── default.nix
 ├── flake.lock
 ├── flake.nix
-├── GEMINI.md
 ├── install.sh
 └── README.md
+
 
 ```
