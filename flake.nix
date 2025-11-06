@@ -34,16 +34,28 @@
         "x86_64-darwin"
       ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
+      pkgsFor = forAllSystems (
+        system:
+        import nixpkgs {
+          inherit system;
+          overlays = [
+            self.overlays.additions
+            self.overlays.modification
+            self.overlays.unstable-packages
+          ];
+        }
+      );
     in
     {
-      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
       overlays = import ./overlays { inherit inputs; };
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+      packages = forAllSystems (system: import ./pkgs pkgsFor.${system});
+      formatter = forAllSystems (system: pkgsFor.${system}.alejandra);
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
         "nixos" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
           specialArgs = { inherit inputs outputs; };
           modules = [
             disko.nixosModules.disko
@@ -54,8 +66,8 @@
       };
 
       homeConfigurations = {
-        "fqian@nixos" = nixpkgs.lib.nixosSystem {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        "fqian@nixos" = nixpkgs.lib.homeManagerConfiguration {
+          pkgs = pkgsFor."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home-manager/home.nix
