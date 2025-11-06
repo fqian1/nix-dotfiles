@@ -43,7 +43,7 @@ let
     vimPlugins.obsidian-nvim
     vimPlugins.render-markdown-nvim
     vimPlugins.vim-tmux-navigator
-    vimPlugins.tiny-glimmer-nvim # TODO configure
+    vimPlugins.tiny-glimmer-nvim # TODO configure this
   ];
 
   foldPlugins = builtins.foldl' (
