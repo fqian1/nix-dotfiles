@@ -1,5 +1,5 @@
 {
-  firefox = import ./firefox.nix;
+  librewolf = import ./librewolf.nix;
   obsidian = import ./obsidian.nix;
   kitty = import ./kitty.nix;
   # lmms = import ./lmms.nix;

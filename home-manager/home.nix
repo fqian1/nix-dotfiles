@@ -17,7 +17,7 @@
     outputs.homeManagerModules.desktop.neowall
     outputs.homeManagerModules.desktop.theme
 
-    outputs.homeManagerModules.desktop.applications.firefox
+    outputs.homeManagerModules.desktop.applications.librewolf
     outputs.homeManagerModules.desktop.applications.discord
     outputs.homeManagerModules.desktop.applications.kitty
     outputs.homeManagerModules.desktop.applications.obsidian

@@ -7,7 +7,6 @@
     swaylock
   ];
 
-  programs.hyprshot.enable = true;
   services.cliphist.enable = true;
 
   wayland.windowManager.hyprland = {

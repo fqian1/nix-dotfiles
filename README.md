@@ -4,18 +4,18 @@
 # todo list:
  - migrate to dwl, make everything suckless. remember to change key repeat delay and repeat rate. foot, wl clipboard, grim, slurp
  - use agenix for wireguard conf file and ssh
- - switch from firefox to librewolf. remember to add user.js config
  - split modules/home-manager/cli packages to dev pkgs like tmux and qol pkgs like starship
  - make dmenu script YOURSELF! dwl -> open floating term -> fd -> skim -> nohup $app &
  - make hardware agnostic (amd nvidia intel gpu cpu integrated graphics etc.)
  - rice with quickshell, stylix?
  - create overlays for tools/apps like ripgrep or dwl with compiler optimizations -O3 -march=native
  - try out different kernels? maybe the cachyos kernel?? blazingly fast.
- - customise ble.sh
+ - customise ble.sh, make normal mode block cursor, maybe replace starship with blesh prompt
  - fwupdmgr service / script
  - create a shader and use as desktop background monstercat smoke https://github.com/1ay1/neowall
  - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
  - configure impermanence for home directory so i can do imperative stuff 👹
+ - INSTRUMENTALISM! PRAGMATISM! MINIMALISM! Lix.
 
 # unrelated:
  - grex, newsboat, jrnl, ttyd, croc, bat: cool cli tools
