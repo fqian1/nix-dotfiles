@@ -77,15 +77,6 @@
           };
         };
       };
-
-      knownHosts = {
-        "github.com" = {
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2TpTZhKVF3HvwepYu0LbeavbGjG8iF3cANfg2BLJ9o francois.qian2@gmail.com";
-        };
-        "nixos" = {
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILYmIuYxMUnrHQWW5LcUGqKsNfonYf/7Vjqz+kNKPMo2 fqian@nixos";
-        };
-      };
     };
 
     git = {
