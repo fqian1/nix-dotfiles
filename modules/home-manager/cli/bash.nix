@@ -7,7 +7,6 @@ in
 {
   home.packages = with pkgs; [
     blesh
-    nvim
     skim
     fd
     fzy
