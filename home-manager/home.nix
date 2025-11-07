@@ -54,7 +54,6 @@
     home-manager.enable = true;
     ssh = {
       enable = true;
-      startAgent = true;
       matchBlocks = {
         "github" = {
           hostname = "github.com";
