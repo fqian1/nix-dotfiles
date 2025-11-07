@@ -9,7 +9,7 @@
       pname = "dwl";
 
       patches = [
-        # ./patches/alwayscenter.patch
+        ./patches/alwayscenter.patch
         ./patches/autostart.patch
         ./patches/betterresize.patch
         ./patches/controlledfullscreen.patch
