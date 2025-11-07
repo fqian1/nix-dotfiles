@@ -13,7 +13,7 @@
     outputs.homeManagerModules.cli.starship
     outputs.homeManagerModules.cli.tmux
 
-    outputs.homeManagerModules.desktop.hyprland
+    outputs.homeManagerModules.desktop.dwl
     outputs.homeManagerModules.desktop.neowall
     outputs.homeManagerModules.desktop.theme
 

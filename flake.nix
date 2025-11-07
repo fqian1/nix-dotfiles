@@ -40,7 +40,7 @@
           inherit system;
           overlays = [
             self.overlays.additions
-            self.overlays.modification
+            self.overlays.modifications
             self.overlays.unstable-packages
           ];
         }
@@ -66,7 +66,7 @@
       };
 
       homeConfigurations = {
-        "fqian@nixos" = nixpkgs.lib.homeManagerConfiguration {
+        "fqian@nixos" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsFor."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [

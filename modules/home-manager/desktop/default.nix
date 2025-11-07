@@ -1,6 +1,6 @@
 {
   applications = import ./applications;
-  hyprland = import ./hyprland.nix;
+  dwl = import ./dwl.nix;
   neowall = import ./neowall.nix;
   theme = import ./theme.nix;
 }

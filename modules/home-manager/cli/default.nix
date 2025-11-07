@@ -1,4 +1,3 @@
-{ ... }:
 {
   bash = import ./bash.nix;
   tools = import ./tools.nix;
