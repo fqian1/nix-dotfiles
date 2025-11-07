@@ -27,7 +27,7 @@
   nixpkgs = {
     overlays = [
       outputs.overlays.additions
-      outputs.overlays.modification
+      outputs.overlays.modifications
       outputs.overlays.unstable-packages
     ];
     config = {
@@ -35,107 +35,99 @@
     };
   };
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    backupFileExtension = "backup";
-    users.fqian = {
-      home = {
-        stateVersion = "25.05";
-        username = "fqian";
-        homeDirectory = "/home/fqian";
-        sessionVariables = {
-          EDITOR = "nvim";
-          # SOPS_AGE_KEY_FILE = "/.config/sops/age/keys.txt";
+  home = {
+    stateVersion = "25.05";
+    username = "fqian";
+    homeDirectory = "/home/fqian";
+    sessionVariables = {
+      EDITOR = "nvim";
+      # SOPS_AGE_KEY_FILE = "/.config/sops/age/keys.txt";
+    };
+  };
+
+  packages = with pkgs; [
+    nvim
+    xdg-user-dirs
+    xdg-utils
+  ];
+
+  programs = {
+    home-manager.enable = true;
+    ssh = {
+      enable = true;
+      startAgent = true;
+      matchBlocks = {
+        "github" = {
+          hostname = "github.com";
+          user = "git";
         };
-      };
 
-      systemd.user.startServices = "sd-switch";
-
-      programs = {
-        home-manager.enable = true;
-        ssh = {
-          enable = true;
-          startAgent = true;
-          matchBlocks = {
-            "github" = {
-              hostname = "github.com";
-              user = "git";
-            };
-
-            "nixos" = {
-              hostname = "nixos";
-              user = "fqian";
-              port = 2222;
-              identityFile = "~/.ssh/id_nixos";
-              extraOptions = {
-                ForwardAgent = "yes";
-              };
-            };
-
-            "*" = {
-              extraOptions = {
-                ServerAliveInterval = "60";
-              };
-            };
-          };
-
-          knownHosts = {
-            "github.com" = {
-              publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2TpTZhKVF3HvwepYu0LbeavbGjG8iF3cANfg2BLJ9o francois.qian2@gmail.com";
-            };
-            "nixos" = {
-              publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILYmIuYxMUnrHQWW5LcUGqKsNfonYf/7Vjqz+kNKPMo2 fqian@nixos";
-            };
+        "nixos" = {
+          hostname = "nixos";
+          user = "fqian";
+          port = 2222;
+          identityFile = "~/.ssh/id_nixos";
+          extraOptions = {
+            ForwardAgent = "yes";
           };
         };
 
-        git = {
-          enable = true;
-          settings = {
-            user = {
-              Name = "fqian";
-              Email = "francois.qian2@gmail.com";
-            };
+        "*" = {
+          extraOptions = {
+            ServerAliveInterval = "60";
           };
         };
       };
 
-      packages = with pkgs; [
-        nvim
-        xdg-user-dirs
-        xdg-utils
-      ];
+      knownHosts = {
+        "github.com" = {
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2TpTZhKVF3HvwepYu0LbeavbGjG8iF3cANfg2BLJ9o francois.qian2@gmail.com";
+        };
+        "nixos" = {
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILYmIuYxMUnrHQWW5LcUGqKsNfonYf/7Vjqz+kNKPMo2 fqian@nixos";
+        };
+      };
+    };
 
-      xdg = {
-        enable = true;
-        userDirs = {
-          enable = true;
-          desktop = "$HOME/desktop";
-          documents = "$HOME/documents";
-          download = "$HOME/downloads";
-          music = "$HOME/music";
-          pictures = "$HOME/pictures";
-          publicShare = "$HOME/desktop";
-          templates = "$HOME/templates";
-          videos = "$HOME/videos";
-          createDirectories = true;
+    git = {
+      enable = true;
+      settings = {
+        user = {
+          Name = "fqian";
+          Email = "francois.qian2@gmail.com";
         };
-        mimeApps = {
-          enable = true;
-          defaultApplications = {
-            "x-scheme-handler/http" = [ "librewolf.desktop" ];
-            "x-scheme-handler/https" = [ "librewolf.desktop" ];
-            "x-scheme-handler/chrome" = [ "librewolf.desktop" ];
-            "text/html" = [ "librewolf.desktop" ];
-            "application/x-extension-htm" = [ "librewolf.desktop" ];
-            "application/x-extension-html" = [ "librewolf.desktop" ];
-            "application/x-extension-shtml" = [ "librewolf.desktop" ];
-            "application/xhtml+xml" = [ "librewolf.desktop" ];
-            "application/x-extension-xhtml" = [ "librewolf.desktop" ];
-            "application/x-extension-xht" = [ "librewolf.desktop" ];
-          };
-        };
+      };
+    };
+  };
+  systemd.user.startServices = "sd-switch";
+
+  xdg = {
+    enable = true;
+    userDirs = {
+      enable = true;
+      desktop = "$HOME/desktop";
+      documents = "$HOME/documents";
+      download = "$HOME/downloads";
+      music = "$HOME/music";
+      pictures = "$HOME/pictures";
+      publicShare = "$HOME/desktop";
+      templates = "$HOME/templates";
+      videos = "$HOME/videos";
+      createDirectories = true;
+    };
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/http" = [ "librewolf.desktop" ];
+        "x-scheme-handler/https" = [ "librewolf.desktop" ];
+        "x-scheme-handler/chrome" = [ "librewolf.desktop" ];
+        "text/html" = [ "librewolf.desktop" ];
+        "application/x-extension-htm" = [ "librewolf.desktop" ];
+        "application/x-extension-html" = [ "librewolf.desktop" ];
+        "application/x-extension-shtml" = [ "librewolf.desktop" ];
+        "application/xhtml+xml" = [ "librewolf.desktop" ];
+        "application/x-extension-xhtml" = [ "librewolf.desktop" ];
+        "application/x-extension-xht" = [ "librewolf.desktop" ];
       };
     };
   };
