@@ -43,13 +43,12 @@
       EDITOR = "nvim";
       # SOPS_AGE_KEY_FILE = "/.config/sops/age/keys.txt";
     };
+    packages = with pkgs; [
+      nvim
+      xdg-user-dirs
+      xdg-utils
+    ];
   };
-
-  packages = with pkgs; [
-    nvim
-    xdg-user-dirs
-    xdg-utils
-  ];
 
   programs = {
     home-manager.enable = true;
