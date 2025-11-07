@@ -21,15 +21,18 @@ index 12f441e..c74380d 100644
  	strncpy(m->ltsymbol, m->lt[m->sellt]->symbol, LENGTH(m->ltsymbol));
 
  	/* We move all clients (except fullscreen and unmanaged) to LyrTile while
-@@ -878,7 +875,7 @@ commitnotify(struct wl_listener *listener, void *data)
- 		return;
- 	}
+--- dwl.c.orig  2025-11-07 23:50:25.154219301 +0000
++++ dwl.c   2025-11-07 23:51:41.327571463 +0000
+@@ -858,8 +858,7 @@
+        return;
+    }
 
--	resize(c, c->geom, (c->isfloating && !c->isfullscreen));
-+	resize(c, c->geom, (c->isfloating));
+-   if (client_surface(c)->mapped && c->mon)
+-       resize(c, c->geom, (c->isfloating && !c->isfullscreen));
++    resize(c, c->geom, (c->isfloating));
 
- 	/* mark a pending resize as completed */
- 	if (c->resize && c->resize <= c->surface.xdg->current.configure_serial)
+    /* mark a pending resize as completed */
+    if (c->resize && c->resize <= c->surface.xdg->current.configure_serial)
 @@ -1490,7 +1487,7 @@ focusstack(const Arg *arg)
  {
  	/* Focus the next or previous client (in tiling order) on selmon */
