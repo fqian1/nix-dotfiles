@@ -44,7 +44,7 @@
       # SOPS_AGE_KEY_FILE = "/.config/sops/age/keys.txt";
     };
     packages = with pkgs; [
-      nvim
+      neovim-custom
       xdg-user-dirs
       xdg-utils
     ];

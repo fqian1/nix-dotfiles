@@ -1,4 +1,4 @@
 pkgs: {
-  nvim = pkgs.callPackage ./nvim { };
+  neovim-custom = pkgs.callPackage ./neovim-custom { };
   neowall = pkgs.callPackage ./neowall { };
 }

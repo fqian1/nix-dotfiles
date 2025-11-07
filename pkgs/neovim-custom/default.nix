@@ -44,7 +44,7 @@ let
     vimPlugins.render-markdown-nvim
     vimPlugins.vim-tmux-navigator
     vimPlugins.tiny-glimmer-nvim # TODO configure this
-    # add tpipeline, flash, fidget, colorizer, mini-surround
+    # add tpipeline, flash, fidget, colorizer
   ];
 
   foldPlugins = builtins.foldl' (
