@@ -1,0 +1,11 @@
+--- dwl.c.orig	2025-11-07 23:32:36.706371670 +0000
++++ dwl.c	2025-11-07 23:44:16.704691379 +0000
+@@ -859,7 +859,7 @@
+ 	}
+ 
+ 	if (client_surface(c)->mapped && c->mon)
+-		resize(c, c->geom, (c->isfloating && !c->isfullscreen));
++		resize(c, c->geom, (c->isfloating));
+ 
+ 	/* mark a pending resize as completed */
+ 	if (c->resize && c->resize <= c->surface.xdg->current.configure_serial)
