@@ -8,6 +8,16 @@
     dwl = prev.dwl.overrideAttrs (oldAttrs: {
       pname = "dwl";
 
+      src = final.fetchgit {
+        url = "https://codeberg.org/dwl/dwl";
+        rev = "6cd26568d5b8be2252ac0def36cd194b4fb2d7c3";
+        sha256 = "ihxF9Z4uT0K3omO4mbzkeICY/RyqvuD+C5JSGWIf6MI=";
+      };
+
+      buildInputs = oldAttrs.buildInputs ++ [
+        prev.wlroots
+      ];
+
       patches = [
         ./patches/dwl.patch
       ];

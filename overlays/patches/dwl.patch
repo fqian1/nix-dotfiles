@@ -1,17 +1,17 @@
---- dwl.orig.c	2025-11-08 10:08:56.706421426 +0000
-+++ dwl.c	2025-11-08 10:19:16.365934781 +0000
+--- a/dwl.c	2025-11-08 10:08:56.706421426 +0000
++++ b/dwl.c	2025-11-08 10:19:16.365934781 +0000
 @@ -246,6 +246,7 @@
  static void arrangelayer(Monitor *m, struct wl_list *list,
  		struct wlr_box *usable_area, int exclusive);
  static void arrangelayers(Monitor *m);
-+static voi autostartexec(void);
++static void autostartexec(void);
  static void axisnotify(struct wl_listener *listener, void *data);
  static void buttonpress(struct wl_listener *listener, void *data);
  static void chvt(const Arg *arg);
 @@ -455,6 +456,9 @@
  /* attempt to encapsulate suck into one file */
  #include "client.h"
- 
+
 +static pid_t *autostart_pids;
 +static size_t autostart_len;
 +
@@ -20,7 +20,7 @@
  applybounds(Client *c, struct wlr_box *bbox)
 @@ -604,6 +608,27 @@
  }
- 
+
  void
 +autostartexec(void) {
 +	const char *const *p;
@@ -98,18 +98,13 @@
 +        quit(NULL);
 +	}
  }
- 
+
  void
 @@ -2249,6 +2300,7 @@
  		die("startup: backend_start");
- 
+
  	/* Now that the socket exists and the backend is started, run the startup command */
 +    autostartexec();
  	if (startup_cmd) {
  		int piperw[2];
  		if (pipe(piperw) < 0)
-@@ -3213,3 +3265,4 @@
- 	die("Usage: %s [-v] [-d] [-s startup command]", argv[0]);
- }
- (
-+
