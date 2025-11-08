@@ -19,8 +19,8 @@
       ];
 
       patches = [
-        ./patches/ipc.patch
-        ./patches/dwl.patch
+        ./patches/misc.patch
+        ./patches/foreignmanagement.patch
       ];
 
       postPatch = ''
