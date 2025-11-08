@@ -114,7 +114,18 @@
 
   services = {
     xserver.videoDrivers = [ "nvidia" ];
-    displayManager.ly.enable = true;
+    displayManager = {
+      defaultSession = "dwl";
+      session = [
+        {
+          name = "dwl";
+          command = pkgs.dwl;
+        }
+      ];
+      greetd.settings = {
+        default_session.command = "${pkgs.greetd.greetd}/bin/wlgreet --cmd dwl";
+      };
+    };
     # printing.enable = true; # Printing
     # libinput.enable = true; # Touchpad support
   };
