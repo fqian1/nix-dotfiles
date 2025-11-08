@@ -20,7 +20,8 @@
 
       patches = [
         ./patches/misc.patch
-        ./patches/foreignmanagement.patch
+        ./patches/Makefile.patch
+        ./patches/dwl.patch
       ];
 
       postPatch = ''
