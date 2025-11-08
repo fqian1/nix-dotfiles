@@ -5,8 +5,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     outputs.nixosModules.vpn
     outputs.nixosModules.impermanence
@@ -32,7 +31,7 @@
       ];
     };
     registry.nixpkgs.flake = inputs.nixpkgs;
-    nixPath = [ "nixpkgs=flake:nixpkgs" ];
+    nixPath = ["nixpkgs=flake:nixpkgs"];
     channel.enable = false;
   };
 
@@ -110,20 +109,19 @@
       KbdInteractiveAuthentication = false;
     };
   };
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [22];
 
   services = {
-    xserver.videoDrivers = [ "nvidia" ];
-    displayManager = {
-      defaultSession = "dwl";
-      session = [
-        {
-          name = "dwl";
-          command = pkgs.dwl;
-        }
-      ];
-      greetd.settings = {
-        default_session.command = "${pkgs.greetd.greetd}/bin/wlgreet --cmd dwl";
+    xserver.enable = false;
+    xserver.videoDrivers = ["nvidia"];
+    greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          command = "${pkgs.dwl}/bin/dwl";
+          user = "fqian";
+        };
+        default_session = initial_session;
       };
     };
     # printing.enable = true; # Printing
@@ -140,6 +138,7 @@
   };
 
   programs.dconf.enable = true;
+  programs.dwl.enable = true;
 
   services.fwupd.enable = true;
 
