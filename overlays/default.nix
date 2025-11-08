@@ -19,6 +19,7 @@
       ];
 
       patches = [
+        ./patches/ipc.patch
         ./patches/dwl.patch
       ];
 

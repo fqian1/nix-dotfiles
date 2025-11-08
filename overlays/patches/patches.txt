@@ -1,0 +1,7 @@
+unclutter
+pertag
+autostart
+ipc
+better resize
+ipc per tag
+

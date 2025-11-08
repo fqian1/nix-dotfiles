@@ -23,10 +23,21 @@ static const float fullscreen_bg[] = {0.0f, 0.0f, 0.0f,
 /* logging */
 static int log_level = WLR_ERROR;
 
+/* window resizing */
+/* resize_corner:
+ * 0: top-left
+ * 1: top-right
+ * 2: bottom-left
+ * 3: bottom-right
+ * 4: closest to the cursor
+ */
+static const int resize_corner = 4;
+static const int warp_cursor = 1; /* 1: warp to corner, 0: don’t warp */
+static const int lock_cursor = 0; /* 1: lock cursor, 0: don't lock */
+
 /* Autostart */
 static const char *const autostart[] = {
-        "wbg", "/path/to/your/image", NULL,
-        NULL /* terminate */
+    "wbg", "/path/to/your/image", NULL, NULL /* terminate */
 };
 
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at
@@ -34,9 +45,10 @@ static const char *const autostart[] = {
 static const Rule rules[] = {
     /* app_id             title       tags mask     isfloating   monitor */
     /* examples: */
-    {"foot", "terminal", 1<<1, 0, -1},
-    {"librewolf", "browser", (1<<0)|(1<<2), 0, 3},
-    {"Gimp_EXAMPLE", NULL, 0, 1, -1}, /* Start on currently visible tags floating, not tiled */
+    {"foot", "terminal", 1 << 1, 0, -1},
+    {"librewolf", "browser", (1 << 0) | (1 << 2), 0, 3},
+    {"Gimp_EXAMPLE", NULL, 0, 1,
+     -1}, /* Start on currently visible tags floating, not tiled */
     {"firefox_EXAMPLE", NULL, 1 << 8, 0, -1}, /* Start on ONLY tag "9" */
 };
 
@@ -124,6 +136,8 @@ LIBINPUT_CONFIG_TAP_MAP_LMR -- 1/2/3 finger tap maps to left/middle/right
 static const enum libinput_config_tap_button_map button_map =
     LIBINPUT_CONFIG_TAP_MAP_LRM;
 
+static const int cursor_timeout = 5;
+
 /* If you want to use the windows key for MODKEY, use WLR_MODIFIER_LOGO */
 #define MODKEY WLR_MODIFIER_ALT
 
@@ -151,6 +165,7 @@ static const Key keys[] = {
     /* modifier                  key                 function        argument */
     {MODKEY, XKB_KEY_space, spawn, {.v = menucmd}},
     {MODKEY, XKB_KEY_Return, spawn, {.v = termcmd}},
+    {MODKEY, XKB_KEY_b, togglebar, {0}},
     {MODKEY, XKB_KEY_j, focusstack, {.i = +1}},
     {MODKEY, XKB_KEY_k, focusstack, {.i = -1}},
     {MODKEY, XKB_KEY_i, incnmaster, {.i = +1}},

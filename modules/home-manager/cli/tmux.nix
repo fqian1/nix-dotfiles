@@ -7,7 +7,7 @@
     mouse = true;
     keyMode = "vi";
     baseIndex = 1;
-    prefix = "C-SPACE";
+    # prefix = "C-SPACE";
     plugins = with pkgs.tmuxPlugins; [
       sensible
       vim-tmux-navigator
@@ -24,6 +24,8 @@
       set -g window-status-current-style "fg=orange bg=default bold"
       set -g status-right ""
       set -g status-left "#S"
+      set -g window-style 'fg=colour247,bg=colour236'
+      set -g window-active-style 'fg=colour250,bg=black'
 
 
       vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzf)(diff)?(-wrapped)?'
