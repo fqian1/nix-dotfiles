@@ -3,5 +3,6 @@ pertag
 autostart
 ipc
 better resize
+foreign toplevel manager
 ipc per tag
 

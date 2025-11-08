@@ -391,6 +391,7 @@ static void ffullscreennotify(struct wl_listener *listener, void *data);
 
 
 /* variables */
+static const char broken[] = "broken";
 static pid_t child_pid = -1;
 static int locked;
 static void *exclusive_focus;

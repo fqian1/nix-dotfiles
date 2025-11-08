@@ -1,8 +1,8 @@
---- Makefile.orig	2025-11-08 16:32:58.034169606 +0000
-+++ Makefile	2025-11-08 16:43:55.176418228 +0000
+--- a/Makefile  2025-11-08 16:32:58.034169606 +0000
++++ b/Makefile	2025-11-08 16:43:55.176418228 +0000
 @@ -17,12 +17,14 @@
  LDLIBS    = `$(PKG_CONFIG) --libs $(PKGS)` $(WLR_LIBS) -lm $(LIBS)
- 
+
  all: dwl
 -dwl: dwl.o util.o
 -	$(CC) dwl.o util.o $(DWLCFLAGS) $(LDFLAGS) $(LDLIBS) -o $@
@@ -15,7 +15,7 @@
 +	dwl-ipc-unstable-v2-protocol.h wlr-foreign-toplevel-management-unstable-v1-protocol.h
  util.o: util.c util.h
 +dwl-ipc-unstable-v2-protocol.o: dwl-ipc-unstable-v2-protocol.c dwl-ipc-unstable-v2-protocol.h
- 
+
  # wayland-scanner is a tool which generates C headers and rigging for Wayland
  # protocols, which are specified in XML. wlroots requires you to rig these up
 @@ -45,6 +47,15 @@
@@ -31,6 +31,6 @@
 +wlr-foreign-toplevel-management-unstable-v1-protocol.h:
 +	$(WAYLAND_SCANNER) server-header \
 +		protocols/wlr-foreign-toplevel-management-unstable-v1.xml $@
- 
+
  config.h:
  	cp config.def.h $@
