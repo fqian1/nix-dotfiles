@@ -57,7 +57,7 @@
         modules = [
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
-          ./hosts/nixos/configuration.nix
+          ./hosts/nixos-desktop/configuration.nix
         ];
       };
       "nixos-laptop" = nixpkgs.lib.nixosSystem {
@@ -66,7 +66,7 @@
         modules = [
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
-          ./hosts/nixos/configuration.nix
+          ./hosts/nixos-laptop/configuration.nix
         ];
       };
     };

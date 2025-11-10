@@ -31,6 +31,7 @@
         "sd_mod"
       ];
       kernelModules = [
+        "kvm-intel"
         "virtio"
         "zfs"
       ];
