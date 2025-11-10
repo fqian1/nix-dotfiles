@@ -5,4 +5,8 @@ ipc
 better resize
 foreign toplevel manager
 ipc per tag
+cursor
+warp cursor
 
+todo:
+dim unfocused

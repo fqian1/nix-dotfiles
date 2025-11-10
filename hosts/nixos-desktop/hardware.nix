@@ -3,8 +3,7 @@
   lib,
   modulesPath,
   ...
-}:
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./disk-config.nix
@@ -20,7 +19,7 @@
       "zfs"
     ];
     zfs = {
-      extraPools = [ "rpool" ];
+      extraPools = ["rpool"];
       forceImportRoot = false;
     };
     initrd = {
@@ -59,8 +58,7 @@
     blueman.enable = true;
   };
 
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
+  nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "nvidia-x11"
       "nvidia"

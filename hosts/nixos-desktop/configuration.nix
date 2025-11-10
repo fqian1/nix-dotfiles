@@ -82,6 +82,10 @@
     nmap
     git
     tree
+
+    wlroots
+    wayland
+    wayland-protocols
   ];
 
   services.pipewire = {

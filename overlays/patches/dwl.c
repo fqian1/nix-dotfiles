@@ -471,6 +471,7 @@ static struct wl_listener new_idle_inhibitor = {.notify = createidleinhibitor};
 static struct wl_listener new_input_device = {.notify = inputdevice};
 static struct wl_listener new_virtual_keyboard = {.notify = virtualkeyboard};
 static struct wl_listener new_virtual_pointer = {.notify = virtualpointer};
+static void warpcursor(const Client *c);
 static struct wl_listener new_pointer_constraint = {.notify = createpointerconstraint};
 static struct wl_listener new_output = {.notify = createmon};
 static struct wl_listener new_xdg_toplevel = {.notify = createnotify};
@@ -616,6 +617,7 @@ arrange(Monitor *m)
 		m->lt[m->sellt]->arrange(m);
 	motionnotify(0, NULL, 0, 0, 0, 0);
 	checkidleinhibitor(NULL);
+	warpcursor(focustop(selmon));
 }
 
 void
@@ -1744,6 +1746,10 @@ focusclient(Client *c, int lift)
 
 	if (locked)
 		return;
+
+	/* Warp cursor to center of client if it is outside */
+	if (lift)
+		warpcursor(c);
 
 	/* Raise client in stacking order if requested */
 	if (c && lift)
@@ -3007,8 +3013,12 @@ setup(void)
 	 * Xcursor themes to source cursor images from and makes sure that cursor
 	 * images are available at all scale factors on the screen (necessary for
 	 * HiDPI support). Scaled cursors will be loaded with each output. */
-	cursor_mgr = wlr_xcursor_manager_create(NULL, 24);
-	setenv("XCURSOR_SIZE", "24", 1);
+	cursor_mgr = wlr_xcursor_manager_create(cursor_theme, atoi(cursor_size));
+	setenv("XCURSOR_SIZE", cursor_size, 1);
+	if (cursor_theme)
+		setenv("XCURSOR_THEME", cursor_theme, 1);
+	else
+		unsetenv("XCURSOR_THEME");
 
 	/*
 	 * wlr_cursor *only* displays an image on screen. It does not move around
@@ -3479,6 +3489,27 @@ virtualpointer(struct wl_listener *listener, void *data)
 	if (event->suggested_output)
 		wlr_cursor_map_input_to_output(cursor, device, event->suggested_output);
     handlecursoractivity();
+}
+
+void
+warpcursor(const Client *c) {
+	if (cursor_mode != CurNormal) {
+		return;
+	}
+	if (!c && selmon) {
+		wlr_cursor_warp_closest(cursor,
+			  NULL,
+			  selmon->w.x + selmon->w.width / 2.0 ,
+			  selmon->w.y + selmon->w.height / 2.0);
+	}
+	else if ( c && (cursor->x < c->geom.x ||
+		cursor->x > c->geom.x + c->geom.width ||
+		cursor->y < c->geom.y ||
+		cursor->y > c->geom.y + c->geom.height))
+		wlr_cursor_warp_closest(cursor,
+			  NULL,
+			  c->geom.x + c->geom.width / 2.0,
+			  c->geom.y + c->geom.height / 2.0);
 }
 
 Monitor *
