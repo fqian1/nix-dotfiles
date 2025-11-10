@@ -18,7 +18,7 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
     ];
-    config.allowUnfree = true;
+    # config.allowUnfree = true;
   };
 
   nix = {
@@ -116,8 +116,6 @@
   networking.firewall.allowedTCPPorts = [22];
 
   services = {
-    xserver.enable = false;
-    xserver.videoDrivers = ["nvidia"];
     greetd = {
       enable = true;
       settings = rec {
@@ -129,7 +127,7 @@
       };
     };
     # printing.enable = true; # Printing
-    # libinput.enable = true; # Touchpad support
+    libinput.enable = true; # Touchpad support
   };
 
   xdg.portal = {
