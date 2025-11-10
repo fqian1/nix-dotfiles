@@ -96,8 +96,16 @@
   networking = {
     hostName = "nixos";
     hostId = "b475238a";
-    # wireless.enable = true;
-    networkmanager.enable = true;
+    wireless = {
+      enable = true;
+    };
+    networks = {
+      "VM3764440" = {
+        psk = "wtw3mzywDbNw";
+      };
+    };
+
+    # networkmanager.enable = true;
     nameservers = [
       "1.1.1.1"
       "1.0.0.1"
