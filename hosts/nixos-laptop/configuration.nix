@@ -98,10 +98,10 @@
     hostId = "b475238a";
     wireless = {
       enable = true;
-    };
-    networks = {
-      "VM3764440" = {
-        psk = "wtw3mzywDbNw";
+      networks = {
+        "VM3764440" = {
+          psk = "wtw3mzywDbNw";
+        };
       };
     };
 
