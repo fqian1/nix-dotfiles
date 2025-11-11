@@ -94,7 +94,7 @@
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "nixos-desktop";
     hostId = "b475238a";
     # wireless.enable = true;
     networkmanager.enable = true;

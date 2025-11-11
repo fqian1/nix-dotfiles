@@ -94,8 +94,8 @@
   };
 
   networking = {
-    hostName = "nixos";
-    hostId = "b475238a";
+    hostName = "nixos-laptop";
+    hostId = "8425e349";
     wireless = {
       enable = true;
       networks = {
