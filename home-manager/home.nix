@@ -40,7 +40,16 @@
     homeDirectory = "/home/fqian";
     sessionVariables = {
       EDITOR = "nvim";
+      XKB_DEFAULT_LAYOUT = "gb";
+      XKB_DEFAULT_OPTION = "cap:swapescape,ctrl:alt_r";
       # SOPS_AGE_KEY_FILE = "/.config/sops/age/keys.txt";
+    };
+    keyboard = {
+      layout = "gb";
+      options = [
+        "ctrl:alt_r"
+        "caps:swapescape"
+      ];
     };
     packages = with pkgs; [
       neovim-custom

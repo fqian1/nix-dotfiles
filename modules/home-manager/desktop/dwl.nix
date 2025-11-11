@@ -14,8 +14,6 @@
 
     foot
     wmenu
-    wl-clipboard
-    firefox
   ];
 
   systemd.user.targets.dwl-session.Unit = {

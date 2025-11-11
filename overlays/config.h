@@ -7,7 +7,7 @@ static const int sloppyfocus = 1; /* focus follows mouse */
 static const int bypass_surface_visibility =
     0; /* 1 means idle inhibitors will disable idle tracking even if it's
           surface isn't visible  */
-static const unsigned int borderpx = 1; /* border pixel of windows */
+static const unsigned int borderpx = 0; /* border pixel of windows */
 static const float rootcolor[] = COLOR(0x222222ff);
 static const float bordercolor[] = COLOR(0x444444ff);
 static const float focuscolor[] = COLOR(0x005577ff);
@@ -88,8 +88,8 @@ static const struct xkb_rule_names xkb_rules = {
     .options = NULL,
 };
 
-static const int repeat_rate = 50;
-static const int repeat_delay = 200;
+static const int repeat_rate = 30;
+static const int repeat_delay = 250;
 
 /* Trackpad */
 static const int tap_to_click = 1;

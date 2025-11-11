@@ -1,10 +1,13 @@
 # NIX CONFIG!!!
- - remember to edit hosts/nixos/disk-config.nix with correct drive!
+ - boot into live minimal iso
+ - nixos-generate-configuration --no-file-systems
+ - do hostid and put that hostid in configuration.nix
+ - edit hosts/the-host/disk-config.nix with correct drive
  - how to try out the config:
  1. clone the repo and cd in
  2. make sure home-manager is enabled! ```nix shell nixpkgs#home-manager```
  3. run ```home-manager switch --flake .#fqian@nixos```
- 4. if you dont like it, just do ```home-manager switch --rollback```
+ 4. rolle back  with ```home-manager switch --rollback```
 
 # todo list:
  - migrate to dwl, make everything suckless. remember to change key repeat delay and repeat rate. foot, wl clipboard, grim, slurp
