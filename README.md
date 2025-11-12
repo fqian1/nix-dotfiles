@@ -10,7 +10,7 @@
  4. rolle back  with ```home-manager switch --rollback```
 
 # todo list:
- - migrate to dwl, make everything suckless. remember to change key repeat delay and repeat rate. foot, wl clipboard, grim, slurp
+ - migrate to dwl, make everything suckless. remember to change key repeat delay and repeat rate. foot, wl clipboard, grim, slurp. media controls in fn keys.
  - use agenix for wireguard conf file and ssh
  - split modules/home-manager/cli packages to dev pkgs like tmux and qol pkgs like starship
  - make dmenu script YOURSELF! dwl -> open floating term -> fd -> skim -> nohup $app &
@@ -24,6 +24,7 @@
  - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
  - configure impermanence for home directory so i can do imperative stuff 👹
  - INSTRUMENTALISM! PRAGMATISM! MINIMALISM! Lix.
+
 
 p = (1-p)^(n-1)
 

@@ -82,6 +82,7 @@
     nmap
     git
     tree
+    evtest
 
     wlroots
     wayland
