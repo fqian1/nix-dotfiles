@@ -136,6 +136,15 @@
     };
     # printing.enable = true; # Printing
     libinput.enable = true; # Touchpad support
+    libinput.touchpad.accelProfile = "custom";
+    libinput.touchpad.accelStepScroll = 0.5;
+    libinput.touchpad.accelPointsScroll = [
+      0.0 # Input Speed 0.0 -> Output Speed 0.0
+      0.25 # Input Speed 0.5 -> Output Speed 0.25 (Slower)
+      0.5 # Input Speed 1.0 -> Output Speed 0.5 (Slower)
+      0.75 # Input Speed 1.5 -> Output Speed 0.75 (Slower)
+      1.0 # Input Speed 2.0 -> Output Speed 1.0 (Slower)
+    ];
     xserver.xkb.options = "caps:swapescape,ctrl:alt_r";
     xserver.xkb.layout = "gb";
   };

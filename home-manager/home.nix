@@ -62,28 +62,6 @@
     home-manager.enable = true;
     ssh = {
       enable = true;
-      matchBlocks = {
-        "github" = {
-          hostname = "github.com";
-          user = "git";
-        };
-
-        "nixos" = {
-          hostname = "nixos";
-          user = "fqian";
-          port = 2222;
-          identityFile = "~/.ssh/id_nixos";
-          extraOptions = {
-            ForwardAgent = "yes";
-          };
-        };
-
-        "*" = {
-          extraOptions = {
-            ServerAliveInterval = "60";
-          };
-        };
-      };
     };
 
     git = {
@@ -96,7 +74,12 @@
       };
     };
   };
+
   systemd.user.startServices = "sd-switch";
+  services.ssh-agent = {
+    enable = true;
+    enableBashIntegration = true;
+  };
 
   xdg = {
     enable = true;
