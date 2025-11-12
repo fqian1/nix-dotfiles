@@ -136,6 +136,8 @@
     };
     # printing.enable = true; # Printing
     libinput.enable = true; # Touchpad support
+    xserver.xkb.options = "caps:swapescape,ctrl:alt_r";
+    xserver.xkb.layout = "gb";
   };
 
   xdg.portal = {
