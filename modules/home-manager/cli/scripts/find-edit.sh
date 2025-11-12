@@ -1,4 +1,4 @@
-fedit() {
+find-edit() {
 local file_to_edit
 file_to_edit=$(fd $@ . ~/.dotfiles -tf | fzy)
 

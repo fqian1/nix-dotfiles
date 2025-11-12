@@ -1,10 +1,8 @@
-{ pkgs, ... }:
-let
-  tmux-sessionizer = ./scripts/tmux-sessionizer.sh;
-  init-rust-project = ./scripts/init-rust-project.sh;
-  find-edit = ./scripts/find-edit.sh;
-in
-{
+{pkgs, ...}: let
+  tmux-sessionizer = builtins.readFile ./scripts/tmux-sessionizer.sh;
+  init-rust-project = builtins.readFile ./scripts/init-rust-project.sh;
+  find-edit = builtins.readFile ./scripts/find-edit.sh;
+in {
   home.packages = with pkgs; [
     blesh
     skim
@@ -25,9 +23,9 @@ in
       bind -m vi-command 'v': # disable pressing v in normal mode to start $editor
       bind 'set keyseq-timeout 1'
 
-      source ${tmux-sessionizer}
-      source ${init-rust-project}
-      source ${find-edit}
+      ${tmux-sessionizer}
+      ${init-rust-project}
+      ${find-edit}
 
       bind -m vi-insert '"\C-e":find-edit'
       bind -m vi-command '"\C-e":find-edit'
@@ -37,8 +35,8 @@ in
 
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
-      hrs = "home-manager --flake ~/.dotfiles/#fqian@nixos";
-      nrb = "sudo nixos-rebuild boot --flake ~/.dotfiles/#nixos && reboot";
+      hrs = "home-manager switch --flake ~/.dotfiles/#fqian@nixos";
+      nrb = "sudo nixos-rebuild build --flake ~/.dotfiles/#nixos";
       port = "cat /var/run/protonvpn-forwarded-port";
       gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
       lock = "swaylock -c 000000";
