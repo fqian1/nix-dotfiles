@@ -37,7 +37,7 @@
 
   console = {
     font = "Lat2-Terminus16";
-    # keyMap = "uk";
+    keyMap = "gb";
     useXkbConfig = true;
   };
 
@@ -105,13 +105,12 @@
         };
       };
     };
-
-    # networkmanager.enable = true;
     nameservers = [
       "1.1.1.1"
       "1.0.0.1"
     ];
     useDHCP = lib.mkForce true;
+    firewall.allowedTCPPorts = [22];
   };
 
   services.openssh = {
@@ -122,7 +121,6 @@
       KbdInteractiveAuthentication = false;
     };
   };
-  networking.firewall.allowedTCPPorts = [22];
 
   services = {
     greetd = {
@@ -146,8 +144,6 @@
       0.75 # Input Speed 1.5 -> Output Speed 0.75 (Slower)
       1.0 # Input Speed 2.0 -> Output Speed 1.0 (Slower)
     ];
-    xserver.xkb.options = "caps:swapescape,ctrl:alt_r";
-    xserver.xkb.layout = "gb";
   };
 
   xdg.portal = {

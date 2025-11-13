@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.librewolf = {
     enable = true;
     profiles.default = {
@@ -41,6 +44,7 @@
         "findbar.highlightAll" = true;
         "layout.word_select.eat_space_to_next_word" = false;
         "editor.truncate_user_pastes" = true;
+        "ui.prefersReducedMotion" = 1;
 
         # SMOOTH SCROLLING
         "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS" = 12;

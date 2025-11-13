@@ -1,8 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-{
+{pkgs, ...}: {
   programs = {
     ripgrep.enable = true;
     ripgrep-all.enable = true;
@@ -47,5 +43,9 @@
     # Tools
     hyperfine
     ffmpeg
+    bottom
+    bat
+    ripgrep
+    fd
   ];
 }
