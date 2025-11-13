@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
     escapeTime = 10;
@@ -20,13 +19,15 @@
       set -g renumber-windows on
       set -g status-position top
       set -g status-justify absolute-centre
-      set -g status-style "bg=default"
+      set -g status-style bg=default
       set -g window-status-current-style "fg=orange bg=default bold"
+      set -g status-left-length 99
+      set -g status-right-length 99
       set -g status-right ""
       set -g status-left "#S"
+      set -g focus-events on
       set -g window-style 'fg=colour247,bg=colour236'
       set -g window-active-style 'fg=colour250,bg=black'
-
 
       vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzf)(diff)?(-wrapped)?'
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +$${vim_pattern}$'"

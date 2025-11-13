@@ -40,6 +40,8 @@
     nil
     # Formatter
     alejandra
+    rustfmt
+    stylua
     # Tools
     hyperfine
     ffmpeg

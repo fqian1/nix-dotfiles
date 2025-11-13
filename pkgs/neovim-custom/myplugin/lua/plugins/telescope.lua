@@ -35,11 +35,20 @@ local opts = {
         show_unindexed = false,
         ignore_patterns = { "*.git/*", "*/tmp/*" },
       },
+      file_browser = {
+        hijack_netrw = true,
+        hidden = true,
+        respect_gitignore = false,
+        select_buffer = true,
+        search_dirs = {"src", "include"},
+        recurse_subdirs = true,
+      },
     }
   })
 }
 
 require('telescope').setup(opts)
 require('telescope').load_extension('ui-select')
+require('telescope').load_extension('file_browser')
 require('telescope').load_extension('fzy_native') -- Will be used automatically
 require('telescope').load_extension('frecency')   -- Will be used automatically

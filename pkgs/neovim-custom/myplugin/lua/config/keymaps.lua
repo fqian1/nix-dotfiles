@@ -93,7 +93,7 @@ map("n", "<Leader>de", "<cmd>lua require'dap'.terminate()<CR>", { desc = "Debugg
 map("n", "<Leader>dr", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Debugger run last" })
 
 local builtin = require("telescope.builtin")
-keymap("n", "<leader>e", ":Ex")
+keymap("n", "<leader>e",":Telescope file_browser path=%:p:h select_buffer=true<CR>")
 keymap("n", "<leader>f", builtin.find_files, opts)
 keymap("n", "<leader>g", builtin.live_grep, opts)
 keymap("n", "<leader>b", builtin.buffers, opts)

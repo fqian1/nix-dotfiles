@@ -16,6 +16,7 @@
  - make dmenu script YOURSELF! dwl -> open floating term -> fd -> skim -> nohup $app &
  - make hardware agnostic (amd nvidia intel gpu cpu integrated graphics etc.)
  - rice with quickshell, stylix?
+- configure laptop and desktop modules, laptop stuff like tlp, openssh configurations
  - create overlays for tools/apps like ripgrep or dwl with compiler optimizations -O3 -march=native
  - try out different kernels? maybe the cachyos kernel?? blazingly fast.
  - customise ble.sh, make normal mode block cursor, maybe replace starship with blesh prompt
