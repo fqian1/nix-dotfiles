@@ -11,6 +11,7 @@
     dwl
     grim
     slurp
+    wlr-randr
 
     foot
     wmenu

@@ -8,9 +8,8 @@
     settings = {
       main = {
         term = "foot-direct";
-        font = "FiraCode Nerd Font:size=12";
-        dpi-aware = "yes";
-        underline-thickess = "2px";
+        font = "FiraCode Nerd Font:size=7";
+        underline-thickness = "2px";
       };
 
       scrollback = {
