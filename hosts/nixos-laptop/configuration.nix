@@ -102,6 +102,12 @@
         "VM3764440" = {
           psk = "wtw3mzywDbNw";
         };
+        "ASK4 Wireless (802.1x)" = {
+          psk = "amount-strong-got-electric";
+        };
+        "ASK4 Wireless" = {
+          psk = "amount-strong-got-electric";
+        };
       };
     };
     nameservers = [
