@@ -102,6 +102,9 @@
         "VM3764440" = {
           psk = "wtw3mzywDbNw";
         };
+        "iPhone 13 Pro" = {
+          psk = "reps4jesus";
+        };
         "ASK4 Wireless (802.1x)" = {
           psk = "amount-strong-got-electric";
         };
