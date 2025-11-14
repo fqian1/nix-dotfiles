@@ -18,7 +18,7 @@
 
     outputs.homeManagerModules.desktop.applications.librewolf
     outputs.homeManagerModules.desktop.applications.discord
-    outputs.homeManagerModules.desktop.applications.kitty
+    outputs.homeManagerModules.desktop.applications.foot
     outputs.homeManagerModules.desktop.applications.obsidian
     outputs.homeManagerModules.desktop.applications.qbittorrent
   ];

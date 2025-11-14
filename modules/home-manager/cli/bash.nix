@@ -10,6 +10,8 @@ in {
     fzy
   ];
 
+  programs.fastfetch.enable = true;
+
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -27,10 +29,16 @@ in {
       ${init-rust-project}
       ${find-edit}
 
-      bind -m vi-insert '"\C-e":find-edit'
-      bind -m vi-command '"\C-e":find-edit'
+      bind -m vi-insert -x '"\C-e":find-edit'
+      bind -m vi-command -x '"\C-e":find-edit'
       bind -m vi-insert -x '"\C-f":tmux-sessionizer'
       bind -m vi-command -x '"\C-f":tmux-sessionizer'
+
+      FASTFETCH_FLAG="/dev/shm/fastfetch_ran"
+      if [ ! -f "$FASTFETCH_FLAG" ]; then
+          fastfetch
+          touch "$FASTFETCH_FLAG"
+      fi
     '';
 
     shellAliases = {

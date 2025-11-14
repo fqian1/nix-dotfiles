@@ -61,7 +61,7 @@ p = (1-p)^(n-1)
 │   │   │   ├── applications/
 │   │   │   │   ├── default.nix
 │   │   │   │   ├── discord.nix
-│   │   │   │   ├── kitty.nix
+│   │   │   │   ├── foot.nix
 │   │   │   │   ├── librewolf.nix
 │   │   │   │   ├── lmms.nix
 │   │   │   │   ├── obsidian.nix

@@ -106,7 +106,12 @@
           psk = "reps4jesus";
         };
         "ASK4 Wireless (802.1x)" = {
-          psk = "amount-strong-got-electric";
+          auth = ''
+            key_mgmt=WPA-EAP
+            identity="fqian"
+            password="amount-strong-got-electric"
+            phase2="auth=MSCHAPV2"
+          '';
         };
         "ASK4 Wireless" = {
           psk = "amount-strong-got-electric";
