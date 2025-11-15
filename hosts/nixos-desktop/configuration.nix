@@ -9,6 +9,7 @@
   imports = [
     outputs.nixosModules.vpn
     outputs.nixosModules.impermanence
+    outputs.nixosModules.dwl
     ./hardware.nix
   ];
 

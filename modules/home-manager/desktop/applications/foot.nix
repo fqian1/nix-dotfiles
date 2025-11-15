@@ -7,8 +7,8 @@
     enable = true;
     settings = {
       main = {
-        term = "foot-direct";
-        font = "FiraCode Nerd Font:size=7";
+        # term = "foot";
+        font = "FiraCode Nerd Font:size=10";
         underline-thickness = "2px";
       };
 

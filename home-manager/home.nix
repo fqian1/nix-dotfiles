@@ -12,10 +12,8 @@
     outputs.homeManagerModules.cli.starship
     outputs.homeManagerModules.cli.tmux
 
-    outputs.homeManagerModules.desktop.dwl
     outputs.homeManagerModules.desktop.neowall
     outputs.homeManagerModules.desktop.theme
-
     outputs.homeManagerModules.desktop.applications.librewolf
     outputs.homeManagerModules.desktop.applications.discord
     outputs.homeManagerModules.desktop.applications.foot
@@ -55,6 +53,16 @@
       neovim-custom
       xdg-user-dirs
       xdg-utils
+
+      wl-clipboard-rs
+      qt5.qtwayland
+      qt6.qtwayland
+      swaylock
+      grim
+      slurp
+
+      foot
+      wmenu
     ];
   };
 
