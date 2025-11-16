@@ -57,7 +57,7 @@
     done
   '';
 in {
-  environment.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     dwl
     wlr-randr
     wlroots

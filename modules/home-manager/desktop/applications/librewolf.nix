@@ -45,6 +45,7 @@
         "layout.word_select.eat_space_to_next_word" = false;
         "editor.truncate_user_pastes" = true;
         "ui.prefersReducedMotion" = 1;
+        "ui.key.menuAccessKeyFocuses" = false;
 
         # SMOOTH SCROLLING
         "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS" = 12;

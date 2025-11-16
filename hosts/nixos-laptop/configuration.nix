@@ -8,7 +8,12 @@
 }: {
   imports = [
     # outputs.nixosModules.vpn
+    outputs.nixosModules.audio
+    outputs.nixosModules.dwl
+    outputs.nixosModules.greetd
+    outputs.nixosModules.networking
     outputs.nixosModules.impermanence
+    outputs.nixosModules.silent-boot
     ./hardware.nix
   ];
 
