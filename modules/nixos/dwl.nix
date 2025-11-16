@@ -5,15 +5,12 @@
   ...
 }: let
   wlrRandr = "${pkgs.wlr-randr}/bin/wlr-randr";
-
   maxRefreshScript = ''
     #!/bin/bash
 
-    # Return the *exact* mode string with the highest refresh rate for a given output
     get_max_refresh_mode() {
         local output="$1"
         ${wlrRandr} | awk -v out="$output" '
-            # ... (rest of your awk script here) ...
             $1 == out { in_output = 1 }
             in_output && $1 != out && /^[A-Za-z0-9-]+\(/ { in_output = 0 }
             in_output && $1 == "Modes:" { in_modes = 1; next }
@@ -36,7 +33,6 @@
         '
     }
 
-    # List enabled outputs correctly
     OUTPUTS=$(${wlrRandr} | awk '
         /^[A-Za-z0-9-]+/ { name = $1 }
         /Enabled: yes/ { print name }
@@ -49,7 +45,6 @@
             continue
         fi
 
-        # The core logic to extract the mode string (e.g., 1920x1080@144Hz)
         MODE=$(echo "$MODE_LINE" | awk '{for(i=1;i<=NF;i++){if($i ~ /Hz$/){print $1 "@" $i; exit}}}')
 
         if [ -z "$MODE" ]; then
@@ -65,15 +60,30 @@ in {
   environment.packages = with pkgs; [
     dwl
     wlr-randr
+    wlroots
+    wayland
+    wayland-protocols
   ];
 
-  programs.dwl.extraSessionCommands = [
-    # Execute the entire script using 'bash -c'
-    "bash -c '${maxRefreshScript}'"
+  services = {
+    cliphist.enable = true;
+  };
 
-    # You might also want to run other commands here, like waybar, mako, etc.
-    # "${pkgs.waybar}/bin/waybar &"
-  ];
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+    ];
+  };
+
+  programs.dwl = {
+    enable = true;
+    extraSessionCommands = [
+      "bash -c '${maxRefreshScript}'"
+      # "${pkgs.waybar}/bin/waybar &"
+    ];
+  };
 
   systemd.user.targets.dwl-session.Unit = {
     Description = "dwl compositor session";
@@ -82,6 +92,4 @@ in {
     Wants = ["graphical-session-pre.target"];
     After = ["graphical-session-pre.target"];
   };
-
-  services.cliphist.enable = true;
 }

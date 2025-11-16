@@ -7,8 +7,8 @@
   ...
 }: {
   imports = [
-    outputs.nixosModules.vpn
     outputs.nixosModules.impermanence
+    outputs.nixosModules.vpn
     outputs.nixosModules.dwl
     ./hardware.nix
   ];
@@ -38,7 +38,6 @@
 
   console = {
     font = "Lat2-Terminus16";
-    # keyMap = "uk";
     useXkbConfig = true;
   };
 
@@ -83,10 +82,6 @@
     nmap
     git
     tree
-
-    wlroots
-    wayland
-    wayland-protocols
   ];
 
   services.pipewire = {

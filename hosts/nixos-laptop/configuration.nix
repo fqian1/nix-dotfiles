@@ -82,48 +82,11 @@
     git
     tree
     evtest
-
-    wlroots
-    wayland
-    wayland-protocols
   ];
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
 
   networking = {
     hostName = "nixos-laptop";
     hostId = "8425e349";
-    wireless = {
-      enable = true;
-      networks = {
-        "VM3764440" = {
-          psk = "wtw3mzywDbNw";
-        };
-        "iPhone 13 Pro" = {
-          psk = "reps4jesus";
-        };
-        "ASK4 Wireless (802.1x)" = {
-          auth = ''
-            key_mgmt=WPA-EAP
-            identity="fqian"
-            password="amount-strong-got-electric"
-            phase2="auth=MSCHAPV2"
-          '';
-        };
-        "ASK4 Wireless" = {
-          psk = "amount-strong-got-electric";
-        };
-      };
-    };
-    nameservers = [
-      "1.1.1.1"
-      "1.0.0.1"
-    ];
-    useDHCP = lib.mkForce true;
-    firewall.allowedTCPPorts = [22];
   };
 
   services.openssh = {
@@ -136,44 +99,10 @@
   };
 
   services = {
-    greetd = {
-      enable = true;
-      settings = rec {
-        initial_session = {
-          command = "${pkgs.dwl}/bin/dwl";
-          user = "fqian";
-        };
-        default_session = initial_session;
-      };
-    };
-    # printing.enable = true; # Printing
-    libinput.enable = true; # Touchpad support
-    libinput.touchpad.accelProfile = "custom";
-    libinput.touchpad.accelStepScroll = 0.5;
-    libinput.touchpad.accelPointsScroll = [
-      0.0 # Input Speed 0.0 -> Output Speed 0.0
-      0.25 # Input Speed 0.5 -> Output Speed 0.25 (Slower)
-      0.5 # Input Speed 1.0 -> Output Speed 0.5 (Slower)
-      0.75 # Input Speed 1.5 -> Output Speed 0.75 (Slower)
-      1.0 # Input Speed 2.0 -> Output Speed 1.0 (Slower)
-    ];
+    printing.enable = true;
+    libinput.enable = true;
+    fwupd.enable = true;
   };
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
-    ];
-  };
-
-  programs.dconf.enable = true;
-  programs.dwl.enable = true;
-
-  services.fwupd.enable = true;
-
-  programs.nix-ld.enable = true; # Just in case
 
   system.stateVersion = "25.05";
 }
