@@ -65,10 +65,6 @@ in {
     wayland-protocols
   ];
 
-  services = {
-    cliphist.enable = true;
-  };
-
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -79,17 +75,17 @@ in {
 
   programs.dwl = {
     enable = true;
-    extraSessionCommands = [
-      "bash -c '${maxRefreshScript}'"
-      # "${pkgs.waybar}/bin/waybar &"
-    ];
+    extraSessionCommands = ''
+      bash -c '${maxRefreshScript}'"
+      # "$${pkgs.waybar}/bin/waybar &"
+    '';
   };
 
-  systemd.user.targets.dwl-session.Unit = {
-    Description = "dwl compositor session";
-    Documentation = ["man:systemd.special(7)"];
-    BindsTo = ["graphical-session.target"];
-    Wants = ["graphical-session-pre.target"];
-    After = ["graphical-session-pre.target"];
-  };
+  # systemd.user.targets.dwl-session.Unit = {
+  #   Description = "dwl compositor session";
+  #   Documentation = ["man:systemd.special(7)"];
+  #   BindsTo = ["graphical-session.target"];
+  #   Wants = ["graphical-session-pre.target"];
+  #   After = ["graphical-session-pre.target"];
+  # };
 }

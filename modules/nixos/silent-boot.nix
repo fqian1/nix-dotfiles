@@ -1,5 +1,5 @@
 {...}: {
-  programs.plymouth.enable = true;
+  boot.plymouth.enable = true;
   boot = {
     initrd.verbose = false;
     consoleLogLevel = 0;

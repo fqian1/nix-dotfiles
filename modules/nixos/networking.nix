@@ -1,6 +1,6 @@
 {lib, ...}: {
   networking = {
-    networkManager = {
+    networkmanager = {
       enable = true;
       ensureProfiles = {
         profiles = {

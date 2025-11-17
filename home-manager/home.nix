@@ -89,6 +89,10 @@
     enableBashIntegration = true;
   };
 
+  services = {
+    cliphist.enable = true;
+  };
+
   xdg = {
     enable = true;
     userDirs = {
