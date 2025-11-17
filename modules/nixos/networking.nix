@@ -1,24 +1,24 @@
 {lib, ...}: {
   networking = {
-    networkmanager = {
+    wireless = {
       enable = true;
-      ensureProfiles = {
-        profiles = {
-          home = {
-            connection.id = "VM3764440";
-            connection.type = "wifi";
-            wifi.ssid = "VM3764440";
-            wifi-security.key-mgmt = "wpa-psk";
-            wifi-security.psk = "wtw3mzywDbNw";
-          };
-
-          hotspot = {
-            connection.id = "iPhone 13 Pro";
-            connection.type = "wifi";
-            wifi.ssid = "iPhone 13 Pro";
-            wifi-security.key-mgmt = "wpa-psk";
-            wifi-security.psk = "reps4jesus";
-          };
+      networks = {
+        "VM3764440" = {
+          psk = "wtw3mzywDbNw";
+        };
+        "iPhone 13 Pro" = {
+          psk = "reps4jesus";
+        };
+        "ASK4 Wireless (802.1x)" = {
+          auth = ''
+            key_mgmt=WPA-EAP
+            identity="fqian"
+            password="amount-strong-got-electric"
+            phase2="auth=MSCHAPV2"
+          '';
+        };
+        "ASK4 Wireless" = {
+          psk = "amount-strong-got-electric";
         };
       };
     };

@@ -26,8 +26,10 @@
       set -g status-right ""
       set -g status-left "#S"
       set -g focus-events on
-      set -g window-style 'fg=colour247,bg=colour236'
-      set -g window-active-style 'fg=colour250,bg=black'
+      set -g window-style 'dim'
+      set -g window-active-style 'fg=default,bg=default'
+
+      set-window-option -g pane-border-status off
 
       vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzf)(diff)?(-wrapped)?'
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +$${vim_pattern}$'"
