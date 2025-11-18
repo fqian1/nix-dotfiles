@@ -5,10 +5,12 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     # outputs.nixosModules.vpn
     outputs.nixosModules.audio
+    outputs.nixosModules.locale
     outputs.nixosModules.dwl
     outputs.nixosModules.greetd
     outputs.nixosModules.networking
@@ -36,7 +38,7 @@
       ];
     };
     registry.nixpkgs.flake = inputs.nixpkgs;
-    nixPath = ["nixpkgs=flake:nixpkgs"];
+    nixPath = [ "nixpkgs=flake:nixpkgs" ];
     channel.enable = false;
   };
 
@@ -92,15 +94,7 @@
   networking = {
     hostName = "nixos-laptop";
     hostId = "8425e349";
-  };
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "prohibit-password";
-      KbdInteractiveAuthentication = false;
-    };
+    useDHCP = lib.mkForce true;
   };
 
   services = {

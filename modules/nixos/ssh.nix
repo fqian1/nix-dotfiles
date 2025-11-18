@@ -1,0 +1,12 @@
+{ ... }:
+{
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "prohibit-password";
+      KbdInteractiveAuthentication = false;
+    };
+  };
+  networking.firewall.allowedTCPPorts = [ 22 ];
+}

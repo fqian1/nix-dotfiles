@@ -5,11 +5,20 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
+    outputs.nixosModules.audio
+    outputs.nixosModules.dwl
+    outputs.nixosModules.greetd
+    outputs.nixosModules.networking
+    outputs.nixosModules.impermanence
+    outputs.nixosModules.silent-boot
+    outputs.nixosModules.locale
     outputs.nixosModules.impermanence
     outputs.nixosModules.vpn
     outputs.nixosModules.dwl
+    outputs.nixosModules.ssh
     ./hardware.nix
   ];
 
@@ -32,7 +41,7 @@
       ];
     };
     registry.nixpkgs.flake = inputs.nixpkgs;
-    nixPath = ["nixpkgs=flake:nixpkgs"];
+    nixPath = [ "nixpkgs=flake:nixpkgs" ];
     channel.enable = false;
   };
 
@@ -45,21 +54,6 @@
     fontconfig.enable = true;
     fontDir.enable = true;
   };
-
-  i18n = {
-    defaultLocale = "en_GB.UTF-8";
-    extraLocaleSettings = {
-      LC_ALL = "en_GB.UTF-8";
-      LANGUAGE = "en_US.UTF-8";
-      LC_TIME = "en_GB.UTF-8";
-    };
-    supportedLocales = [
-      "en_GB.UTF-8/UTF-8"
-      "en_US.UTF-8/UTF-8"
-    ];
-  };
-
-  time.timeZone = "Europe/London";
 
   users.users.fqian = {
     isNormalUser = true;
@@ -84,64 +78,17 @@
     tree
   ];
 
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
   networking = {
     hostName = "nixos-desktop";
     hostId = "b475238a";
-    # wireless.enable = true;
-    networkmanager.enable = true;
-    nameservers = [
-      "1.1.1.1"
-      "1.0.0.1"
-    ];
     useDHCP = lib.mkForce true;
   };
 
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "prohibit-password";
-      KbdInteractiveAuthentication = false;
-    };
-  };
-  networking.firewall.allowedTCPPorts = [22];
-
   services = {
-    xserver.enable = false;
-    xserver.videoDrivers = ["nvidia"];
-    greetd = {
-      enable = true;
-      settings = rec {
-        initial_session = {
-          command = "${pkgs.dwl}/bin/dwl";
-          user = "fqian";
-        };
-        default_session = initial_session;
-      };
-    };
     # printing.enable = true; # Printing
     # libinput.enable = true; # Touchpad support
+    fwupd.enable = true;
   };
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
-    ];
-  };
-
-  programs.dwl.enable = true;
-
-  services.fwupd.enable = true;
-
-  programs.nix-ld.enable = true; # Just in case
 
   system.stateVersion = "25.05";
 }

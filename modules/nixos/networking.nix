@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   networking = {
     wireless = {
       enable = true;
@@ -26,6 +27,5 @@
       "1.1.1.1"
       "1.0.0.1"
     ];
-    useDHCP = lib.mkForce true;
   };
 }
