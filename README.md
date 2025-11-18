@@ -28,14 +28,15 @@
  - create a shader and use as desktop background monstercat smoke https://github.com/1ay1/neowall
  - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
  - configure impermanence for home directory so i can do imperative stuff 👹
- - migrate to lix and sixos
+ - migrate to lix
+ - coreboot -> uefi payload (yabits?) -> bootloader (limine) -> uki entries (lanzaboot) -> s6 (sixos)
  - INSTRUMENTALIST PRAGMATIC MINIMALIST
 
 # unrelated:
  - grex, newsboat, jrnl, ttyd, croc: cool cli tools
  - stui, btop, bottom, htop, atop, iftop, iotop, csysdig, nvtop, perf, wavemon
  - nextcloud + homeserver.
- - coreboot + some payload. sixos
+ - coreboot + some payload.
  - https://github.com/pd3v/line
  - p = (1-p)^(n-1)
 
