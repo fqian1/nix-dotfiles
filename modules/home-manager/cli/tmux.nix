@@ -26,10 +26,15 @@
       set -g status-right ""
       set -g status-left "#S"
       set -g focus-events on
-      set -g window-style 'dim'
-      set -g window-active-style 'fg=default,bg=default'
+
+      set-option -g window-style 'fg=default,bg=default'
+      set-option -g window-active-style 'fg=white,bg=#000000'
 
       set-window-option -g pane-border-status off
+      set -g pane-border-style "fg=#000000,bg=default"
+      set -g pane-active-border-style "fg=#000000,bg=#000000"
+
+      bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"
 
       vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzf)(diff)?(-wrapped)?'
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +$${vim_pattern}$'"

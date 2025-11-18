@@ -137,7 +137,6 @@
     ];
   };
 
-  programs.dconf.enable = true;
   programs.dwl.enable = true;
 
   services.fwupd.enable = true;
