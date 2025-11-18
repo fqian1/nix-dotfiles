@@ -12,7 +12,7 @@
     outputs.nixosModules.greetd
     outputs.nixosModules.networking
     outputs.nixosModules.impermanence
-    outputs.nixosModules.silent-boot
+    # outputs.nixosModules.silent-boot
     outputs.nixosModules.locale
     outputs.nixosModules.vpn
     outputs.nixosModules.dwl

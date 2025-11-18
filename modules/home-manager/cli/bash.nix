@@ -2,6 +2,7 @@
   tmux-sessionizer = builtins.readFile ./scripts/tmux-sessionizer.sh;
   init-rust-project = builtins.readFile ./scripts/init-rust-project.sh;
   find-edit = builtins.readFile ./scripts/find-edit.sh;
+  max-refresh = builtins.readFile ./scripts/max-refresh.sh;
 in {
   home.packages = with pkgs; [
     blesh
@@ -22,7 +23,7 @@ in {
     initExtra = ''
       source ${pkgs.blesh}/share/blesh/ble.sh
       set -o vi
-      bind -m vi-command 'v': # disable pressing v in normal mode to start $editor
+      bind -m vi-command 'v' # disable pressing v in normal mode to start $editor
       bind 'set keyseq-timeout 1'
 
       ${tmux-sessionizer}
@@ -34,10 +35,13 @@ in {
       bind -m vi-insert -x '"\C-f":tmux-sessionizer'
       bind -m vi-command -x '"\C-f":tmux-sessionizer'
 
+      fastfetch
+
       FASTFETCH_FLAG="/dev/shm/fastfetch_ran"
       if [ ! -f "$FASTFETCH_FLAG" ]; then
           fastfetch
           touch "$FASTFETCH_FLAG"
+          ${max-refresh}
       fi
     '';
 

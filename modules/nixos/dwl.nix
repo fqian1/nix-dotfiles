@@ -76,7 +76,7 @@ in {
   programs.dwl = {
     enable = true;
     extraSessionCommands = ''
-      bash -c '${maxRefreshScript}'"
+      ${pkgs.bash}/bin/bash -c '${maxRefreshScript}' &
       # "$${pkgs.waybar}/bin/waybar &"
     '';
   };
