@@ -30,6 +30,7 @@
  - configure impermanence for home directory so i can do imperative stuff 👹
  - migrate to lix
  - coreboot -> uefi payload (yabits?) -> bootloader (limine) -> uki entries (lanzaboot) -> s6 (sixos)
+ - tell neovim to use shiftwidth from lsp/formatter
  - INSTRUMENTALIST PRAGMATIC MINIMALIST
 
 # unrelated:
