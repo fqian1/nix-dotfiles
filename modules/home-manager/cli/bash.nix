@@ -37,13 +37,12 @@ in {
       bind -m vi-command -x '"\C-f":tmux-sessionizer'
 
       fastfetch
-
-      FASTFETCH_FLAG="/dev/shm/fastfetch_ran"
-      if [ ! -f "$FASTFETCH_FLAG" ]; then
-          ${max-refresh}
-          fastfetch
-          touch "$FASTFETCH_FLAG"
-      fi
+      #
+      # FASTFETCH_FLAG="/dev/shm/fastfetch_ran"
+      # if [ ! -f "$FASTFETCH_FLAG" ]; then
+      #     fastfetch
+      #     touch "$FASTFETCH_FLAG"
+      # fi
     '';
 
     shellAliases = {
