@@ -7,8 +7,8 @@
     text = ''
       default {
         shader starship_reentry.glsl
-        shader_speed 0.5
-        shader_fps 80
+        shader_speed 1
+        shader_fps 30
         vsync false
         show_fps false
       }
