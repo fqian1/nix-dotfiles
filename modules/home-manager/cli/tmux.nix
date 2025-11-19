@@ -41,11 +41,11 @@
       set -g focus-events on
 
       set-option -g window-style 'fg=default,bg=default'
-      set-option -g window-active-style 'fg=white,bg=#000000'
+      set-option -g window-active-style 'fg=white,bg=default'
 
       set-window-option -g pane-border-status off
-      set -g pane-border-style "fg=#000000,bg=#000000"
-      set -g pane-active-border-style "fg=#000000,bg=#000000"
+      set -g pane-border-style "fg=#000000,bg=default"
+      set -g pane-active-border-style "fg=#000000,bg=default"
 
       bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"
 
