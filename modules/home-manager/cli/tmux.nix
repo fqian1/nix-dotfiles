@@ -31,7 +31,7 @@
       set-option -g window-active-style 'fg=white,bg=#000000'
 
       set-window-option -g pane-border-status off
-      set -g pane-border-style "fg=#000000,bg=default"
+      set -g pane-border-style "fg=#000000,bg=#000000"
       set -g pane-active-border-style "fg=#000000,bg=#000000"
 
       bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"

@@ -56,6 +56,7 @@
   services = {
     fstrim.enable = true;
     blueman.enable = true;
+    xserver.videoDrivers = ["nvidia"];
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg:
