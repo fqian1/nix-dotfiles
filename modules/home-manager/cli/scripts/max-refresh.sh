@@ -1,10 +1,6 @@
-#!/bin/bash
-
-echo "setting max refresh modes"
-
 get_max_refresh_mode() {
     local output="$1"
-    ${wlrRandr} | awk -v out="$output" '
+    wlr-randr | awk -v out="$output" '
         $1 == out { in_output = 1 }
         in_output && $1 != out && /^[A-Za-z0-9-]+\(/ { in_output = 0 }
         in_output && $1 == "Modes:" { in_modes = 1; next }
@@ -27,7 +23,7 @@ get_max_refresh_mode() {
     '
 }
 
-OUTPUTS=$(${wlrRandr} | awk '
+OUTPUTS=$(wlr-randr | awk '
     /^[A-Za-z0-9-]+/ { name = $1 }
     /Enabled: yes/ { print name }
 ')
@@ -47,6 +43,6 @@ for OUTPUT in $OUTPUTS; do
     fi
 
     echo "Setting $OUTPUT to max refresh: $MODE"
-    ${wlrRandr} --output "$OUTPUT" --mode "$MODE"
+    wlr-randr --output "$OUTPUT" --mode "$MODE"
 done
 

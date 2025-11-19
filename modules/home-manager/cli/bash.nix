@@ -5,6 +5,7 @@
   max-refresh = builtins.readFile ./scripts/max-refresh.sh;
 in {
   home.packages = with pkgs; [
+    wlr-randr
     blesh
     skim
     fd
@@ -23,7 +24,7 @@ in {
     initExtra = ''
       source ${pkgs.blesh}/share/blesh/ble.sh
       set -o vi
-      bind -m vi-command 'v' # disable pressing v in normal mode to start $editor
+      # bind -m vi-command 'v' # disable pressing v in normal mode to start $editor
       bind 'set keyseq-timeout 1'
 
       ${tmux-sessionizer}
@@ -39,9 +40,9 @@ in {
 
       FASTFETCH_FLAG="/dev/shm/fastfetch_ran"
       if [ ! -f "$FASTFETCH_FLAG" ]; then
+          ${max-refresh}
           fastfetch
           touch "$FASTFETCH_FLAG"
-          ${max-refresh}
       fi
     '';
 

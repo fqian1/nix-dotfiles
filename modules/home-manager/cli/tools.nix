@@ -41,6 +41,7 @@
     # Formatter
     alejandra
     rustfmt
+    shfmt
     stylua
     # Tools
     hyperfine

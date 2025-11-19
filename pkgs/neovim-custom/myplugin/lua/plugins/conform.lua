@@ -3,6 +3,7 @@ require("conform").setup({
 		lua = { "stylua" },
 		nix = { "alejandra" },
 		nix = { "alejandra" },
+    sh = {"shfmt"},
 		rust = { "rustfmt", lsp_format = "fallback" },
 	},
 	-- format_on_save = {
