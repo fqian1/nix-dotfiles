@@ -16,13 +16,13 @@ if [[ -z $TMUX ]]; then
     if tmux has-session -t="$selected_name" 2>/dev/null; then
         tmux attach-session -t "$selected_name"
     else
-        tmux new-session -s "$selected_name" -c "$selected" \; split-window -h -p 40
+        tmux new-session -s "$selected_name" -c "$selected"
     fi
 else
     if tmux has-session -t="$selected_name" 2>/dev/null; then
         tmux switch-client -t "$selected_name"
     else
-        tmux new-session -ds "$selected_name" -c "$selected" \; split-window -h -p 40
+        tmux new-session -ds "$selected_name" -c "$selected"
         tmux switch-client -t "$selected_name"
     fi
 fi

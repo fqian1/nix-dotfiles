@@ -2,7 +2,7 @@
   tmux-sessionizer = builtins.readFile ./scripts/tmux-sessionizer.sh;
   init-rust-project = builtins.readFile ./scripts/init-rust-project.sh;
   find-edit = builtins.readFile ./scripts/find-edit.sh;
-  max-refresh = builtins.readFile ./scripts/max-refresh.sh;
+  max-refresh = builtins.readFile ./scripts/max-refresh.sh; # no longer needed?
 in {
   home.packages = with pkgs; [
     wlr-randr
