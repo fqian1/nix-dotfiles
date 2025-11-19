@@ -17,7 +17,6 @@
     outputs.nixosModules.locale
     # outputs.nixosModules.vpn
     outputs.nixosModules.dwl
-    outputs.nixosModules.ssh
     ./hardware.nix
   ];
 
@@ -60,11 +59,14 @@
       "wheel"
       "networkmanager"
     ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILYmIuYxMUnrHQWW5LcUGqKsNfonYf/7Vjqz+kNKPMo2 fqian@nixos"
-    ];
     initialPassword = "password";
     shell = pkgs.bash;
+  };
+
+  networking = {
+    hostName = "nixos-laptop";
+    hostId = "8425e349";
+    useDHCP = lib.mkForce true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -77,12 +79,6 @@
     tree
     evtest
   ];
-
-  networking = {
-    hostName = "nixos-laptop";
-    hostId = "8425e349";
-    useDHCP = lib.mkForce true;
-  };
 
   services = {
     printing.enable = true;

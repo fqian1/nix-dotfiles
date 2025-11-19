@@ -59,11 +59,14 @@
       "wheel"
       "networkmanager"
     ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILYmIuYxMUnrHQWW5LcUGqKsNfonYf/7Vjqz+kNKPMo2 fqian@nixos"
-    ];
     initialPassword = "password";
     shell = pkgs.bash;
+  };
+
+  networking = {
+    hostName = "nixos-desktop";
+    hostId = "b475238a";
+    useDHCP = lib.mkForce true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -75,12 +78,6 @@
     git
     tree
   ];
-
-  networking = {
-    hostName = "nixos-desktop";
-    hostId = "b475238a";
-    useDHCP = lib.mkForce true;
-  };
 
   services = {
     # printing.enable = true; # Printing

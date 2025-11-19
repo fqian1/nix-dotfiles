@@ -2,7 +2,9 @@
   programs = {
     ripgrep.enable = true;
     ripgrep-all.enable = true;
-    tealdeer.enable = true;
+    tealdeer = {
+      enable = true;
+    };
     gemini-cli.enable = true;
     lazygit = {
       enable = true;
