@@ -1,9 +1,9 @@
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "auto",
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
+		theme = "gruvbox",
+		component_separators = { left = "|", right = "|" },
+		section_separators = { left = "", right = "" },
 		disabled_filetypes = {
 			statusline = {},
 			winbar = {},
@@ -16,7 +16,7 @@ require("lualine").setup({
 			statusline = 1000,
 			tabline = 1000,
 			winbar = 1000,
-			refresh_time = 4, -- ~60fps
+			refresh_time = 4, -- ~144 fps
 			events = {
 				"WinEnter",
 				"BufEnter",

@@ -6,11 +6,11 @@
   xdg.configFile."neowall/config.vibe" = {
     text = ''
       default {
-        shader retro_wave.glsl
-        shader_speed 1.0
+        shader starship_reentry.glsl
+        shader_speed 0.5
         shader_fps 80
         vsync false
-        show_fps true
+        show_fps false
       }
     '';
   };
