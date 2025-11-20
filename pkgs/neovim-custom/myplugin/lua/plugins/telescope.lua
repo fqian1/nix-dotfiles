@@ -53,6 +53,10 @@ require('telescope').load_extension('file_browser')
 require('telescope').load_extension('fzy_native') -- Will be used automatically
 require('telescope').load_extension('frecency')   -- Will be used automatically
 
+local map = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true }
+
 local builtin = require("telescope.builtin")
 keymap("n", "<leader>e", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
 keymap("n", "<leader>f", builtin.find_files, opts)

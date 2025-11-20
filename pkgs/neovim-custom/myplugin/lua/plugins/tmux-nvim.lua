@@ -1,4 +1,4 @@
-requre("tmux").setup({
+require("tmux").setup({
 	copy_sync = {
 		enable = true,
 
