@@ -39,7 +39,7 @@ static const int lock_cursor = 0; /* 1: lock cursor, 0: don't lock */
 
 /* Autostart */
 static const char *const autostart[] = {
-    "wbg", "/path/to/your/image", NULL, NULL /* terminate */
+    "swaybg", "~/downloads/moon.png", NULL, NULL /* terminate */
 };
 
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at
