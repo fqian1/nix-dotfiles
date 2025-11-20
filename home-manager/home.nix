@@ -13,6 +13,7 @@
     outputs.homeManagerModules.cli.tmux
 
     outputs.homeManagerModules.desktop.neowall
+    outputs.homeManagerModules.desktop.mangowc
     outputs.homeManagerModules.desktop.theme
     outputs.homeManagerModules.desktop.applications.librewolf
     outputs.homeManagerModules.desktop.applications.discord
