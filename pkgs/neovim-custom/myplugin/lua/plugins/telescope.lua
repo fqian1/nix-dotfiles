@@ -52,3 +52,10 @@ require('telescope').load_extension('ui-select')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('fzy_native') -- Will be used automatically
 require('telescope').load_extension('frecency')   -- Will be used automatically
+
+local builtin = require("telescope.builtin")
+keymap("n", "<leader>e", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+keymap("n", "<leader>f", builtin.find_files, opts)
+keymap("n", "<leader>g", builtin.live_grep, opts)
+keymap("n", "<leader>b", builtin.buffers, opts)
+keymap("n", "<leader>h", builtin.help_tags, opts)

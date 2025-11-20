@@ -41,7 +41,7 @@
     vimPlugins.telescope-file-browser-nvim
     vimPlugins.obsidian-nvim
     vimPlugins.render-markdown-nvim
-    vimPlugins.vim-tmux-navigator
+    vimPlugins.tmux-nvim
     vimPlugins.vim-tpipeline
     vimPlugins.tiny-glimmer-nvim # TODO configure this
     # add tpipeline, flash, fidget, colorizer

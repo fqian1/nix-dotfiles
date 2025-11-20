@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-require("config.autocmds")
-require("config.options")
-require("config.keymaps")
+
 require("plugins.autopairs")
 require("plugins.cmp")
 require("plugins.conform")
@@ -13,9 +11,9 @@ require("plugins.kanagawa")
 require("plugins.lspconfig")
 require("plugins.lsplines")
 require("plugins.lualine")
--- require("plugins.obsidian")
-require("plugins.rendermarkdown")
+require("plugins.obsidian")
+require("plugins.render-markdown")
 require("plugins.telescope")
-require("plugins.tmuxnavigator")
+require("plugins.tmux-nvim")
 require("plugins.treesitter")
 require("plugins.undotree")
