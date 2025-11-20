@@ -10,7 +10,7 @@
         # term = "foot";
         font = "FiraCode Nerd Font:size=10";
         underline-thickness = "2px";
-        underline-offset = "2px";
+        underline-offset = "3px";
       };
 
       scrollback = {
