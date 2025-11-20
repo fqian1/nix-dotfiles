@@ -91,4 +91,3 @@ map("v", "<C-c>", '"+y', opts)
 -- )
 -- map("n", "<Leader>de", "<cmd>lua require'dap'.terminate()<CR>", { desc = "Debugger reset" })
 -- map("n", "<Leader>dr", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Debugger run last" })
-

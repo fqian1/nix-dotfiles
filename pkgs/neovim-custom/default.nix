@@ -9,7 +9,6 @@
   packageName = "mypackage";
 
   startPlugins = [
-    vimPlugins.lz-n
     vimPlugins.undotree
     vimPlugins.crates-nvim
     vimPlugins.nvim-treesitter.withAllGrammars
