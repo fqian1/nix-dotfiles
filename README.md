@@ -14,7 +14,7 @@
  5. roll back  with ```home-manager switch --rollback```
 
 # todo list:
- - migrate to dwl, make everything suckless. foot, wl clipboard, grim, slurp. media controls in fn keys.
+ - migrate to mangowc, dwl is unmaintained, make everything suckless. foot (no ligatures, alternative?), wl clipboard, grim, slurp. media controls in fn keys.
  - use agenix for wireguard conf file and ssh
  - split modules/home-manager/cli packages to dev pkgs like tmux and qol pkgs like starship
  - make dmenu script YOURSELF! dwl -> open floating term -> fd -> skim -> nohup $app &

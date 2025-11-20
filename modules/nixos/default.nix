@@ -9,5 +9,5 @@
   audio = import ./audio.nix;
   vpn = import ./vpn.nix;
   ssh = import ./ssh.nix;
-  dwl = import ./dwl.nix;
+  mangowc = import ./mangowc.nix;
 }

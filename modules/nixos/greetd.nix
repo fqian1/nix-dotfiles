@@ -3,7 +3,7 @@
     enable = true;
     settings = rec {
       initial_session = {
-        command = "${pkgs.dwl}/bin/dwl";
+        command = "${pkgs.mangowc}/bin/mangowc";
         user = "fqian";
       };
       default_session = initial_session;

@@ -16,7 +16,7 @@
     # outputs.nixosModules.silent-boot
     outputs.nixosModules.locale
     # outputs.nixosModules.vpn
-    outputs.nixosModules.dwl
+    outputs.nixosModules.mangowc
     outputs.nixosModules.scripts
     ./hardware.nix
   ];
