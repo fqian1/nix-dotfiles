@@ -1,8 +1,5 @@
--- Autocommands for neovim
-
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NonText", { bg = "none" })
--- Also apply to floating windows/borders for consistency
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 
@@ -46,29 +43,6 @@ vim.api.nvim_create_autocmd("FocusLost", {
 	group = vim.api.nvim_create_augroup("AutoSave", { clear = true }),
 	pattern = "*",
 	command = "silent! wa",
-})
-
--- vim.api.nvim_create_autocmd("VimResized", {
---   group = vim.api.nvim_create_augroup("ResizeSplits", { clear = true }),
---   command = "tabdo wincmd ="
--- })
-
--- Set shiftwidth to 2 for lua files
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = { "*.lua", "*.nix" },
-	callback = function()
-		vim.opt.shiftwidth = 2
-	end,
-})
-
--- Set shiftwidth to 4 for all other files
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = "*",
-	callback = function()
-		if vim.bo.filetype ~= "lua" and vim.bo.filetype ~= "nix" then
-			vim.opt.shiftwidth = 4
-		end
-	end,
 })
 
 -- persistent folds

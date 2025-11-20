@@ -39,7 +39,9 @@ static const int lock_cursor = 0; /* 1: lock cursor, 0: don't lock */
 
 /* Autostart */
 static const char *const autostart[] = {
-    "swaybg", "~/downloads/moon.png", NULL, NULL /* terminate */
+    "swaybg", "-i", "~/downloads/moon.png", NULL,
+    "max-refresh", NULL, /* max refresh script, can find in modules/nixos/scripts
+    NULL /* terminate */
 };
 
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at
