@@ -45,13 +45,15 @@ in {
     '';
 
     shellAliases = {
-      nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos";
+      nrsd = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos-desktop";
+      nrsl = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos-laptop";
+      nrbd = "sudo nixos-rebuild build --flake ~/.dotfiles/#nixos-desktop";
+      nrbl = "sudo nixos-rebuild build --flake ~/.dotfiles/#nixos-laptop";
       hrs = "home-manager switch --flake ~/.dotfiles/#fqian@nixos";
-      nrb = "sudo nixos-rebuild build --flake ~/.dotfiles/#nixos";
       port = "cat /var/run/protonvpn-forwarded-port";
-      gdot = ''cd ~/.dotfiles && git add . && git commit -m "auto: $(date +%F_%T)"'';
       lock = "swaylock -c 000000";
       tree = "tree -F --dirsfirst";
+      gitrb = "git rebase -i origin/main";
       vim = "nvim";
       ls = "ls -l";
     };

@@ -45,6 +45,20 @@ vim.api.nvim_create_autocmd("FocusLost", {
 	command = "silent! wa",
 })
 
+-- Auto commit on save
+local function git_autosave()
+  if vim.fn.system("git rev-parse --is-inside-work-tree 2>/dev/null"):match("true") then
+    vim.cmd("!git add .")
+
+    local timestamp = os.date("%Y%m%d-%H%M%S")
+    vim.cmd("!git commit -m 'AUTOSAVE: " .. timestamp)
+  end
+end
+vim.api.nvim_create_autocmd("FileWritePost", {
+  group = vim.api.nvim_create_augroup("GitAutosave", { clear = true }),
+  callback = git_autosave,
+})
+
 -- persistent folds
 local persistent_folds_group = vim.api.nvim_create_augroup("PersistentFolds", { clear = true })
 vim.api.nvim_create_autocmd("BufWinLeave", {

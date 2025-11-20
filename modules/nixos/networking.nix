@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   networking = {
     wireless.enable = false;
 
@@ -18,9 +17,9 @@
             mode = "infrastructure";
           };
           wifi-security = {
-          key-mgmt = "wpa-eap";
-          auth-alg = "open";
-        };
+            key-mgmt = "wpa-eap";
+            auth-alg = "open";
+          };
           "802-1x" = {
             eap = "peap";
             identity = "fqian";
