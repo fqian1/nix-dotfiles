@@ -17,6 +17,7 @@
     outputs.nixosModules.vpn
     outputs.nixosModules.dwl
     outputs.nixosModules.ssh
+    outputs.nixosModules.scripts
     ./hardware.nix
   ];
 

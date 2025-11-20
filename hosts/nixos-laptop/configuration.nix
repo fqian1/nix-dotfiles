@@ -17,6 +17,7 @@
     outputs.nixosModules.locale
     # outputs.nixosModules.vpn
     outputs.nixosModules.dwl
+    outputs.nixosModules.scripts
     ./hardware.nix
   ];
 
