@@ -38,7 +38,7 @@
       set -g status-right ""
       set -g status-left "#S"
       set -g focus-events on
-      set-option -g window-style 'fg=color200,bg=default'
+      set-option -g window-style 'fg=#bbbbbb,bg=default'
       set-option -g window-active-style 'fg=white,bg=default'
       set-window-option -g pane-border-status off
       set -g pane-border-style "fg=#000000,bg=default"

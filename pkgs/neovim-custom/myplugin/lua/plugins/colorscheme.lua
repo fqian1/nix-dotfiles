@@ -1,4 +1,4 @@
-require("pkgs.neovim-custom.myplugin.lua.plugins.colorscheme").setup({
+require("tokyonight").setup({
 	style = "storm", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
 	light_style = "day",
 	transparent = true,
