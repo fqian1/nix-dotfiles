@@ -16,9 +16,6 @@ local opts = {
 			mappings = {
 				i = {},
 				n = {
-					["x"] = actions.select_horizontal,
-					["v"] = actions.select_vertical,
-					["t"] = actions.select_tab,
 					["J"] = actions.preview_scrolling_down,
 					["K"] = actions.preview_scrolling_up,
 				},
@@ -50,8 +47,8 @@ local opts = {
 require("telescope").setup(opts)
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("file_browser")
-require("telescope").load_extension("fzy_native") -- Will be used automatically
-require("telescope").load_extension("frecency") -- Will be used automatically
+require("telescope").load_extension("fzy_native")
+require("telescope").load_extension("frecency")
 
 local map = vim.api.nvim_set_keymap
 local keymap = vim.keymap.set

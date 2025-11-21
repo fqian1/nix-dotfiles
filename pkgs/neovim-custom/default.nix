@@ -9,13 +9,22 @@
   packageName = "mypackage";
 
   startPlugins = [
-    vimPlugins.undotree
-    vimPlugins.crates-nvim
+    # Appearance
+    vimPlugins.kanagawa-nvim
+    vimPlugins.tokyonight-nvim
+    vimPlugins.gitsigns-nvim
+    vimPlugins.lsp_lines-nvim # Replace with tiny-inline-diagnostic.nvim when its added to nixpkgs
+    vimPlugins.tiny-glimmer-nvim # TODO configure this
+    vimPlugins.nvim-web-devicons
+    vimPlugins.indent-blankline-nvim
+    vimPlugins.lualine-nvim
+    # LSP
+    vimPlugins.nvim-lspconfig
+    # Utility
     vimPlugins.nvim-treesitter.withAllGrammars
     vimPlugins.nvim-treesitter-textobjects
     vimPlugins.nvim-treesitter-context
-    vimPlugins.vim-matchup
-    vimPlugins.nvim-autopairs
+    # Completion
     vimPlugins.nvim-cmp
     vimPlugins.cmp-nvim-lsp
     vimPlugins.cmp-buffer
@@ -25,25 +34,24 @@
     vimPlugins.luasnip
     vimPlugins.friendly-snippets
     vimPlugins.lspkind-nvim
-    vimPlugins.nvim-lspconfig
-    vimPlugins.nvim-web-devicons
-    vimPlugins.kanagawa-nvim
-    vimPlugins.conform-nvim
-    vimPlugins.gitsigns-nvim
-    vimPlugins.indent-blankline-nvim
-    vimPlugins.lsp_lines-nvim # Replace with tiny-inline-diagnostic.nvim when its added to nixpkgs
-    vimPlugins.lualine-nvim
+    # Fuzzy Find
     vimPlugins.telescope-nvim
     vimPlugins.telescope-ui-select-nvim
     vimPlugins.telescope-frecency-nvim
     vimPlugins.telescope-fzy-native-nvim
     vimPlugins.telescope-file-browser-nvim
+    # Format
+    vimPlugins.conform-nvim
+    # QOL
+    vimPlugins.vim-matchup
+    vimPlugins.nvim-autopairs
+    vimPlugins.crates-nvim
+    # Misc
     vimPlugins.obsidian-nvim
     vimPlugins.render-markdown-nvim
     vimPlugins.tmux-nvim
-    vimPlugins.vim-tpipeline
-    vimPlugins.tiny-glimmer-nvim # TODO configure this
-    # add tpipeline, flash, fidget, colorizer
+    vimPlugins.undotree
+    # add fidget, colorizer
   ];
 
   foldPlugins = builtins.foldl' (
