@@ -75,13 +75,6 @@
     scratchpad_width_ratio=0.8
     scratchpad_height_ratio=0.9
     borderpx=0
-    rootcolor=0x201b14ff
-    focuscolor=0xc9b890ff
-    maximizescreencolor=0x89aa61ff
-    urgentcolor=0xad401fff
-    scratchpadcolor=0x516c93ff
-    globalcolor=0xb153a7ff
-    overlaycolor=0x14a57cff
 
     # layout support:
     # tile,scroller,grid,deck,monocle,center_tile,vertical_tile,vertical_scroller
@@ -103,21 +96,21 @@
     bind=SUPER,r,reload_config
     bind=ALT,space,spawn,rofi -show drun
     bind=ALT,Return,spawn,foot
-    bind=ALT,m,quit
+    bind=ALT,q,quit
     bind=ALT+SHIFT,q,killclient,
 
     # switch window focus
     bind=SUPER,Tab,focusstack,next
-    bind=ALT,l,focusdir,left
-    bind=ALT,h,focusdir,right
+    bind=ALT,l,focusdir,right
+    bind=ALT,h,focusdir,left
     bind=ALT,k,focusdir,up
     bind=ALT,j,focusdir,down
 
     # swap window
-    bind=SUPER+SHIFT,Up,exchange_client,up
-    bind=SUPER+SHIFT,Down,exchange_client,down
-    bind=SUPER+SHIFT,Left,exchange_client,left
-    bind=SUPER+SHIFT,Right,exchange_client,right
+    bind=ALT+SHIFT,Up,exchange_client,up
+    bind=ALT+SHIFT,Down,exchange_client,down
+    bind=ALT+SHIFT,Left,exchange_client,left
+    bind=ALT+SHIFT,Right,exchange_client,right
 
     # switch window status
     bind=SUPER,g,toggleglobal,
@@ -146,46 +139,35 @@
     bind=CTRL+SUPER,Left,tagtoleft,0
     bind=CTRL+SUPER,Right,tagtoright,0
 
-    bind=Alt,1,view,1,0
-    bind=Alt,2,view,2,0
-    bind=Alt,3,view,3,0
-    bind=Alt,4,view,4,0
-    bind=Alt,5,view,5,0
-    bind=Alt,6,view,6,0
-    bind=Alt,7,view,7,0
-    bind=Alt,8,view,8,0
-    bind=Alt,9,view,9,0
+    bind=ALT,1,comboview,1,1
+    bind=ALT,2,comboview,2,2
+    bind=ALT,3,comboview,3,3
+    bind=ALT,4,comboview,4,4
+    bind=ALT,5,comboview,5,5
+    bind=ALT,6,comboview,6,6
+    bind=ALT,7,comboview,7,7
+    bind=ALT,8,comboview,8,8
+    bind=ALT,9,comboview,9,9
 
     # tag: move client to the tag and focus it
     # tagsilent: move client to the tag and not focus it
-    # bind=Alt,1,tagsilent,1
-    bind=Alt,1,tag,1,0
-    bind=Alt,2,tag,2,0
-    bind=Alt,3,tag,3,0
-    bind=Alt,4,tag,4,0
-    bind=Alt,5,tag,5,0
-    bind=Alt,6,tag,6,0
-    bind=Alt,7,tag,7,0
-    bind=Alt,8,tag,8,0
-    bind=Alt,9,tag,9,0
+    # bind=ALT,1,tagsilent,1
+    bind=ALT+SHIFT,1,tag,1,0
+    bind=ALT+SHIFT,2,tag,2,0
+    bind=ALT+SHIFT,3,tag,3,0
+    bind=ALT+SHIFT,4,tag,4,0
+    bind=ALT+SHIFT,5,tag,5,0
+    bind=ALT+SHIFT,6,tag,6,0
+    bind=ALT+SHIFT,7,tag,7,0
+    bind=ALT+SHIFT,8,tag,8,0
+    bind=ALT+SHIFT,9,tag,9,0
 
     # monitor switch
-    bind=alt+shift,Left,focusmon,left
-    bind=alt+shift,Right,focusmon,right
-    bind=SUPER+Alt,Left,tagmon,left
-    bind=SUPER+Alt,Right,tagmon,right
+    bind=ALT+SHIFT,Left,focusmon,left
+    bind=ALT+SHIFT,Right,focusmon,right
+    bind=SUPER+ALT,Left,tagmon,left
+    bind=SUPER+ALT,Right,tagmon,right
 
-    # movewin
-    bind=CTRL+SHIFT,Up,movewin,+0,-50
-    bind=CTRL+SHIFT,Down,movewin,+0,+50
-    bind=CTRL+SHIFT,Left,movewin,-50,+0
-    bind=CTRL+SHIFT,Right,movewin,+50,+0
-
-    # resizewin
-    bind=CTRL+ALT,Up,resizewin,+0,-50
-    bind=CTRL+ALT,Down,resizewin,+0,+50
-    bind=CTRL+ALT,Left,resizewin,-50,+0
-    bind=CTRL+ALT,Right,resizewin,+50,+0
 
     # Mouse Button Bindings
     # NONE mode key only work in ov mode
