@@ -8,28 +8,6 @@
     unfocused_opacity=1.0
     animations=0
 
-    # Scroller Layout Setting
-    scroller_structs=20
-    scroller_default_proportion=0.8
-    scroller_focus_center=0
-    scroller_prefer_center=0
-    edge_scroller_pointer_focus=1
-    scroller_default_proportion_single=1.0
-    scroller_proportion_preset=0.5,0.8,1.0
-
-    # Master-Stack Layout Setting
-    new_is_master=1
-    default_mfact=0.55
-    default_nmaster=1
-    smartgaps=0
-
-    # Overview Setting
-    hotarea_size=10
-    enable_hotarea=1
-    ov_tab_mode=0
-    overviewgappi=5
-    overviewgappo=30
-
     # Misc
     axis_bind_apply_timeout=100
     focus_on_activate=1
@@ -51,7 +29,6 @@
     xkb_rules_options=caps:swapescape,ctrl:ralt_rctrl
 
     # Trackpad
-    # need relogin to make it apply
     disable_trackpad=0
     tap_to_click=1
     tap_and_drag=1
@@ -88,56 +65,28 @@
     tagrule=id:8,layout_name:tile
     tagrule=id:9,layout_name:tile
 
-    # Key Bindings
-    # key name refer to `xev` or `wev` command output,
-    # mod keys name: super,ctrl,alt,shift,none
-
-    # reload config
     bind=SUPER,r,reload_config
-    bind=ALT,space,spawn,rofi -show drun
+    bind=ALT,space,spawn,wmenu
+    bind=ALT,e,spawn,librewolf
     bind=ALT,Return,spawn,foot
-    bind=ALT,q,quit
-    bind=ALT+SHIFT,q,killclient,
-
-    # switch window focus
+    bind=ALT,q,killclient,
     bind=SUPER,Tab,focusstack,next
     bind=ALT,l,focusdir,right
     bind=ALT,h,focusdir,left
     bind=ALT,k,focusdir,up
     bind=ALT,j,focusdir,down
-
-    # swap window
     bind=ALT+SHIFT,Up,exchange_client,up
     bind=ALT+SHIFT,Down,exchange_client,down
     bind=ALT+SHIFT,Left,exchange_client,left
     bind=ALT+SHIFT,Right,exchange_client,right
 
     # switch window status
-    bind=SUPER,g,toggleglobal,
     bind=ALT,Tab,toggleoverview,
     bind=ALT,backslash,togglefloating,
-    bind=ALT,a,togglemaximizescreen,
-    bind=ALT,f,togglefullscreen,
-    bind=ALT+SHIFT,f,togglefakefullscreen,
-    bind=SUPER,i,minimized,
-    bind=SUPER,o,toggleoverlay,
-    bind=SUPER+SHIFT,I,restore_minimized
     bind=ALT,z,toggle_scratchpad
-
-    # scroller layout
-    bind=ALT,e,set_proportion,1.0
-    bind=ALT,x,switch_proportion_preset,
 
     # switch layout
     bind=SUPER,n,switch_layout
-
-    # tag switch
-    bind=SUPER,Left,viewtoleft,0
-    bind=CTRL,Left,viewtoleft_have_client,0
-    bind=SUPER,Right,viewtoright,0
-    bind=CTRL,Right,viewtoright_have_client,0
-    bind=CTRL+SUPER,Left,tagtoleft,0
-    bind=CTRL+SUPER,Right,tagtoright,0
 
     bind=ALT,1,comboview,1,1
     bind=ALT,2,comboview,2,2
@@ -150,39 +99,30 @@
     bind=ALT,9,comboview,9,9
 
     # tag: move client to the tag and focus it
-    # tagsilent: move client to the tag and not focus it
-    # bind=ALT,1,tagsilent,1
-    bind=ALT+SHIFT,1,tag,1,0
-    bind=ALT+SHIFT,2,tag,2,0
-    bind=ALT+SHIFT,3,tag,3,0
-    bind=ALT+SHIFT,4,tag,4,0
-    bind=ALT+SHIFT,5,tag,5,0
-    bind=ALT+SHIFT,6,tag,6,0
-    bind=ALT+SHIFT,7,tag,7,0
-    bind=ALT+SHIFT,8,tag,8,0
-    bind=ALT+SHIFT,9,tag,9,0
+    bind=ALT+SHIFT,1,tagsilent,1,0
+    bind=ALT+SHIFT,2,tagsilent,2,0
+    bind=ALT+SHIFT,3,tagsilent,3,0
+    bind=ALT+SHIFT,4,tagsilent,4,0
+    bind=ALT+SHIFT,5,tagsilent,5,0
+    bind=ALT+SHIFT,6,tagsilent,6,0
+    bind=ALT+SHIFT,7,tagsilent,7,0
+    bind=ALT+SHIFT,8,tagsilent,8,0
+    bind=ALT+SHIFT,9,tagsilent,9,0
 
     # monitor switch
-    bind=ALT+SHIFT,Left,focusmon,left
-    bind=ALT+SHIFT,Right,focusmon,right
-    bind=SUPER+ALT,Left,tagmon,left
-    bind=SUPER+ALT,Right,tagmon,right
-
+    bind=ALT,[,focusmon,left
+    bind=ALT,],focusmon,right
 
     # Mouse Button Bindings
     # NONE mode key only work in ov mode
-    mousebind=SUPER,btn_left,moveresize,curmove
-    mousebind=SUPER,btn_right,moveresize,curresize
+    mousebind=ALT,btn_left,moveresize,curmove
+    mousebind=ALT,btn_right,moveresize,curresize
     mousebind=NONE,btn_left,toggleoverview,1
     mousebind=NONE,btn_right,killclient,0
 
-    # Axis Bindings
-    axisbind=SUPER,UP,viewtoleft_have_client
-    axisbind=SUPER,DOWN,viewtoright_have_client
-
     # layer rule
-    layerrule=animation_type_open:zoom,layer_name:rofi
-    layerrule=animation_type_close:zoom,layer_name:rofi
+    layerrule=animation_type_open:zoom,layer_name:wmenu
+    layerrule=animation_type_close:zoom,layer_name:wmenu
 
     env=GTK_IM_MODULE,fcitx
     env=QT_IM_MODULE,fcitx
@@ -194,8 +134,6 @@
     env=QT_AUTO_SCREEN_SCALE_FACTOR,1
     env=QT_QPA_PLATFORM,Wayland;xcb
     env=QT_WAYLAND_FORCE_DPI,140
-
-    exec ~/.config/mango/autostart.sh
   '';
 
   xdg.configFile."mango/autostart.sh" = {
