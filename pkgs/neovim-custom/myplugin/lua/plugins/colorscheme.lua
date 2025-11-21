@@ -1,3 +1,22 @@
+require("pkgs.neovim-custom.myplugin.lua.plugins.colorscheme").setup({
+	style = "storm", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
+	light_style = "day",
+	transparent = true,
+	terminal_colors = true,
+	styles = {
+		comments = { italic = true },
+		keywords = { italic = true },
+		functions = {},
+		variables = {},
+		sidebars = "transparent",
+		floats = "transparent",
+	},
+	day_brightness = 0.4,
+	dim_inactive = true,
+	lualine_bold = false,
+	cache = true,
+})
+
 require("kanagawa").setup({
 	dimInactive = true,
 	theme = "dragon",
@@ -20,4 +39,5 @@ require("kanagawa").setup({
 		}
 	end,
 })
--- vim.cmd("colorscheme kanagawa-dragon")
+
+vim.cmd("colorscheme tokyonight")

@@ -2,7 +2,7 @@ local actions = require("telescope.actions")
 local opts = {
 	require("telescope").setup({
 		defaults = {
-			borderchars = { "─", "─", "│", "│", "└", "┘", "┌", "┐" },
+			borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 			vimgrep_arguments = {
 				"rg",
 				"--color=never",
