@@ -54,11 +54,10 @@ keymap("n", "<C-q>", "<nop>", opts)
 keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- -- move focus (Handled by tmux plugin)
--- keymap("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
--- keymap("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
--- keymap("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
--- keymap("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+keymap("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+keymap("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+keymap("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+keymap("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- buffers
 keymap("n", "<leader>bn", ":bn<CR>", { desc = "Next buffer" })
