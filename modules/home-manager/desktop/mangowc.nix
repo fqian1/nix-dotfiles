@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   xdg.configFile."mango/config.conf".text = ''
     # Window effect
     blur=0
@@ -139,7 +139,7 @@
   xdg.configFile."mango/autostart.sh" = {
     executable = true;
     text = ''
-      #! /bin/bash
+      #!${pkgs.bash}/bin/bash
       set +e
 
       max-refresh
