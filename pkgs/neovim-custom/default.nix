@@ -25,9 +25,7 @@
     vimPlugins.nvim-treesitter-textobjects
     vimPlugins.nvim-treesitter-context
     # Completion
-    vimPlugins.coq_nvim
-    vimPlugins.coq-lsp-nvim
-    vimPlugins.coq-artifacts
+    vimPlugins.blink-cmp
     # Fuzzy Find
     vimPlugins.telescope-nvim
     vimPlugins.telescope-ui-select-nvim

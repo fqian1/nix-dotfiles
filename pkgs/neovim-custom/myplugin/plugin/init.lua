@@ -15,3 +15,4 @@ require("plugins.render-markdown")
 require("plugins.telescope")
 require("plugins.treesitter")
 require("plugins.undotree")
+

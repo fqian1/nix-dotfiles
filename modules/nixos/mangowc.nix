@@ -11,10 +11,18 @@
     wayland-protocols
   ];
 
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  #   config = with pkgs; [
+  #     xdg-desktop-portal-wlr
+  #   ];
+  # };
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    config = with pkgs; [
+    extraPortals = with pkgs; [
       xdg-desktop-portal-wlr
     ];
   };
