@@ -1,23 +1,8 @@
 require("fidget").setup()
-
-require("crates").setup({
-	completion = {
-		cmp = {
-			enabled = true,
-		},
-	},
-})
+require("crates").setup()
 require("ibl").setup()
 
-require("gitsigns").setup({
-	signs = {
-		add = { text = "+" },
-		change = { text = "~" },
-		delete = { text = "_" },
-		topdelete = { text = "‾" },
-		changedelete = { text = "~" },
-	},
-})
+require("gitsigns").setup()
 
 require("lsp_lines").setup()
 vim.keymap.set("n", "L", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })

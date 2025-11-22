@@ -7,15 +7,6 @@ require("conform").setup({
 	},
 })
 
-vim.keymap.set({ "n", "v" }, "F", function()
-	require("conform").format({
-		async = true,
-		lsp_fallback = true,
-	})
-end, {
-	desc = "[F]ormat buffer/selection",
-})
-
 vim.keymap.set({ "n", "v" }, "=", function()
 	require("conform").format({
 		async = true,
