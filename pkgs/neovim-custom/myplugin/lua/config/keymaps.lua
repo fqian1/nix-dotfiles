@@ -47,8 +47,10 @@ keymap("n", "<leader>j", "<cmd>lnext<CR>zz", opts)
 keymap("n", "<leader>k", "<cmd>lprev<CR>zz", opts)
 
 -- unbind some keys
-keymap("n", "Q", "<nop>", opts)
-keymap("n", "<C-q>", "<nop>", opts)
+-- keymap("n", "Q", "<Nop>", opts)
+keymap("n", "<C-q>", "<Nop>", opts)
+keymap('n', 'q:', '<Nop>', opts)
+keymap('n', 'q/', '<Nop>', opts)
 
 -- more useful escape
 keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)

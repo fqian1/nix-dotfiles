@@ -14,7 +14,7 @@
  5. roll back  with ```home-manager switch --rollback```
 
 # todo list:
- - migrate to mangowc, dwl is unmaintained, make everything suckless. foot (no ligatures, alternative?), wl clipboard, grim, slurp. media controls in fn keys.
+ - finish configure mangowc, make everything suckless. foot (no ligatures, alternative?), wl clipboard, grim, slurp. media controls in fn keys.
  - use agenix for wireguard conf file and ssh
  - split modules/home-manager/cli packages to dev pkgs like tmux and qol pkgs like starship
  - make dmenu script YOURSELF! dwl -> open floating term -> fd -> skim -> nohup $app &
@@ -25,13 +25,12 @@
  - try out different kernels? maybe the cachyos kernel?? blazingly fast.
  - customise ble.sh, make normal mode block cursor, maybe replace starship with blesh prompt
  - fwupdmgr service / script
- - create a shader and use as desktop background monstercat smoke https://github.com/1ay1/neowall
+ - create smoke shader
  - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
  - configure impermanence for home directory so i can do imperative stuff 👹
  - migrate to lix
  - coreboot -> uefi payload (yabits?) -> bootloader (limine) -> uki entries (lanzaboot) -> s6 (sixos)
  - tell neovim to use shiftwidth from lsp/formatter
- - INSTRUMENTALIST PRAGMATIC MINIMALIST
 
 # unrelated:
  - grex, newsboat, jrnl, ttyd, croc: cool cli tools

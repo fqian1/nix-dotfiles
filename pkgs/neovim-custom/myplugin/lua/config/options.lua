@@ -65,7 +65,7 @@ vim.opt.conceallevel = 0
 vim.opt.concealcursor = nc
 vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
-vim.o.winborder = 'single'
+vim.o.winborder = 'none'
 
 --------------------------
 --- TABS & INDENTATION ---

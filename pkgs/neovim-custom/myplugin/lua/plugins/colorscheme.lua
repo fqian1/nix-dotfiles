@@ -1,5 +1,5 @@
 require("tokyonight").setup({
-	style = "storm", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
+	style = "night", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
 	light_style = "day",
 	transparent = true,
 	terminal_colors = true,
@@ -13,15 +13,15 @@ require("tokyonight").setup({
 	},
 	day_brightness = 0.4,
 	dim_inactive = true,
-	lualine_bold = false,
+	lualine_bold = true,
 	cache = true,
 })
 
 require("kanagawa").setup({
 	dimInactive = true,
 	theme = "dragon",
-	transparent = true,
-	overrides = function(colors)
+	transparent = false,
+	overrides = not transparent and function(colors)
 		local theme = colors.theme
 		return {
 			TelescopeTitle = { fg = theme.ui.special, bold = true },
@@ -37,11 +37,11 @@ require("kanagawa").setup({
 			PmenuSbar = { bg = theme.ui.bg_m1 },
 			PmenuThumb = { bg = theme.ui.bg_p2 },
 		}
-	end,
+	end or nil,
 })
 
 vim.cmd("colorscheme tokyonight")
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "NonText", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
