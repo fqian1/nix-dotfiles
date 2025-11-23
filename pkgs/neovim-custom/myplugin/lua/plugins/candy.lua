@@ -21,7 +21,7 @@ require("tiny-glimmer").setup({
     autoreload = true,
     refresh_interval_ms = 4,
     text_change_batch_timeout_ms = 50,
-    transparency_color = "#292e42",
+    transparency_color = nil,
     overwrite = {
         auto_map = true,
         yank = {
@@ -31,20 +31,25 @@ require("tiny-glimmer").setup({
         search = {
             enabled = true,
             default_animation = "fade",
-            next_mapping = "n", -- Key for next match
-            prev_mapping = "N", -- Key for previous match
+            next_mapping = "n",
+            prev_mapping = "N",
         },
         paste = {
             enabled = true,
             default_animation = "fade",
-            paste_mapping = "p", -- Paste after cursor
-            Paste_mapping = "P", -- Paste before cursor
+            paste_mapping = "p",
+            Paste_mapping = "P",
         },
         undo = {
             enabled = true,
             default_animation = {
                 name = "fade",
                 settings = {
+                    max_duration = 200,
+                    min_duration = 200,
+                    easing = "inCirc",
+                    chars_for_max_duration = 0,
+                    to_color = "DiffDelete",
                     from_color = "DiffDelete",
                 },
             },
@@ -55,6 +60,11 @@ require("tiny-glimmer").setup({
             default_animation = {
                 name = "fade",
                 settings = {
+                    max_duration = 200,
+                    min_duration = 200,
+                    easing = "inCirc",
+                    chars_for_max_duration = 0,
+                    to_color = "DiffAdd",
                     from_color = "DiffAdd",
                 },
             },
@@ -64,10 +74,10 @@ require("tiny-glimmer").setup({
 
     animations = {
         fade = {
-            max_duration = 100,         -- Maximum animation duration in ms
-            min_duration = 0,           -- Minimum animation duration in ms
+            max_duration = 200,         -- Maximum animation duration in ms
+            min_duration = 200,         -- Minimum animation duration in ms
             easing = "inCirc",          -- Easing function
-            chars_for_max_duration = 1, -- Character count for max duration
+            chars_for_max_duration = 0, -- Character count for max duration
             from_color = "Visual",      -- Start color (highlight group or hex)
             to_color = "Normal",        -- End color (highlight group or hex)
         },
