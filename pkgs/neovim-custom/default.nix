@@ -38,6 +38,7 @@
     vimPlugins.vim-matchup
     vimPlugins.nvim-autopairs
     vimPlugins.crates-nvim
+    vimPlugins.guess-indent-nvim
     # Misc
     vimPlugins.fidget-nvim
     vimPlugins.obsidian-nvim

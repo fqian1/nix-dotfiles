@@ -1,10 +1,10 @@
--- Highlight yanked text
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("HighlightYank", { clear = true }),
-	callback = function()
-		vim.hl.on_yank({ higroup = "IncSearch", timeout = 200 })
-	end,
-})
+-- Highlight yanked text 
+-- vim.api.nvim_create_autocmd("TextYankPost", {
+-- 	group = vim.api.nvim_create_augroup("HighlightYank", { clear = true }),
+-- 	callback = function()
+-- 		vim.hl.on_yank({ higroup = "IncSearch", timeout = 200 })
+-- 	end,
+-- })
 
 -- Autocommand that jumps to the last known cursor position when opening a file
 vim.api.nvim_create_autocmd("BufReadPost", {
