@@ -1,14 +1,7 @@
-// CC0 - Neonwave sunrise
-//  Inspired by a tweet by I wanted to create something that looked
-//  a bit like the tweet. This is the result.
-
 #define RESOLUTION    iResolution
 #define TIME          iTime
 #define PI            3.141592654
 #define TAU           (2.0*PI)
-
-#define SHOW_FFT
-
 
 // License: WTFPL, author: sam hocevar, found: https://stackoverflow.com/a/17897228/418488
 const vec4 hsv2rgb_K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
@@ -230,16 +223,6 @@ vec4 moon(vec3 ro, vec3 rd) {
   vec3 col = vec3(0.0);
   col += mdif*mcol0*4.0;
 
-#if defined(SHOW_FFT)
-  vec3 fcol = vec3(0.0);
-  vec2 msp    = toSpherical(-mnor.zxy).yz;
-  vec2 omsp   = msp;
-  float msf   = sin(msp.x);
-  msp.x       -= PI*0.5;
-  const float mszy = (TAU/(4.0))*0.125;
-  float msny  = mod1(msp.y, mszy);
-  msp.y *= msf;
-
   const int limit = 1;
   for (int i = -limit; i <= limit; ++i) {
     vec2 pp     = msp+vec2(0.0, mszy*float(i));
@@ -386,3 +369,4 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
   col = sRGB(col);
   fragColor = vec4(col, 1.0);
 }
+

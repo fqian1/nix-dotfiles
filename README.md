@@ -21,12 +21,12 @@
  - make hardware agnostic (amd nvidia intel gpu cpu integrated graphics etc.)
  - rice with quickshell, stylix?
  - configure laptop and desktop modules, laptop stuff like tlp, openssh configurations
- - create overlays for tools/apps like ripgrep or dwl with compiler optimizations -O3 -march=native
- - try out different kernels? maybe the cachyos kernel?? blazingly fast.
  - customise ble.sh, make normal mode block cursor, maybe replace starship with blesh prompt
  - fwupdmgr service / script
- - create smoke shader
- - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
+ - create smoke shader plus all other shaders need serious optimizations
+- create overlays for tools/apps like ripgrep or dwl with compiler optimizations -O3 -march=native
+- add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
+- try out different kernels? maybe the cachyos kernel?? blazingly fast.
  - configure impermanence for home directory so i can do imperative stuff 👹
  - migrate to lix
  - coreboot -> uefi payload (yabits?) -> bootloader (limine) -> uki entries (lanzaboot) -> s6 (sixos)

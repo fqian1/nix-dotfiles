@@ -5,8 +5,8 @@ local fb_actions = require "telescope._extensions.file_browser.actions"
 local opts = {
     require("telescope").setup({
         defaults = {
-            borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-            -- borderchars = { "", "", "", "", "", "", "", "" },
+            -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+            borderchars = { "", "", "", "", "", "", "", "" },
             preview = {
                 filesize_limit = 0.3, -- MB
             },
