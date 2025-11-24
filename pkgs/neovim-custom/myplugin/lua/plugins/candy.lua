@@ -45,12 +45,12 @@ require("tiny-glimmer").setup({
             default_animation = {
                 name = "fade",
                 settings = {
-                    max_duration = 200,
-                    min_duration = 200,
-                    easing = "inCirc",
+                    max_duration = 150,
+                    min_duration = 150,
+                    easing = "outInBack",
                     chars_for_max_duration = 0,
-                    to_color = "DiffDelete",
-                    from_color = "DiffDelete",
+                    to_color = "Normal",
+                    from_color = "#ff2222",
                 },
             },
             undo_mapping = "u",
@@ -60,12 +60,12 @@ require("tiny-glimmer").setup({
             default_animation = {
                 name = "fade",
                 settings = {
-                    max_duration = 200,
-                    min_duration = 200,
-                    easing = "inCirc",
+                    max_duration = 150,
+                    min_duration = 150,
+                    easing = "outInBack",
                     chars_for_max_duration = 0,
-                    to_color = "DiffAdd",
-                    from_color = "DiffAdd",
+                    to_color = "Normal",
+                    from_color = "#22ff22",
                 },
             },
             redo_mapping = "<c-r>",
@@ -74,11 +74,11 @@ require("tiny-glimmer").setup({
 
     animations = {
         fade = {
-            max_duration = 200,         -- Maximum animation duration in ms
-            min_duration = 200,         -- Minimum animation duration in ms
-            easing = "inCirc",          -- Easing function
+            max_duration = 150,         -- Maximum animation duration in ms
+            min_duration = 150,         -- Minimum animation duration in ms
+            easing = "outInBack",       -- outInElastic is pretty nice
             chars_for_max_duration = 0, -- Character count for max duration
-            from_color = "Visual",      -- Start color (highlight group or hex)
+            from_color = "#ffffaa",     -- Start color (highlight group or hex)
             to_color = "Normal",        -- End color (highlight group or hex)
         },
     },

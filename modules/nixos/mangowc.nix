@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   environment.systemPackages = with pkgs; [
     mangowc
     wlr-randr
@@ -10,6 +11,18 @@
     wayland
     wayland-protocols
   ];
+
+  environment.variables = {
+    # Sets the QT platform theme
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+
+    # Sets the GTK/GDK scaling factor
+    GDK_SCALE = "1";
+    GDK_DPI_SCALE = "1";
+
+    # Sets the XDG session type for Wayland
+    XDG_SESSION_TYPE = "wayland";
+  };
 
   # xdg.portal = {
   #   enable = true;

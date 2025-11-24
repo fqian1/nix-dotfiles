@@ -14,12 +14,14 @@
  5. roll back  with ```home-manager switch --rollback```
 
 # todo list:
+- finish configuring ble.sh replace starship with ps1
  - finish configure mangowc, make everything suckless. foot (no ligatures, alternative?), wl clipboard, grim, slurp. media controls in fn keys.
  - use agenix for wireguard conf file and ssh
  - split modules/home-manager/cli packages to dev pkgs like tmux and qol pkgs like starship
  - make dmenu script YOURSELF! dwl -> open floating term -> fd -> skim -> nohup $app &
  - make hardware agnostic (amd nvidia intel gpu cpu integrated graphics etc.)
  - rice with quickshell, stylix?
+ - configure iwd over wpa supplicant / nmcli make tui using scripts
  - configure laptop and desktop modules, laptop stuff like tlp, openssh configurations
  - customise ble.sh, make normal mode block cursor, maybe replace starship with blesh prompt
  - fwupdmgr service / script

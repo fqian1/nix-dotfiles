@@ -45,6 +45,7 @@
     vimPlugins.render-markdown-nvim
     vimPlugins.undotree
     vimPlugins.vim-tpipeline
+    vimPlugins.vim-tmux-navigator
     # add fidget, colorizer
   ];
 

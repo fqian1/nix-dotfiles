@@ -7,6 +7,7 @@ vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)
 vim.keymap.set("n", "=", vim.lsp.buf.format, opts)
 
 vim.lsp.enable("rust-analyzer")
+vim.lsp.enable("bash-language-server")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nil_ls")
 vim.lsp.enable("jdtls")

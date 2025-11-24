@@ -1,4 +1,5 @@
 -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
+-- https://github.com/nvim-telescope/telescope-file-browser.nvim/wiki/Configuration-Recipes
 
 local actions = require("telescope.actions")
 local fb_actions = require "telescope._extensions.file_browser.actions"
@@ -41,7 +42,7 @@ local opts = {
             },
             file_browser = {
                 grouped = true,
-                auto_depth = true,
+                depth = 2,
                 hidden = true,
                 hijack_netrw = true,
                 select_buffer = true,
