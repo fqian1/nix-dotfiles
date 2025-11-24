@@ -52,7 +52,6 @@ function ble/contrib/scheme:base16/initialize {
   return 0
 }
 
-
 # Scheme Inspired by catppuccin mocha
 # https://github.com/catppuccin/catppuccin
 # initial idea/work by @abhijeeth-babu

@@ -2,6 +2,8 @@
 let
   tmux-sessionizer = builtins.readFile ./scripts/tmux-sessionizer.sh;
   find-edit = builtins.readFile ./scripts/find-edit.sh;
+  colorschemes = builtins.readFile ./scripts/colorschemes.sh;
+  prompt = builtins.readFile ./scripts/prompt.sh;
 in
 {
   home.packages = with pkgs; [
@@ -62,6 +64,10 @@ in
       ble-bind -m vi_xmap --cursor 2
       ble-bind -m vi_cmap --cursor 0
 
+      ${colorschemes}
+      ${prompt}
+
+      ble-change-scheme tokyonight
     '';
 
     shellAliases = {

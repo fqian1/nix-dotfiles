@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs = {
     ripgrep.enable = true;
     ripgrep-all.enable = true;
@@ -39,6 +40,8 @@
     # LSP
     lua-language-server
     yaml-language-server
+    rust-analyzer
+    bash-language-server
     nil
     # Formatter
     alejandra
