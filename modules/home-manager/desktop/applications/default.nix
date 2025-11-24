@@ -5,4 +5,5 @@
   # lmms = import ./lmms.nix;
   qbittorrent = import ./qbittorrent.nix;
   discord = import ./discord.nix;
+  brave = import ./brave.nix;
 }

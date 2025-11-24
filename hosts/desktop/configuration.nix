@@ -12,11 +12,11 @@
     outputs.nixosModules.greetd
     outputs.nixosModules.networking
     outputs.nixosModules.impermanence
-    outputs.nixosModules.nix-ld
     # outputs.nixosModules.silent-boot
     outputs.nixosModules.locale
-    # outputs.nixosModules.vpn
+    outputs.nixosModules.vpn
     outputs.nixosModules.mangowc
+    outputs.nixosModules.ssh
     outputs.nixosModules.scripts
     ./hardware.nix
   ];
@@ -27,7 +27,7 @@
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
     ];
-    # config.allowUnfree = true;
+    config.allowUnfree = true;
   };
 
   nix = {
@@ -65,8 +65,8 @@
   };
 
   networking = {
-    hostName = "nixos-laptop";
-    hostId = "8425e349";
+    hostName = "desktop";
+    hostId = "b475238a";
     useDHCP = lib.mkForce true;
   };
 
@@ -78,12 +78,11 @@
     nmap
     git
     tree
-    evtest
   ];
 
   services = {
-    printing.enable = true;
-    libinput.enable = true;
+    # printing.enable = true; # Printing
+    # libinput.enable = true; # Touchpad support
     fwupd.enable = true;
   };
 

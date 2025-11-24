@@ -24,8 +24,6 @@ in
       "extglob"
     ];
     initExtra = ''
-      [[ $- == *i* ]] && source -- ${pkgs.blesh}/share/blesh/ble.sh --attach=none
-
       bind 'set keyseq-timeout 1'
       set -o vi
 
@@ -43,16 +41,12 @@ in
           touch "$FASTFETCH_FLAG"
       fi
 
-      [[ ! $${BLE_VERSION-} ]] || ble-attach
-
+      source ${pkgs.blesh}/share/blesh/ble.sh
       # https://github.com/akinomyoga/ble.sh/blob/master/blerc.template
 
       bleopt prompt_eol_mark=
       bleopt exec_errexit_mark=
       bleopt exec_elapsed_enabled='sys+usr>=5*60*1000'
-      bleopt exec_exit_mark=
-      bleopt edit_marker=
-      bleopt edit_marker_error=
 
       ble-bind -m vi_imap -f 'C-m' accept-line
       ble-bind -m vi_nmap -f 'RET' accept-line
@@ -70,11 +64,11 @@ in
     '';
 
     shellAliases = {
-      nrsd = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos-desktop";
-      nrsl = "sudo nixos-rebuild switch --flake ~/.dotfiles/#nixos-laptop";
-      nrbd = "sudo nixos-rebuild build --flake ~/.dotfiles/#nixos-desktop";
-      nrbl = "sudo nixos-rebuild build --flake ~/.dotfiles/#nixos-laptop";
-      hrs = "home-manager switch --flake ~/.dotfiles/#fqian@nixos";
+      nrsd = "sudo nixos-rebuild switch --flake ~/.dotfiles/#desktop";
+      nrsl = "sudo nixos-rebuild switch --flake ~/.dotfiles/#laptop";
+      nrbd = "sudo nixos-rebuild build --flake ~/.dotfiles/#desktop";
+      nrbl = "sudo nixos-rebuild build --flake ~/.dotfiles/#laptop";
+      hrs = "home-manager switch --flake ~/.dotfiles/#fqian";
       port = "cat /var/run/protonvpn-forwarded-port";
       lock = "swaylock -c 000000";
       tree = "tree -F --dirsfirst";

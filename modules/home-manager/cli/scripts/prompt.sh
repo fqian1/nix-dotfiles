@@ -1,26 +1,23 @@
+ble-import contrib/prompt-git
+
 function ble/prompt/backslash:cwd2 {
   local dir="${PWD##*/}"
-  local pdir="${PWD%/*}"
-  pdir="${pdir##*/}"
+  local pdir_full="${PWD%/*}"
+  local pdir="${pdir_full##*/}" # Extract basename by default
 
   if [[ "$PWD" == "$HOME" ]]; then
     ble/prompt/print "~"
   elif [[ "$PWD" == "/" ]]; then
     ble/prompt/print "/"
-  elif [[ -z "$pdir" ]]; then
+  elif [[ -z "$pdir_full" ]]; then # Checks if PWD is / (which is already covered, but good for completeness)
     ble/prompt/print "$dir"
+  elif [[ "$pdir_full" == "$HOME" ]]; then
+    ble/prompt/print "~/$dir" # Check if the full parent path is HOME
   else
     ble/prompt/print "$pdir/$dir"
   fi
 }
 
-ble-import contrib/prompt-git
+PS1="[\u@\h][\q{cwd2}][\q{contrib/git-branch}]\$ "
 
-PS1="[\g{bold,fg=green}\u\g{none}@\g{bold,fg=navy}\h\g{none}][\q{cwd2}][\q{contrib\git-branch}] \g{fg=red}\$\g{none} > "
-
-# bleopt prompt_rps1='\q{contrib/git-info}'
-# bleopt prompt_rps1='\q{contrib/git-path}'
-# bleopt prompt_rps1='\q{contrib/git-name}'
-# bleopt prompt_rps1='\q{contrib/git-hash}'
-# bleopt prompt_rps1='\q{contrib/git-branch}'
-# bleopt prompt_rps1='\g{bold,fg=yellow}\t\g{none}'
+bleopt prompt_rps1='[\t]'

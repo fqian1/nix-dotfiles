@@ -51,28 +51,28 @@
     homeManagerModules = import ./modules/home-manager;
 
     nixosConfigurations = {
-      "nixos-desktop" = nixpkgs.lib.nixosSystem {
+      "desktop" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
         modules = [
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
-          ./hosts/nixos-desktop/configuration.nix
+          ./hosts/desktop/configuration.nix
         ];
       };
-      "nixos-laptop" = nixpkgs.lib.nixosSystem {
+      "laptop" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
         modules = [
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
-          ./hosts/nixos-laptop/configuration.nix
+          ./hosts/laptop/configuration.nix
         ];
       };
     };
 
     homeConfigurations = {
-      "fqian@nixos" = home-manager.lib.homeManagerConfiguration {
+      "fqian" = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
