@@ -45,8 +45,9 @@ in
 
       [[ ! $${BLE_VERSION-} ]] || ble-attach
 
-      # bleopt keymap_name=vi
-      bleopt prompt_eol_mark=\'\'
+      # https://github.com/akinomyoga/ble.sh/blob/master/blerc.template
+
+      bleopt prompt_eol_mark=
       bleopt exec_errexit_mark=
       bleopt exec_elapsed_enabled='sys+usr>=5*60*1000'
       bleopt exec_exit_mark=
@@ -66,8 +67,6 @@ in
 
       ${colorschemes}
       ${prompt}
-
-      ble-change-scheme tokyonight
     '';
 
     shellAliases = {
