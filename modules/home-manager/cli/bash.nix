@@ -2,7 +2,7 @@
 let
   tmux-sessionizer = builtins.readFile ./scripts/tmux-sessionizer.sh;
   find-edit = builtins.readFile ./scripts/find-edit.sh;
-  ble = builtins.readFile ./scripts/ble.sh;
+  blerc = builtins.readFile ./scripts/ble.sh;
 in
 {
   home.packages = with pkgs; [

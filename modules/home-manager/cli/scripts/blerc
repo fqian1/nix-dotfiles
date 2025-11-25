@@ -1,0 +1,76 @@
+# https://github.com/akinomyoga/ble.sh/blob/master/blerc.template
+
+## -- Main Options --
+bleopt prompt_eol_mark=
+bleopt exec_errexit_mark=
+bleopt exec_elapsed_enabled='sys+usr>=5*60*1000'
+
+ble-bind -m vi_imap -f 'C-m' accept-line
+ble-bind -m vi_nmap -f 'RET' accept-line
+ble-bind -m vi_imap -f 'RET' accept-line
+ble-bind -m vi_nmap -f 'C-m' accept-line
+
+ble-bind -m vi_nmap --cursor 2
+ble-bind -m vi_imap --cursor 5
+ble-bind -m vi_omap --cursor 4
+ble-bind -m vi_xmap --cursor 2
+ble-bind -m vi_cmap --cursor 0
+
+## -- Integrations --
+ble-import contrib/integration/nix-completion
+
+function ble/contrib/integration:nix-completion/_complete_nix.advice {
+  if [[ ${_ble_attached-} && " ${FUNCNAME[*]} " == *" ble/complete/progcomp/.compgen "* && ${COMP_WORDS[0]-} != *[\'\"\\]* ]]; then
+    local _ble_nix_cmd=${COMP_WORDS[0]-nix} ret
+    ble/function#push "$_ble_nix_cmd" '
+      local IFS=$_ble_term_IFS
+      local -a args; args=("$@")
+      ble/util/conditional-sync "exec $_ble_nix_cmd \"\${args[@]}\"" \
+        '\''! ble/complete/check-cancel'\'' 128 progressive-weight:killall'
+    ble/function#advice/do
+    ble/function#pop "$_ble_nix_cmd"
+  else
+    ble/function#advice/do
+    return 0
+  fi
+}
+
+function ble/contrib/integration:nix-completion/adjust {
+  if ble/is-function _complete_nix; then
+    ble/function#advice around _complete_nix ble/contrib/integration:nix-completion/_complete_nix.advice
+  fi
+}
+
+ble/contrib/integration:nix-completion/adjust
+
+## -- Prompt --
+ble-import contrib/prompt-git
+
+function ble/prompt/backslash:cwd2 {
+  local dir="${PWD##*/}"
+  local pdir_full="${PWD%/*}"
+  local pdir="${pdir_full##*/}" # Extract basename by default
+
+  if [[ "$PWD" == "$HOME" ]]; then
+    ble/prompt/print "~"
+  elif [[ "$PWD" == "/" ]]; then
+    ble/prompt/print "/"
+  elif [[ -z "$pdir_full" ]]; then # Checks if PWD is / (which is already covered, but good for completeness)
+    ble/prompt/print "$dir"
+  elif [[ "$pdir_full" == "$HOME" ]]; then
+    ble/prompt/print "~/$dir" # Check if the full parent path is HOME
+  else
+    ble/prompt/print "$pdir/$dir"
+  fi
+}
+
+function ble/prompt/backslash:git_branch_conditional {
+  local branch_info='\q{contrib/git-branch}'
+  if [[ -n "$branch_info" ]]; then
+    ble/prompt/print "[$branch_info]"
+  fi
+}
+
+PS1='[\u@\h][\q{cwd2}]\q{git_branch_conditional}\$ '
+
+bleopt prompt_rps1='[\t]'

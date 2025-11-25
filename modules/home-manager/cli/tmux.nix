@@ -40,7 +40,7 @@
       set -g status-left "#S"
       set -g focus-events on
       set -sg escape-time 1
-      set -g extended-keys on
+      # set -g extended-keys on
 
       set-option -g window-style 'fg=#bbbbbb,bg=default'
       set-option -g window-active-style 'fg=white,bg=default'
