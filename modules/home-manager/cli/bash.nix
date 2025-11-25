@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   tmux-sessionizer = builtins.readFile ./scripts/tmux-sessionizer.sh;
   find-edit = builtins.readFile ./scripts/find-edit.sh;
-  blerc = builtins.readFile ./scripts/ble.sh;
+  blerc = builtins.readFile ./scripts/blerc;
+  blerc2 = builtins.readFile ./scripts/blerc2;
 in
 {
   home.packages = with pkgs; [
@@ -27,7 +28,7 @@ in
       set -o vi
 
       source ${pkgs.blesh}/share/blesh/ble.sh
-      ${ble}
+      ${blerc2}
 
       ${tmux-sessionizer}
       ${find-edit}
