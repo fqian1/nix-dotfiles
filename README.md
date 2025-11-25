@@ -14,7 +14,7 @@
  5. roll back  with ```home-manager switch --rollback```
 
 # todo list:
-- finish configuring ble.sh replace starship with ps1
+- finish configuring ble.sh rice ps1, transient, final prompts
  - finish configure mangowc, make everything suckless. foot (no ligatures, alternative?), wl clipboard, grim, slurp. media controls in fn keys.
  - use agenix for wireguard conf file and ssh
  - split modules/home-manager/cli packages to dev pkgs like tmux and qol pkgs like starship
