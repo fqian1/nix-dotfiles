@@ -7,8 +7,7 @@ vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)
 vim.keymap.set("n", "=", vim.lsp.buf.format, opts)
 
 vim.lsp.config['bash-language-server'] = {
-    filetypes = { 'sh', 'bash', 'rc' },
-    cmd = { 'bash-language-server' }
+    filetypes = { 'sh', 'bash', 'conf' },
 }
 
 vim.lsp.enable("rust-analyzer")

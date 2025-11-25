@@ -16,7 +16,10 @@ ble-bind -m vi_omap --cursor 4
 ble-bind -m vi_xmap --cursor 2
 ble-bind -m vi_cmap --cursor 0
 
-bleopt keymap_vi_mode_string_nmap=$'\e[1m-- NORMAL --\e[m'
+function my/vim-load-hook {
+  bleopt keymap_vi_mode_string_nmap=$'\e[1m-- NORMAL --\e[m'
+}
+blehook/eval-after-load keymap_vi my/vim-load-hook
 
 ## -- Integrations --
 
