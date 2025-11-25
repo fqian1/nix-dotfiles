@@ -68,6 +68,8 @@ function ble/prompt/backslash:cwd2 {
   fi
 }
 
-PS1='[\u@\h:\q{cwd2}] \q{contrib/git-branch} \$ '
+# PS1='[\u@\h:\q{cwd2}]\q{contrib/git-branch}\$ ' Clean Prompt
+
+PS1='[\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\q{cwd2}\[\e[0m\]]\q{contrib/git-branch}\[\e[32m\]\$\[\e[0m\] '
 
 bleopt prompt_rps1='\q{contrib/git-hash}|\t'
