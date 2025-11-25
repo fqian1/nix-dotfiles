@@ -16,29 +16,30 @@ ble-bind -m vi_omap --cursor 4
 ble-bind -m vi_xmap --cursor 2
 ble-bind -m vi_cmap --cursor 0
 
+bleopt keymap_vi_mode_string_nmap=$'\e[1m-- NORMAL --\e[m'
+
 ## -- Integrations --
-ble-import contrib/integration/nix-completion
 
 function ble/contrib/integration:nix-completion/_complete_nix.advice {
-  if [[ ${_ble_attached-} && " ${FUNCNAME[*]} " == *" ble/complete/progcomp/.compgen "* && ${COMP_WORDS[0]-} != *[\'\"\\]* ]]; then
-    local _ble_nix_cmd=${COMP_WORDS[0]-nix} ret
-    ble/function#push "$_ble_nix_cmd" '
-      local IFS=$_ble_term_IFS
-      local -a args; args=("$@")
-      ble/util/conditional-sync "exec $_ble_nix_cmd \"\${args[@]}\"" \
-        '\''! ble/complete/check-cancel'\'' 128 progressive-weight:killall'
-    ble/function#advice/do
-    ble/function#pop "$_ble_nix_cmd"
-  else
-    ble/function#advice/do
-    return 0
-  fi
+  if [[ ${_ble_attached-} && " ${FUNCNAME[*]} " == *" ble/complete/progcomp/.compgen "* && ${COMP_WORDS[0]-} != *[\'\"\\]* ]]; then
+    local _ble_nix_cmd=${COMP_WORDS[0]-nix} ret
+    ble/function#push "$_ble_nix_cmd" '
+      local IFS=$_ble_term_IFS
+      local -a args; args=("$@")
+      ble/util/conditional-sync "exec $_ble_nix_cmd \"\${args[@]}\"" \
+        '\''! ble/complete/check-cancel'\'' 128 progressive-weight:killall'
+    ble/function#advice/do
+    ble/function#pop "$_ble_nix_cmd"
+  else
+    ble/function#advice/do
+    return 0
+  fi
 }
 
 function ble/contrib/integration:nix-completion/adjust {
-  if ble/is-function _complete_nix; then
-    ble/function#advice around _complete_nix ble/contrib/integration:nix-completion/_complete_nix.advice
-  fi
+  if ble/is-function _complete_nix; then
+    ble/function#advice around _complete_nix ble/contrib/integration:nix-completion/_complete_nix.advice
+  fi
 }
 
 ble/contrib/integration:nix-completion/adjust
@@ -64,13 +65,6 @@ function ble/prompt/backslash:cwd2 {
   fi
 }
 
-function ble/prompt/backslash:git_branch_conditional {
-  local branch_info='\q{contrib/git-branch}'
-  if [[ -n "$branch_info" ]]; then
-    ble/prompt/print "[$branch_info]"
-  fi
-}
+PS1='[\u@\h:\q{cwd2}] \q{contrib/git-branch} \$ '
 
-PS1='[\u@\h][\q{cwd2}]\q{git_branch_conditional}\$ '
-
-bleopt prompt_rps1='[\t]'
+bleopt prompt_rps1='\q{contrib/git-hash}|\t'

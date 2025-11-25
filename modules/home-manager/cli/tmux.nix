@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    fzy
+  ];
   programs.tmux = {
     enable = true;
     escapeTime = 10;
@@ -49,7 +52,7 @@
       set -g pane-active-border-style "fg=#000000,bg=default"
       bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"
 
-      vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzf)(diff)?(-wrapped)?'
+      vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzy)(diff)?(-wrapped)?'
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
           | grep -iqE '^[^TXZ ]+ +$${vim_pattern}$'"
       bind-key -n 'C-h' if-shell "$is_vim" { send-keys C-h } { if-shell -F '#{pane_at_left}'   {} { select-pane -L } }

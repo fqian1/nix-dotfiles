@@ -3,13 +3,11 @@ let
   tmux-sessionizer = builtins.readFile ./scripts/tmux-sessionizer.sh;
   find-edit = builtins.readFile ./scripts/find-edit.sh;
   blerc = builtins.readFile ./scripts/blerc;
-  blerc2 = builtins.readFile ./scripts/blerc2;
 in
 {
   home.packages = with pkgs; [
     wlr-randr
     blesh
-    skim
     fd
     fzy
   ];
@@ -28,7 +26,7 @@ in
       set -o vi
 
       source ${pkgs.blesh}/share/blesh/ble.sh
-      ${blerc2}
+      ${blerc}
 
       ${tmux-sessionizer}
       ${find-edit}

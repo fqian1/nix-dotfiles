@@ -6,8 +6,13 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)
 vim.keymap.set("n", "=", vim.lsp.buf.format, opts)
 
+vim.lsp.config['bash-language-server'] = {
+    filetypes = { 'sh', 'bash', 'rc' },
+    cmd = { 'bash-language-server' }
+}
+
 vim.lsp.enable("rust-analyzer")
-vim.lsp.enable("bash-language-server")
+vim.lsp.enable("bashls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nil_ls")
 vim.lsp.enable("jdtls")
