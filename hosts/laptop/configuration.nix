@@ -13,11 +13,10 @@
     outputs.nixosModules.networking
     outputs.nixosModules.impermanence
     outputs.nixosModules.nix-ld
-    # outputs.nixosModules.silent-boot
+    # outputs.nixosModules.bootloader
     outputs.nixosModules.locale
     # outputs.nixosModules.vpn
     outputs.nixosModules.mangowc
-    outputs.nixosModules.scripts
     ./hardware.nix
   ];
 

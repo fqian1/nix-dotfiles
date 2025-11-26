@@ -2,7 +2,7 @@
 let
   myScriptsDir = builtins.path {
     path = ./scripts;
-    name = "custom-scripts-source";
+    name = "scripts";
   };
 
   customBinaries =
@@ -13,11 +13,13 @@ let
       ''
         mkdir -p $out/bin
         cp ${myScriptsDir}/max-refresh.sh $out/bin/max-refresh
+        cp ${myScriptsDir}/auto-arrange-monitors.sh $out/bin/auto-arrange-monitors
         chmod +x $out/bin/max-refresh
+        chmod +x $out/bin/auto-arrange-monitors
       '';
 in
 {
-  environment.systemPackages = [
+  home.packages = [
     customBinaries
   ];
 }

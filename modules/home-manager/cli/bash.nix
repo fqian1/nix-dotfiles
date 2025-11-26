@@ -44,6 +44,7 @@ in
     '';
 
     shellAliases = {
+      sudo = "doas";
       nrsd = "sudo nixos-rebuild switch --flake ~/.dotfiles/#desktop";
       nrsl = "sudo nixos-rebuild switch --flake ~/.dotfiles/#laptop";
       nrbd = "sudo nixos-rebuild build --flake ~/.dotfiles/#desktop";
