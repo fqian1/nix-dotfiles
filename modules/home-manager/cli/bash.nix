@@ -45,10 +45,10 @@ in
 
     shellAliases = {
       sudo = "doas";
-      nrsd = "sudo nixos-rebuild switch --flake ~/.dotfiles/#desktop";
-      nrsl = "sudo nixos-rebuild switch --flake ~/.dotfiles/#laptop";
-      nrbd = "sudo nixos-rebuild build --flake ~/.dotfiles/#desktop";
-      nrbl = "sudo nixos-rebuild build --flake ~/.dotfiles/#laptop";
+      nrsd = "doas nixos-rebuild switch --flake ~/.dotfiles/#desktop";
+      nrsl = "doas nixos-rebuild switch --flake ~/.dotfiles/#laptop";
+      nrbd = "doas nixos-rebuild build --flake ~/.dotfiles/#desktop";
+      nrbl = "doas nixos-rebuild build --flake ~/.dotfiles/#laptop";
       hrs = "home-manager switch --flake ~/.dotfiles/#fqian";
       port = "cat /var/run/protonvpn-forwarded-port";
       lock = "swaylock -c 000000";

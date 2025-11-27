@@ -13,6 +13,7 @@
     outputs.nixosModules.networking
     outputs.nixosModules.impermanence
     outputs.nixosModules.nix-ld
+    outputs.nixosModules.security
     # outputs.nixosModules.bootloader
     outputs.nixosModules.locale
     # outputs.nixosModules.vpn

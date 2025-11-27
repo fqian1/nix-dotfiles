@@ -2,6 +2,7 @@
   impermanence = import ./impermanence.nix;
   bootloader = import ./bootloader.nix;
   networking = import ./networking.nix;
+  security = import ./security.nix;
   nix-ld = import ./nix-ld.nix;
   greetd = import ./greetd.nix;
   locale = import ./locale.nix;

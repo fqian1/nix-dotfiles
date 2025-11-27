@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 OUTPUTS=$(wlr-randr | awk '
     /^[A-Za-z0-9-]+/ { name = $1 }
