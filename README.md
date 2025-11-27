@@ -14,7 +14,7 @@
  5. roll back  with ```home-manager switch --rollback```
 
 # todo list:
-- finish configuring ble.sh rice ps1, transient, final prompts
+- finish configuring ble.sh rice ps1, transient, final prompts, colours (base16, 255, truecolour in foot, tmux, ble.sh and nvim?)
  - finish configure mangowc, make everything suckless. foot (no ligatures, alternative?), wl clipboard, grim, slurp. media controls in fn keys.
  - use agenix for wireguard conf file and ssh
  - split modules/home-manager/cli packages to dev pkgs like tmux and qol pkgs like starship
@@ -23,7 +23,9 @@
  - rice with quickshell, stylix?
  - configure iwd over wpa supplicant / nmcli make tui using scripts
  - configure laptop and desktop modules, laptop stuff like tlp, openssh configurations
+ - configure rust analyzer expressionadjustmenthints
  - customise ble.sh, make normal mode block cursor, maybe replace starship with blesh prompt
+ - enable encryption with zfs
  - fwupdmgr service / script
  - create smoke shader plus all other shaders need serious optimizations
 - create overlays for tools/apps like ripgrep or dwl with compiler optimizations -O3 -march=native
