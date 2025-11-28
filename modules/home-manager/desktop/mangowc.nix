@@ -144,6 +144,7 @@
       set +e
 
       max-refresh
+      auto-arrange-monitors
       swaybg -i ~/pictures/moon.png &
 
       wl-clip-persist --clipboard regular --reconnect-tries 0 &

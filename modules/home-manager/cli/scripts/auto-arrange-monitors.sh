@@ -6,7 +6,6 @@ OUTPUTS=$(wlr-randr | awk '
 ')
 
 if [ -z "$OUTPUTS" ]; then
-    echo "No active Wayland outputs found using wlr-randr. Exiting."
     exit 1
 fi
 
@@ -14,7 +13,6 @@ COMMAND="wlr-randr"
 PREVIOUS_OUTPUT=""
 
 for CURRENT_OUTPUT in $OUTPUTS; do
-    echo "Processing output: $CURRENT_OUTPUT"
     COMMAND="$COMMAND --output $CURRENT_OUTPUT"
 
     if [ ! -z "$PREVIOUS_OUTPUT" ]; then
@@ -23,4 +21,4 @@ for CURRENT_OUTPUT in $OUTPUTS; do
     PREVIOUS_OUTPUT=$CURRENT_OUTPUT
 done
 
-echo "$COMMAND"
+$COMMAND
