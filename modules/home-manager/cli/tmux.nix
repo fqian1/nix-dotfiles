@@ -42,6 +42,7 @@
       set -g status-right ""
       set -g status-left "#S"
       set -g focus-events on
+      set -g allow-passthrough on
       set -sg escape-time 1
       # set -g extended-keys on
 

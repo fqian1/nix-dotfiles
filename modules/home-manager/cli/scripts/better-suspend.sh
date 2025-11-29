@@ -2,7 +2,6 @@ function handle_nvim_suspend() {
     if jobs -s | grep -q "nvim"; then
         if [ "$NVIM_SUSPENDED" != "true" ]; then
             tput cuu 4
-
             tput el
             printf '\n'
             printf '\r'
@@ -15,15 +14,12 @@ function handle_nvim_suspend() {
             tput el
             printf '\n'
             printf '\r'
-
             tput cuu 4
             export NVIM_SUSPENDED="true"
-        fi
-    else
-        if [ "$NVIM_SUSPENDED" = "true" ]; then
-            unset NVIM_SUSPENDED
         fi
     fi
 }
 
-PROMPT_COMMAND="''${PROMPT_COMMAND:+$PROMPT_COMMAND; }handle_nvim_suspend"
+alias fg='unset NVIM_SUSPENDED; command fg'
+
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }handle_nvim_suspend"
