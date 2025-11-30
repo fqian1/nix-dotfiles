@@ -35,8 +35,10 @@
       set -g renumber-windows on
       set -g focus-events on
       set -sg escape-time 1
-      # set -g extended-keys on
+      set -g extended-keys on
       set -g allow-passthrough on
+
+      set-option -g terminal-features "xterm*:clipboard:cc:extkeys"
 
       # status line (vim tpipeline)
       set -g status-left-length 99
