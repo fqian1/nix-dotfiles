@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 let
   tmux-sessionizer = builtins.readFile ./scripts/tmux-sessionizer.sh;
+  test-colours = builtins.readFile ./scripts/test-colours.sh;
   find-edit = builtins.readFile ./scripts/find-edit.sh;
   blerc = builtins.readFile ./scripts/blerc;
   better-suspend = builtins.readFile ./scripts/better-suspend.sh;
@@ -32,6 +33,7 @@ in
       ${tmux-sessionizer}
       ${find-edit}
       ${better-suspend}
+      ${test-colours}
 
       bind -m vi-insert -x '"\C-e":find-edit'
       bind -m vi-command -x '"\C-e":find-edit'

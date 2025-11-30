@@ -9,7 +9,6 @@
   imports = [
     outputs.homeManagerModules.cli.tools
     outputs.homeManagerModules.cli.bash
-    outputs.homeManagerModules.cli.starship
     outputs.homeManagerModules.cli.tmux
     outputs.homeManagerModules.cli.scripts
 

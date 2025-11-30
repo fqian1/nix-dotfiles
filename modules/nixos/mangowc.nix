@@ -13,24 +13,12 @@
   ];
 
   environment.variables = {
-    # Sets the QT platform theme
     QT_QPA_PLATFORMTHEME = "qt5ct";
-
-    # Sets the GTK/GDK scaling factor
     GDK_SCALE = "1";
     GDK_DPI_SCALE = "1";
-
-    # Sets the XDG session type for Wayland
     XDG_SESSION_TYPE = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
   };
-
-  # xdg.portal = {
-  #   enable = true;
-  #   wlr.enable = true;
-  #   config = with pkgs; [
-  #     xdg-desktop-portal-wlr
-  #   ];
-  # };
 
   xdg.portal = {
     enable = true;

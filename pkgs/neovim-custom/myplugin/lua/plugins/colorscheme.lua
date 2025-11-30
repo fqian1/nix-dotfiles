@@ -1,5 +1,5 @@
 -- https://deepwiki.com/folke/tokyonight.nvim/2.3-advanced-configuration
---
+
 require("tokyonight").setup({
 	style = "night", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
 	light_style = "day",
