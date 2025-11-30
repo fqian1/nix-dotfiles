@@ -1,19 +1,26 @@
-local opts = { noremap = true, silent = true }
+local function on_attach(client, bufnr)
+    local opts = { buffer = bufnr }
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+end
 
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)
-vim.keymap.set("n", "=", vim.lsp.buf.format, opts)
-
-vim.lsp.config['bash-language-server'] = {
-    filetypes = { 'sh', 'bash', 'conf' },
+vim.lsp.config['*'] = {
+	root_markers = {'.git'},
+	on_attach = on_attach()
 }
 
-vim.lsp.enable("rust-analyzer")
-vim.lsp.enable("bashls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nil_ls")
-vim.lsp.enable("jdtls")
+vim.lsp.enable("bashls")
+vim.lsp.enable("rust-analyzer")
 vim.lsp.enable("clangd")
 vim.lsp.enable("pyright")
+
+vim.keymap.set('n', 'L', function()
+    local new_config = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = 'Toggle diagnostic virtual_lines' })
+
+vim.diagnostic.config({ virtual_text = false })

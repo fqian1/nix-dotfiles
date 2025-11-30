@@ -56,6 +56,7 @@ in
       lock = "swaylock -c 000000";
       tree = "tree -F --dirsfirst";
       gitrb = "git rebase -i origin/main";
+      vim = "nvim";
       ls = "ls -l";
     };
   };

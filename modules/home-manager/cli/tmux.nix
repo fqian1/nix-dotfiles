@@ -33,24 +33,30 @@
     ];
     extraConfig = ''
       set -g renumber-windows on
-      set -g status-position top
-      set -g status-justify absolute-centre
-      set -g status-style bg=default
-      set -g window-status-current-style "fg=orange bg=default bold"
+      set -g focus-events on
+      set -g allow-passthrough on
+      set -sg escape-time 1
+      set -g extended-keys on
+
+      # status line (vim tpipeline)
       set -g status-left-length 99
       set -g status-right-length 99
       set -g status-right ""
       set -g status-left "#S"
-      set -g focus-events on
-      set -g allow-passthrough on
-      set -sg escape-time 1
-      # set -g extended-keys on
+      set -g window-status-current-style "fg=colour7 bg=default bold"
+      set -g status-position bottom
+      set -g status-justify absolute-centre
+      set -g status-style bg=default
 
-      set-option -g window-style 'fg=#bbbbbb,bg=default'
-      set-option -g window-active-style 'fg=white,bg=default'
+      # dim inactive windows
+      set-option -g window-style        "fg=colour7,bg=default"
+      set-option -g window-active-style "fg=colour15,bg=default"
+
+      # invisible borders
+      set -g pane-border-style          "fg=#000000,bg=default"
+      set -g pane-active-border-style   "fg=#000000,bg=default"
       set-window-option -g pane-border-status off
-      set -g pane-border-style "fg=#000000,bg=default"
-      set -g pane-active-border-style "fg=#000000,bg=default"
+
       bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"
 
       vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzy)(diff)?(-wrapped)?'
