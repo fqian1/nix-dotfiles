@@ -96,7 +96,6 @@ vim.opt.wrapscan = true   -- Wrap searches around the end of the file
 vim.opt.mouse = 'a'      -- Enable mouse in all modes
 vim.opt.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete
 vim.opt.ttimeoutlen = 0  -- Time in milliseconds to wait for key code sequences
--- vim.opt.keymodel = {'startsel', 'stopsel'} -- Use Shift and Ctrl to select text
 -- vim.opt.clipboard = 'unnamed'      -- Use the system clipboard for copy/paste
 -- vim.opt.whichwrap:append {'<', '>', 'h', 'l'} -- Allow left/right arrows to wrap to the previous/next line
 vim.opt.wildignorecase = true -- Ignore case when completing file names and directories

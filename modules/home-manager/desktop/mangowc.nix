@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  services.kanshi.enable = true;
+
   xdg.configFile."mango/config.conf".text = ''
     # Window effect
     blur=0

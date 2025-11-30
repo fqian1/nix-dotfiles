@@ -1,10 +1,7 @@
 require("fidget").setup()
-require("crates").setup()
 require("ibl").setup()
-require("colorizer").setup()
 
 require("gitsigns").setup()
-
 
 require("lualine").setup({
     options = {

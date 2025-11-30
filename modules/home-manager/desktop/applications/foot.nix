@@ -8,7 +8,6 @@
     enable = true;
     settings = {
       main = {
-        # term = "foot";
         font = "FiraCode Nerd Font:size=10";
         underline-thickness = "2px";
         underline-offset = "3px";
@@ -19,12 +18,7 @@
       };
 
       colors = {
-        alpha = 0.8;
-        foreground = "E4DED2";
-        background = "000000";
-
-        selection-foreground = "FFF8F2";
-        selection-background = "1C1C28";
+        alpha = 1.0;
 
         regular0 = "14141E";
         regular1 = "C25B5B";
