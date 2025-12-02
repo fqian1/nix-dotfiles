@@ -1,0 +1,35 @@
+0  - #0A0A12
+1  - #14141E
+2  - #1C1C28
+3  - #2A2A38
+4  - #3A3A4A
+5  - #E4DED2
+6  - #F2EADF
+7  - #FFF8F2
+8  - #C25B5B
+9  - #E08A66
+10 - #E6C27A
+11 - #8BAA82
+12 - #95B3B0
+13 - #6270A8
+14 - #9A7398
+15 - #B86C6A
+
+{
+  "base00": "0A0A12",
+  "base01": "14141E",
+  "base02": "1C1C28",
+  "base03": "2A2A38",
+  "base04": "3A3A4A",
+  "base05": "E4DED2",
+  "base06": "F2EADF",
+  "base07": "FFF8F2",
+  "base08": "C25B5B",
+  "base09": "E08A66",
+  "base0A": "E6C27A",
+  "base0B": "8BAA82",
+  "base0C": "95B3B0",
+  "base0D": "6270A8",
+  "base0E": "9A7398",
+  "base0F": "B86C6A"
+}
