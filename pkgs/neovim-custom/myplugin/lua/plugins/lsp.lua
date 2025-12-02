@@ -14,8 +14,9 @@ vim.lsp.config['*'] = {
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nil_ls")
 vim.lsp.enable("bashls")
-vim.lsp.enable("rust-analyzer")
+vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("clangd")
+vim.lsp.enable("cssls")
 vim.lsp.enable("pyright")
 
 vim.keymap.set('n', 'L', function()

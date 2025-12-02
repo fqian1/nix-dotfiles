@@ -8,14 +8,6 @@
         "wg0"
         "protonvpn"
       ];
-      extraCommands = ''
-        iptables -A OUTPUT -d 89.222.96.30 -p udp --dport 51820 -j ACCEPT
-        #ip6tables -A OUTPUT -d 89.222.96.30 -p udp --dport 51820 -j ACCEPT
-      '';
-      extraStopCommands = ''
-        iptables -D OUTPUT -d 89.222.96.30 -p udp --dport 51820 -j ACCEPT
-        #ip6tables -D OUTPUT -d 89.222.96.30 -p udp --dport 51820 -j ACCEPT
-      '';
     };
     wg-quick.interfaces.protonvpn = {
       autostart = true;

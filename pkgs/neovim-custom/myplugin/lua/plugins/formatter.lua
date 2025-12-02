@@ -4,6 +4,7 @@ require("conform").setup({
 		nix = { "alejandra" },
 		sh = { "shfmt" },
 		rust = { "rustfmt" },
+		css = { "prettier" },
 	},
 })
 

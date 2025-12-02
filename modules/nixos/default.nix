@@ -1,6 +1,6 @@
 {
   impermanence = import ./impermanence.nix;
-  bootloader = import ./bootloader.nix;
+  boot = import ./boot.nix;
   networking = import ./networking.nix;
   security = import ./security.nix;
   nix-ld = import ./nix-ld.nix;

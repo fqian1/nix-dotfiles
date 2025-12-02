@@ -14,7 +14,7 @@
     outputs.nixosModules.impermanence
     outputs.nixosModules.nix-ld
     outputs.nixosModules.security
-    # outputs.nixosModules.bootloader
+    # outputs.nixosModules.boot
     outputs.nixosModules.locale
     # outputs.nixosModules.vpn
     outputs.nixosModules.mangowc

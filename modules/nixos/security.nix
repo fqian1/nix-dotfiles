@@ -2,6 +2,8 @@
 {
   security.sudo.enable = false;
 
+  security.pam.services.swaylock = {};
+
   programs.git = {
     enable = true;
     config = {

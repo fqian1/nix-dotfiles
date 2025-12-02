@@ -3,9 +3,7 @@
   programs = {
     ripgrep.enable = true;
     ripgrep-all.enable = true;
-    tealdeer = {
-      enable = true;
-    };
+    tealdeer.enable = true;
     gemini-cli.enable = true;
     lazygit = {
       enable = true;
@@ -42,9 +40,11 @@
     yaml-language-server
     rust-analyzer
     bash-language-server
+    vscode-css-languageserver
     nil
     # Formatter
     alejandra
+    prettier
     rustfmt
     shfmt
     stylua

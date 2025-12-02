@@ -2,6 +2,8 @@
 {
   services.kanshi.enable = true;
 
+  programs.swaylock.enable = true;
+
   xdg.configFile."mango/config.conf".text = ''
     # Window effect
     blur=0
