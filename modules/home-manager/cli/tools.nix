@@ -41,11 +41,13 @@
     rust-analyzer
     bash-language-server
     vscode-css-languageserver
+    pyright
     nil
     # Formatter
     alejandra
     prettier
     rustfmt
+    ruff
     shfmt
     stylua
     # Tools

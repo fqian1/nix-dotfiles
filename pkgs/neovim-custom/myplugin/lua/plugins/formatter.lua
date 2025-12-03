@@ -5,6 +5,7 @@ require("conform").setup({
 		sh = { "shfmt" },
 		rust = { "rustfmt" },
 		css = { "prettier" },
+		python = { "ruff" },
 	},
 })
 

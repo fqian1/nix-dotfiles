@@ -3,6 +3,10 @@
   pkgs,
   ...
 }:
+let
+userChrome = builtins.readfile ./css/userchrome.css;
+userContent = builtins.readfile ./css/usercontent.css;
+in
 {
   programs.librewolf = {
     enable = true;
@@ -72,19 +76,8 @@
         "signon.autofillForms" = true;
         "signon.rememberSignons" = true;
       };
-
-      userChrome = ''
-        #nav-bar, #TabsToolbar, #PersonalToolbar {
-          border: none !important;
-          box-shadow: none !important;
-          border-radius: 0px !important;
-        }
-
-        #nav-bar, #TabsToolbar, #PersonalToolbar {
-          background-color: transparent !important;
-          opacity: 0.8 !important;
-        }
-      '';
+      userChrome = userChrome;
+      userContent = userContent;
     };
   };
 }
