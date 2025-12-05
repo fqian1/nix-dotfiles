@@ -20,6 +20,9 @@
       colors = {
         alpha = 1.0;
 
+        background = "14141E";
+        foreground = "F2EADF";
+
         regular0 = "14141E";
         regular1 = "C25B5B";
         regular2 = "8BAA82";

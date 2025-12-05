@@ -48,7 +48,7 @@
       set -g window-status-current-style "fg=colour15 bg=colour0 bold"
       set -g status-position bottom
       set -g status-justify absolute-centre
-      set -g status-style bg=default
+      set -g status-style bg=colour0
 
       # dim inactive windows
       set-option -g window-style        "fg=colour7,bg=colour0"

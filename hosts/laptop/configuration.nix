@@ -13,6 +13,7 @@
     outputs.nixosModules.networking
     outputs.nixosModules.impermanence
     outputs.nixosModules.nix-ld
+    outputs.nixosModules.power
     outputs.nixosModules.security
     # outputs.nixosModules.boot
     outputs.nixosModules.locale

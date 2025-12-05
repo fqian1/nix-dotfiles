@@ -10,4 +10,5 @@
   vpn = import ./vpn.nix;
   ssh = import ./ssh.nix;
   mangowc = import ./mangowc.nix;
+  power = import ./power.nix;
 }
