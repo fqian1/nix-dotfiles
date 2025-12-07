@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  services.logind = {
+  services.logind.settings.Login = {
     lidSwitch = "suspend";
     lidSwitchExternalPower = "lock";
     extraConfig = ''

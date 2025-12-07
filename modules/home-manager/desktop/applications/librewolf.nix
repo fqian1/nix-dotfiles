@@ -4,8 +4,8 @@
   ...
 }:
 let
-userChrome = builtins.readfile ./css/userchrome.css;
-userContent = builtins.readfile ./css/usercontent.css;
+userChrome = builtins.readFile ./css/userChrome.css;
+userContent = builtins.readFile ./css/userContent.css;
 in
 {
   programs.librewolf = {
