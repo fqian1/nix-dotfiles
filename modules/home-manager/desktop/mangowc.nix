@@ -47,7 +47,7 @@
     # mouse
     mouse_natural_scrolling=0
     accel_profile=0
-    accel_speed=-0.6
+    accel_speed=0.6
 
     # Appearance
     gappih=0

@@ -45,14 +45,14 @@
       set -g status-right-length 99
       set -g status-right ""
       set -g status-left "#S"
-      set -g window-status-current-style "fg=colour15 bg=colour0 bold"
+      set -g window-status-current-style "fg=colour7 bg=colour0 bold"
       set -g status-position bottom
       set -g status-justify absolute-centre
       set -g status-style bg=colour0
 
       # dim inactive windows
-      set-option -g window-style        "fg=colour7,bg=colour0"
-      set-option -g window-active-style "fg=colour15,bg=colour0"
+      set-option -g window-style        "fg=colour5,bg=colour0"
+      set-option -g window-active-style "fg=colour7,bg=colour0"
 
       # invisible borders
       set -g pane-border-style          "fg=#000000,bg=colour0"
