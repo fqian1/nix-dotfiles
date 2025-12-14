@@ -12,6 +12,7 @@ in
     blesh
     fd
     fzy
+    jq
   ];
 
   programs.fastfetch.enable = true;
