@@ -60,7 +60,7 @@ in
       tree = "tree -F --dirsfirst";
       gitrb = "git rebase -i origin/main";
       vim = "nvim";
-      ls = "ls -l";
+      ls = "ls -lF";
     };
   };
 }
