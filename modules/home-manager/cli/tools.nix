@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs = {
     ripgrep.enable = true;
     ripgrep-all.enable = true;
@@ -10,6 +9,12 @@
       settings = {
         git.commit.signOff = true;
       };
+    };
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/fqian/.dotfiles";
     };
     gh = {
       enable = true;

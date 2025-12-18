@@ -18,18 +18,12 @@ test-colours() {
 print-colours() {
     RESET='\033[0m'
 
-    for i in {0..7}; do
-        printf "%b  BG %02d  FG %02d  %b" \
-            "$(printf '\033[48;5;%dm\033[38;5;%dm' "$i" "$i")" \
-            "$i" "$i" \
-            "${RESET}"
-    done
-    echo ""
-    for i in {8..15}; do
-        printf "%b  BG %02d  FG %02d  %b" \
-            "$(printf '\033[48;5;%dm\033[38;5;%dm' "$i" "$i")" \
-            "$i" "$i" \
-            "${RESET}"
+    for i in {0..15}; do
+        # \033[48;5;%dm sets only the background
+        printf "\033[48;5;%dm  Color %02d  %b " "$i" "$i" "$RESET"
+
+        # Add a line break after the 8th color (ID 7)
+        if [ $i -eq 7 ]; then echo ""; fi
     done
     echo ""
 }

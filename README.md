@@ -28,7 +28,7 @@
  - enable encryption with zfs
  - fwupdmgr service / script
  - create smoke shader plus all other shaders need serious optimizations
-- create overlays for tools/apps like ripgrep or dwl with compiler optimizations -O3 -march=native
+- create overlays for tools/apps like ripgrep or compositor with compiler optimizations -O3 -march=native
 - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
 - try out different kernels? maybe the cachyos kernel?? blazingly fast.
  - configure impermanence for home directory so i can do imperative stuff 👹
@@ -38,7 +38,7 @@
 
 # unrelated:
  - grex, newsboat, jrnl, ttyd, croc: cool cli tools
- - stui, btop, bottom, htop, atop, iftop, iotop, csysdig, nvtop, perf, wavemon
+ - stui, btop, bottom, htop, atop, iftop, iotop, csysdig, nvtop, perf, wavemon, upower
  - nextcloud + homeserver.
  - coreboot + some payload.
  - https://github.com/pd3v/line
