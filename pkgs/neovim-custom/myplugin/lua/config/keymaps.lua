@@ -2,7 +2,7 @@ local map = vim.api.nvim_set_keymap
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- Set marks using <leader> + number
+-- Set marks using leader + shift + number
 map("n", "<leader>!", ':execute "normal! mA"<CR>', opts)
 map("n", "<leader>\"", ':execute "normal! mB"<CR>', opts)
 map("n", "<leader>£", ':execute "normal! mC"<CR>', opts)
@@ -14,7 +14,7 @@ map("n", "<leader>*", ':execute "normal! mH"<CR>', opts)
 map("n", "<leader>)", ':execute "normal! mI"<CR>', opts)
 map("n", "<leader>_", ':execute "normal! mJ"<CR>', opts)
 
--- Jump to marks using Ctrl + number and jump to recent position
+-- Jump to marks using leader + number and jump to recent position
 map("n", "<leader>1", "'A'\"", opts)
 map("n", "<leader>2", "'B'\"", opts)
 map("n", "<leader>3", "'C'\"", opts)
