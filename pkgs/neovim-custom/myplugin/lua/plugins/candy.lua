@@ -45,7 +45,7 @@ require("tiny-glimmer").setup({
                     easing = "outInBack",
                     chars_for_max_duration = 0,
                     to_color = "Normal",
-                    from_color = "#ff2222",
+                    from_color = "DiffDelete",
                 },
             },
             undo_mapping = "u",
@@ -60,7 +60,7 @@ require("tiny-glimmer").setup({
                     easing = "outInBack",
                     chars_for_max_duration = 0,
                     to_color = "Normal",
-                    from_color = "#22ff22",
+                    from_color = "DiffAdd",
                 },
             },
             redo_mapping = "<c-r>",
@@ -73,7 +73,7 @@ require("tiny-glimmer").setup({
             min_duration = 150,         -- Minimum animation duration in ms
             easing = "outInBack",       -- outInElastic is pretty nice
             chars_for_max_duration = 0, -- Character count for max duration
-            from_color = "#ffffaa",     -- Start color (highlight group or hex)
+            from_color = "Visual",     -- Start color (highlight group or hex)
             to_color = "Normal",        -- End color (highlight group or hex)
         },
     },

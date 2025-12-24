@@ -154,52 +154,66 @@ vim.opt.inccommand = "split" -- Show live preview of :s commands
 --------------------
 vim.opt.termguicolors = false
 
+local colors = {
+	Black = "NONE", -- BG
+	BrightBlack = 0, -- Popup menu BG
+	DarkGrey = 14, -- Selection BG
+	Grey = 8, -- Invisible Text
+	LightGrey = 7, -- Comments, LineNumbers
+	OffWhite = "NONE", -- FG
+	White = 15, -- Bright FG
+	Red = 1, --  Variables and errors
+	Green = 2, -- Strings
+	Yellow = 3, -- Types, Classes
+	Blue = 4, -- Functions, ID's
+	Magenta = 5, -- Keywords
+	Cyan = 6, -- Regex, Escape Chars
+	Orange = 11, -- Numbers, Bools, Consts, Warn
+	Maroon = 13, -- Deprecated, Headers, Embedded
+}
+
 local highlights = {
-	-- 1. Core UI
-	Normal = { ctermfg = "NONE", ctermbg = "NONE" },
-	NormalFloat = { ctermfg = "NONE", ctermbg = 0 },
-	Cursor = { reverse = true },
-	CursorLine = { ctermbg = 0 },
-	ColorColumn = { bg = "NONE" },
-	Visual = { ctermfg = "NONE", ctermbg = 14 },
+    -- 1. Core UI
+    Normal       = { ctermfg = colors.OffWhite, ctermbg = colors.Black },
+    NormalFloat  = { ctermbg = colors.BrightBlack },
+    Cursor       = { reverse = true },
+    CursorLine   = { ctermbg = colors.BrightBlack },
+    ColorColumn  = { ctermbg = colors.Black },
+    Visual       = { ctermbg = colors.DarkGrey },
 
-	-- 2. Standard Syntax
-	Comment = { ctermfg = 8, italic = true },
-	Constant = { ctermfg = 11 }, -- Strings, Numbers, Booleans
-	String = { ctermfg = 2 },
-	Identifier = { ctermfg = 1 }, -- Variables
-	Function = { ctermfg = 4 },
-	Statement = { ctermfg = 5 }, -- if, then, else, return
-	PreProc = { ctermfg = 13 }, -- #include, macros
-	Type = { ctermfg = 3 }, -- int, struct, class
-	Special = { ctermfg = 6 }, -- Special symbols
-	Underlined = { underline = true },
-	Error = { ctermfg = 1, bold = true },
-	Todo = { ctermfg = "NONE", ctermbg = 3, bold = true },
+    -- 2. Standard Syntax
+    Comment      = { ctermfg = colors.LightGrey, italic = true },
+    Constant     = { ctermfg = colors.Orange },
+    String       = { ctermfg = colors.Green },
+    Identifier   = { ctermfg = colors.Red },
+    Function     = { ctermfg = colors.Blue },
+    Statement    = { ctermfg = colors.Magenta },
+    PreProc      = { ctermfg = colors.Maroon },
+    Type         = { ctermfg = colors.Yellow },
+    Special      = { ctermfg = colors.Cyan },
+    Underlined   = { underline = true },
+    Error        = { ctermfg = colors.Red, bold = true },
+    Todo         = { ctermfg = colors.Black, ctermbg = colors.Yellow, bold = true },
 
-	-- 3. Gutter and Splits
-	LineNr = { fg = "#665c54" },
-	CursorLineNr = { fg = "#fabd2f" },
-	SignColumn = { bg = "#282828" },
-	VertSplit = { fg = "#3c3836" },
-	WinSeparator = { fg = "#3c3836" }, -- Modern Neovim name for VertSplit
-	StatusLine = { fg = "#ebdbb2", bg = "#3c3836" },
-	StatusLineNC = { fg = "#928374", bg = "#3c3836" },
+    -- 3. Gutter and Splits
+    LineNr       = { ctermfg = colors.LightGrey },
+    CursorLineNr = { ctermfg = colors.OffWhite },
+    SignColumn   = { ctermbg = colors.BrightBlack },
+    VertSplit    = { ctermfg = colors.BrightBlack },
+    WinSeparator = { ctermfg = colors.BrightBlack },
+    StatusLine   = { ctermfg = colors.OffWhite, ctermbg = colors.Black },
+    StatusLineNC = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack },
 
-	-- 4. Interaction & Feedback
-	Search = { fg = "#282828", bg = "#fabd2f" },
-	IncSearch = { fg = "#282828", bg = "#fe8019" },
-	MatchParen = { fg = "#fe8019", bold = true },
-	Pmenu = { fg = "#ebdbb2", bg = "#3c3836" },
-	PmenuSel = { fg = "#282828", bg = "#83a598" },
-	SpellBad = { undercurl = true, sp = "#fb4934" },
+    -- 4. Interaction & Feedback
+    Search       = { ctermfg = colors.Black, ctermbg = colors.Yellow },
+    IncSearch    = { ctermfg = colors.Black, ctermbg = colors.Orange },
+    MatchParen   = { ctermfg = colors.Orange, bold = true },
+    Pmenu        = { ctermfg = colors.White, ctermbg = colors.BrightBlack },
+    PmenuSel     = { ctermfg = colors.White, ctermbg = colors.DarkGrey },
+    SpellBad     = { undercurl = true, sp = colors.Red },
 }
 
 -- How to apply them:
 for group, settings in pairs(highlights) do
 	vim.api.nvim_set_hl(0, group, settings)
 end
-
-vim.api.nvim_set_hl(0, "Normal", { ctermfg = 5, ctermbg = "NONE" })
-vim.api.nvim_set_hl(0, "Visual", { ctermbg = 0 })
-vim.api.nvim_set_hl(0, "LineNr", { ctermfg = 7 })

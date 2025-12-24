@@ -3,6 +3,7 @@
 
 local actions = require("telescope.actions")
 local fb_actions = require("telescope._extensions.file_browser.actions")
+
 local opts = {
 	require("telescope").setup({
 		defaults = {
@@ -74,3 +75,29 @@ vim.keymap.set("n", "<leader>f", require("telescope.builtin").find_files, opts)
 vim.keymap.set("n", "<leader>g", require("telescope.builtin").live_grep, opts)
 vim.keymap.set("n", "<leader>b", require("telescope.builtin").buffers, opts)
 vim.keymap.set("n", "<leader>h", require("telescope.builtin").help_tags, opts)
+
+local colors = {
+	bg = "NONE", -- Black
+	BrightBlack = 0,
+	DarkGrey = 14,
+	Grey = 8,
+	LightGrey = 7,
+	fg = "NONE", -- OffWhite
+	White = 15,
+	Red = 1,
+	Green = 2,
+	Yellow = 3,
+	Blue = 4,
+	Magenta = 5,
+	Cyan = 6,
+	Orange = 11,
+	Maroon = 13,
+}
+
+vim.api.nvim_set_hl(0, "TelescopeNormal", { ctermfg = colors.fg, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopeBorder", { ctermfg = colors.BrightBlack, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopePromptNormal", { ctermfg = colors.fg, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopePromptBorder", { ctermfg = colors.BrightBlack, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopePromptTitle", { ctermfg = colors.Orange, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { ctermfg = colors.Orange, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { ctermfg = colors.Orange, ctermbg = colors.BrightBlack })

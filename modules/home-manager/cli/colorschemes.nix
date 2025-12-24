@@ -118,22 +118,23 @@ in {
   ];
 }
 # Logic used to store base16 palette while maintaining similar ansi 15 palette:
-# Ansi 0:  Black          -> base01 : Bright Black!  (Lighter Background - Status Bar, Line Highlight)
+# Ansi 0:  Black          -> base01 : Bright Black   (Lighter Background - Status Bar, Line Highlight)
 # Ansi 1:  Red            -> base08 : Red            (Variables, Errors, Git Delete)
 # Ansi 2:  Green          -> base0B : Green          (Strings, Success, Git Add)
 # Ansi 3:  Yellow         -> base0A : Yellow         (Types, Classes, Search HL, Warn)
 # Ansi 4:  Blue           -> base0D : Blue           (Functions, Methods, Ids)
 # Ansi 5:  Magenta        -> base0E : Magenta        (Control Flow, Keywords)
 # Ansi 6:  Cyan           -> base0C : Cyan           (Regex, Escape Chars, Support)
-# Ansi 7:  White          -> base04 : Medium Grey!   (Subtle Foreground - Unimportant Text, Status Bar FG)
-# Ansi 8:  Bright Black   -> base03 : Grey!          (Faint Foreground - Comments, Invisible Characters, Line Numbers)
+# Ansi 7:  White          -> base04 : Light Grey     (Faint Foreground - Comments, Line Numbers)
+# Ansi 8:  Bright Black   -> base03 : Grey           (Subtle Foreground - Invisible Characters, Unimportant Text)
 # Ansi 9:  Bright Red     -> base08 : Red            (Duplicate)
 # Ansi 10: Bright Green   -> base0B : Green          (Duplicate)
-# Ansi 11: Bright Yellow  -> base09 : Orange!        (Numbers, Bools, Consts, Warn)
+# Ansi 11: Bright Yellow  -> base09 : Orange         (Numbers, Bools, Consts, Warn)
 # Ansi 12: Bright Blue    -> base0D : Blue           (Duplicate)
-# Ansi 13: Bright Magenta -> base0F : Brown/Maroon!  (Deprecated Code, Headers, Embedded code)
-# Ansi 14: Bright Cyan    -> base02 : Dark Grey!     (Selection Background)
-# Ansi 15: Bright White   -> base06 : Off-White      (Light Foreground - High Contrast, Bright FG)
+# Ansi 13: Bright Magenta -> base0F : Brown/Maroon   (Deprecated Code, Headers, Embedded code)
+# Ansi 14: Bright Cyan    -> base02 : Dark Grey      (Selection Background)
+# Ansi 15: Bright White   -> base06 : White      (Light Foreground - High Contrast, Bright FG)
 # Default Background      -> base00 : Black          (Background)
-# Default Foreground      -> base05 : Light Grey     (Foreground)
+# Default Foreground      -> base05 : Off-White     (Foreground)
 # Base07 Omitted - Pure white seldom used
+
