@@ -3,28 +3,28 @@ local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Set marks using leader + shift + number
-map("n", "<leader>!", ':execute "normal! mA"<CR>', opts)
-map("n", "<leader>\"", ':execute "normal! mB"<CR>', opts)
-map("n", "<leader>£", ':execute "normal! mC"<CR>', opts)
-map("n", "<leader>$", ':execute "normal! mD"<CR>', opts)
-map("n", "<leader>%", ':execute "normal! mE"<CR>', opts)
-map("n", "<leader>^", ':execute "normal! mF"<CR>', opts)
-map("n", "<leader>&", ':execute "normal! mG"<CR>', opts)
-map("n", "<leader>*", ':execute "normal! mH"<CR>', opts)
-map("n", "<leader>)", ':execute "normal! mI"<CR>', opts)
-map("n", "<leader>_", ':execute "normal! mJ"<CR>', opts)
+map("n", '<leader>!', 'mA', opts)
+map("n", '<leader>"', 'mB', opts)
+map("n", '<leader>£', 'mC', opts)
+map("n", '<leader>$', 'mD', opts)
+map("n", '<leader>%', 'mE', opts)
+map("n", '<leader>^', 'mF', opts)
+map("n", '<leader>&', 'mG', opts)
+map("n", '<leader>*', 'mH', opts)
+map("n", '<leader>)', 'mI', opts)
+map("n", '<leader>_', 'mJ', opts)
 
 -- Jump to marks using leader + number and jump to recent position
-map("n", "<leader>1", "'A'\"", opts)
-map("n", "<leader>2", "'B'\"", opts)
-map("n", "<leader>3", "'C'\"", opts)
-map("n", "<leader>4", "'D'\"", opts)
-map("n", "<leader>5", "'E'\"", opts)
-map("n", "<leader>6", "'F'\"", opts)
-map("n", "<leader>7", "'G'\"", opts)
-map("n", "<leader>8", "'H'\"", opts)
-map("n", "<leader>9", "'I'\"", opts)
-map("n", "<leader>0", "'J'\"", opts)
+map("n", '<leader>1', [['A`"]], opts)
+map("n", '<leader>2', [['B`"]], opts)
+map("n", '<leader>3', [['C`"]], opts)
+map("n", '<leader>4', [['D`"]], opts)
+map("n", '<leader>5', [['E`"]], opts)
+map("n", '<leader>6', [['F`"]], opts)
+map("n", '<leader>7', [['G`"]], opts)
+map("n", '<leader>8', [['H`"]], opts)
+map("n", '<leader>9', [['I`"]], opts)
+map("n", '<leader>0', [['J`"]], opts)
 
 -- less jumpy navigation
 keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
@@ -49,8 +49,8 @@ keymap("n", "<leader>k", "<cmd>lprev<CR>zz", opts)
 -- unbind some keys
 -- keymap("n", "Q", "<Nop>", opts)
 keymap("n", "<C-q>", "<Nop>", opts)
-keymap('n', 'q:', '<Nop>', opts)
-keymap('n', 'q/', '<Nop>', opts)
+keymap("n", "q:", "<Nop>", opts)
+keymap("n", "q/", "<Nop>", opts)
 
 -- more useful escape
 keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
@@ -79,10 +79,10 @@ map("v", ">", ">gv", opts)
 map("v", "<C-c>", '"+y', opts)
 
 -- TODO move to plugins folder
-vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>TmuxNavigateLeft<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-j>', '<cmd>TmuxNavigateDown<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-k>', '<cmd>TmuxNavigateUp<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>TmuxNavigateRight<CR>', { silent = true })
+vim.api.nvim_set_keymap("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { silent = true })
 
 -- -- Nvim DAP
 -- map("n", "<Leader>dl", "<cmd>lua require'dap'.step_into()<CR>", { desc = "Debugger step into" })

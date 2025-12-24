@@ -50,11 +50,13 @@ in
 
     shellAliases = {
       sudo = "doas";
+      nrs = "nh os switch ~/.dotfiles";
+      hrs = "nh home switch ~/.dotfiles";
       nrsd = "doas nixos-rebuild switch --flake ~/.dotfiles/#desktop";
       nrsl = "doas nixos-rebuild switch --flake ~/.dotfiles/#laptop";
       nrbd = "doas nixos-rebuild build --flake ~/.dotfiles/#desktop";
       nrbl = "doas nixos-rebuild build --flake ~/.dotfiles/#laptop";
-      hrs = "home-manager switch --flake ~/.dotfiles/#fqian";
+      # hrs = "home-manager switch --flake ~/.dotfiles/#fqian";
       port = "cat /var/run/protonvpn-forwarded-port";
       lock = "swaylock -c 000000";
       tree = "tree -F --dirsfirst";

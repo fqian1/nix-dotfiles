@@ -11,6 +11,7 @@
     outputs.homeManagerModules.cli.bash
     outputs.homeManagerModules.cli.tmux
     outputs.homeManagerModules.cli.scripts
+    outputs.homeManagerModules.cli.colorschemes
 
     outputs.homeManagerModules.desktop.neowall
     outputs.homeManagerModules.desktop.mangowc

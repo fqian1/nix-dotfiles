@@ -7,6 +7,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lix = {
+      url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
+      flake = false;
+    };
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.follows = "lix";
+    };
     impermanence = {
       url = "github:nix-community/impermanence";
     };
@@ -20,6 +29,8 @@
     nixpkgs,
     home-manager,
     impermanence,
+    lix-module,
+    lix,
     disko,
     ...
   } @ inputs: let
@@ -28,8 +39,6 @@
       "aarch64-linux"
       "i686-linux"
       "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
     pkgsFor = forAllSystems (
@@ -57,6 +66,7 @@
         modules = [
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
+          lix-module.nixosModules.default
           ./hosts/desktop/configuration.nix
         ];
       };
@@ -66,6 +76,7 @@
         modules = [
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
+          lix-module.nixosModules.default
           ./hosts/laptop/configuration.nix
         ];
       };

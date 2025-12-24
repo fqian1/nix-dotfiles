@@ -20,7 +20,7 @@ let
     vimPlugins.lualine-nvim
     # LSP
     vimPlugins.nvim-lspconfig
-    # Utility
+    # Treesitter
     vimPlugins.nvim-treesitter.withAllGrammars
     vimPlugins.nvim-treesitter-textobjects
     vimPlugins.nvim-treesitter-context
@@ -34,10 +34,11 @@ let
     vimPlugins.telescope-file-browser-nvim
     # Format
     vimPlugins.conform-nvim
+    vimPlugins.guess-indent-nvim
+    vimPlugins.tabular
     # QOL
     vimPlugins.vim-matchup
     vimPlugins.nvim-autopairs
-    vimPlugins.guess-indent-nvim
     # Misc
     vimPlugins.fidget-nvim # notifications
     vimPlugins.obsidian-nvim
