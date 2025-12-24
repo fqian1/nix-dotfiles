@@ -129,6 +129,8 @@
     layerrule=animation_type_open:zoom,layer_name:wmenu
     layerrule=animation_type_close:zoom,layer_name:wmenu
 
+    exec-once=~/.config/mango/autostart.sh
+
     env=GTK_IM_MODULE,fcitx
     env=QT_IM_MODULE,fcitx
     env=SDL_IM_MODULE,fcitx
@@ -153,7 +155,6 @@
 
       wl-clip-persist --clipboard regular --reconnect-tries 0 &
       wl-paste --type text --watch cliphist store &
-      exec-once=~/.config/mango/autostart.sh
     '';
   };
 }

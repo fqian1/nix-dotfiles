@@ -62,7 +62,7 @@ in
       tree = "tree -F --dirsfirst";
       gitrb = "git rebase -i origin/main";
       vim = "nvim";
-      ls = "ls -lF";
+      ls = "ls -lapF --color=auto";
     };
   };
 }

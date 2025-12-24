@@ -39,11 +39,6 @@ require("nvim-treesitter.configs").setup({
 	matchup = { enable = true },
 })
 
--- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
-require("treesitter-context").setup({
-	multiline_threshold = 4,
-})
-
 local colors = {
     Black       = "NONE", -- BG
     BrightBlack = 0,      -- Popup menu BG
@@ -87,7 +82,7 @@ local ts_highlights = {
     ["@type"]               = { ctermfg = colors.Yellow },
     ["@type.builtin"]       = { ctermfg = colors.Yellow },
     ["@type.definition"]    = { ctermfg = colors.Yellow },
-    ["@constructor"]        = { ctermfg = colors.Blue }, -- Or Yellow, depending on preference
+    ["@constructor"]        = { ctermfg = colors.Blue },
 
     -- 5. Constants & Literals
     ["@constant"]           = { ctermfg = colors.Orange },
@@ -112,3 +107,11 @@ local ts_highlights = {
 for group, settings in pairs(ts_highlights) do
     vim.api.nvim_set_hl(0, group, settings)
 end
+
+-- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
+require("treesitter-context").setup({
+	multiline_threshold = 4,
+})
+
+vim.api.nvim_set_hl(0, 'TreesitterContext', { link = 'CursorLine' })
+

@@ -35,12 +35,12 @@ let
     # Format
     vimPlugins.conform-nvim
     vimPlugins.guess-indent-nvim
-    vimPlugins.tabular
+    vimPlugins.mini-align
     # QOL
     vimPlugins.vim-matchup
     vimPlugins.nvim-autopairs
     # Misc
-    vimPlugins.fidget-nvim # notifications
+    vimPlugins.fidget-nvim
     vimPlugins.obsidian-nvim
     vimPlugins.render-markdown-nvim
     vimPlugins.undotree

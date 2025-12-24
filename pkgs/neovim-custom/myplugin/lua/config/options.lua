@@ -173,47 +173,47 @@ local colors = {
 }
 
 local highlights = {
-    -- 1. Core UI
-    Normal       = { ctermfg = colors.OffWhite, ctermbg = colors.Black },
-    NormalFloat  = { ctermbg = colors.BrightBlack },
-    Cursor       = { reverse = true },
-    CursorLine   = { ctermbg = colors.BrightBlack },
-    ColorColumn  = { ctermbg = colors.Black },
-    Visual       = { ctermbg = colors.DarkGrey },
+	-- 1. Core UI
+	Normal = { ctermfg = colors.OffWhite, ctermbg = colors.Black },
+	NormalFloat = { ctermbg = colors.BrightBlack },
+	Cursor = { reverse = true },
+	CursorLine = { ctermbg = colors.BrightBlack },
+	ColorColumn = { ctermbg = colors.Black },
+	Visual = { ctermbg = colors.DarkGrey },
 
-    -- 2. Standard Syntax
-    Comment      = { ctermfg = colors.LightGrey, italic = true },
-    Constant     = { ctermfg = colors.Orange },
-    String       = { ctermfg = colors.Green },
-    Identifier   = { ctermfg = colors.Red },
-    Function     = { ctermfg = colors.Blue },
-    Statement    = { ctermfg = colors.Magenta },
-    PreProc      = { ctermfg = colors.Maroon },
-    Type         = { ctermfg = colors.Yellow },
-    Special      = { ctermfg = colors.Cyan },
-    Underlined   = { underline = true },
-    Error        = { ctermfg = colors.Red, bold = true },
-    Todo         = { ctermfg = colors.Black, ctermbg = colors.Yellow, bold = true },
+	-- 2. Standard Syntax
+	Comment = { ctermfg = colors.LightGrey, italic = true },
+	Constant = { ctermfg = colors.Orange },
+	String = { ctermfg = colors.Green },
+	Identifier = { ctermfg = colors.Red },
+	Function = { ctermfg = colors.Blue },
+	Statement = { ctermfg = colors.Magenta },
+	PreProc = { ctermfg = colors.Maroon },
+	Type = { ctermfg = colors.Yellow },
+	Special = { ctermfg = colors.Cyan },
+	Underlined = { underline = true },
+	Error = { ctermfg = colors.Red, bold = true },
+	Todo = { ctermfg = colors.Black, ctermbg = colors.Yellow, bold = true },
 
-    -- 3. Gutter and Splits
-    LineNr       = { ctermfg = colors.LightGrey },
-    CursorLineNr = { ctermfg = colors.OffWhite },
-    SignColumn   = { ctermbg = colors.BrightBlack },
-    VertSplit    = { ctermfg = colors.BrightBlack },
-    WinSeparator = { ctermfg = colors.BrightBlack },
-    StatusLine   = { ctermfg = colors.OffWhite, ctermbg = colors.Black },
-    StatusLineNC = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack },
+	-- 3. Gutter and Splits
+	LineNr = { ctermfg = colors.LightGrey },
+	CursorLineNr = { ctermfg = colors.OffWhite },
+	SignColumn = { ctermbg = colors.BrightBlack },
+	VertSplit = { ctermfg = colors.BrightBlack },
+	WinSeparator = { ctermfg = colors.BrightBlack },
+	StatusLine = { ctermfg = colors.OffWhite, ctermbg = colors.Black },
+	StatusLineNC = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack },
 
-    -- 4. Interaction & Feedback
-    Search       = { ctermfg = colors.Black, ctermbg = colors.Yellow },
-    IncSearch    = { ctermfg = colors.Black, ctermbg = colors.Orange },
-    MatchParen   = { ctermfg = colors.Orange, bold = true },
-    Pmenu        = { ctermfg = colors.White, ctermbg = colors.BrightBlack },
-    PmenuSel     = { ctermfg = colors.White, ctermbg = colors.DarkGrey },
-    SpellBad     = { undercurl = true, sp = colors.Red },
+	-- 4. Interaction & Feedback
+	Search = { ctermfg = colors.Black, ctermbg = colors.Yellow },
+	IncSearch = { ctermfg = colors.Black, ctermbg = colors.Yellow },
+	CurSearch = { ctermfg = colors.Black, ctermbg = colors.Orange },
+	MatchParen = { ctermfg = colors.Orange, bold = true },
+	Pmenu = { ctermfg = colors.White, ctermbg = colors.BrightBlack },
+	PmenuSel = { ctermfg = colors.White, ctermbg = colors.DarkGrey },
+	SpellBad = { undercurl = true, sp = colors.Red },
 }
 
--- How to apply them:
 for group, settings in pairs(highlights) do
 	vim.api.nvim_set_hl(0, group, settings)
 end

@@ -46,7 +46,7 @@
       set -g status-right-length 99
       set -g status-right ""
       set -g status-left "#S"
-      set -g window-status-current-style "fg=default bg=default bold"
+      set -g window-status-current-style "fg=colour11 bg=default bold"
       set -g status-position bottom
       set -g status-justify absolute-centre
       set -g status-style bg=colour0

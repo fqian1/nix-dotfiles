@@ -36,6 +36,11 @@
  - coreboot -> uefi payload (yabits?) -> bootloader (limine) -> uki entries (lanzaboot) -> s6 (sixos)
  - tell neovim to use shiftwidth from lsp/formatter
 
+# BUGS:
+- long time for vim open .md files
+- status bar stays in neovim even tmux
+- mango doesnt run autostart.sh
+
 # unrelated:
  - grex, newsboat, jrnl, ttyd, croc: cool cli tools
  - stui, btop, bottom, htop, atop, iftop, iotop, csysdig, nvtop, perf, wavemon, upower
