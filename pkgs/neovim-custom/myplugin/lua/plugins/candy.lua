@@ -1,13 +1,5 @@
 require("fidget").setup()
-require("ibl").setup({
-    indent = {
-        highlight = "IblIndent"
-    },
-    scope = {
-        enabled = true,
-        highlight = "IblScope"
-    }
-})
+require("ibl").setup()
 
 local colors = {
 	Black = "NONE", -- BG
@@ -27,8 +19,8 @@ local colors = {
 	Maroon = 13, -- Deprecated, Headers, Embedded
 }
 
-vim.api.nvim_set_hl(0, "IblIndent", { ctermfg = colors.Grey })
 vim.api.nvim_set_hl(0, "IblScope", { ctermfg = colors.Orange })
+vim.api.nvim_set_hl(0, "IblIndent", { ctermfg = colors.Grey })
 
 require("gitsigns").setup()
 
