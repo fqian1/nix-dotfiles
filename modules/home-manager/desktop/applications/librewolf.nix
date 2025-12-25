@@ -2,12 +2,10 @@
   config,
   pkgs,
   ...
-}:
-let
-userChrome = builtins.readFile ./css/userChrome.css;
-userContent = builtins.readFile ./css/userContent.css;
-in
-{
+}: let
+  userChrome = builtins.readFile ./css/userChrome.css;
+  userContent = builtins.readFile ./css/userContent.css;
+in {
   programs.librewolf = {
     enable = true;
     profiles.default = {
@@ -51,6 +49,8 @@ in
         "editor.truncate_user_pastes" = true;
         "ui.prefersReducedMotion" = 1;
         "ui.key.menuAccessKeyFocuses" = false;
+        "privacy.clearOnShutdown.history" = false;
+        "browser.startup.page" = 3;
 
         # SIDEBAR
         "sidebar.verticalTabs" = true;

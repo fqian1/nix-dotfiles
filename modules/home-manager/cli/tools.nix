@@ -62,5 +62,6 @@
     bat
     ripgrep
     fd
+    fuzzel
   ];
 }

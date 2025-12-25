@@ -36,6 +36,8 @@
  - status bar stays in neovim even tmux
  - mango doesnt run autostart.sh
  - indentblankline doesnt read the fukin highlight group, need to do :IBLDisable :IBLEnable
+ - guess-indent doesnt work
+ - treesitter context doesnt work
 
 # unrelated:
  - grex, newsboat, jrnl, ttyd, croc: cool cli tools
