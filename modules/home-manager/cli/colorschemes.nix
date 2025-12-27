@@ -101,9 +101,9 @@ in {
           echo "put_template 4 \"9;''${B[8]}\""
           echo "put_template 4 \"10;''${B[11]}\""
           echo "put_template 4 \"11;''${B[9]}\""
-          echo "put_template 4 \"12;''${B[13]}\""
+          echo "put_template 4 \"12;''${B[2]}\""
           echo "put_template 4 \"13;''${B[15]}\""
-          echo "put_template 4 \"14;''${B[2]}\""
+          echo "put_template 4 \"14;''${B[12]}\""
           echo "put_template 4 \"15;''${B[6]}\""
 
           echo 'unset -f put_template'
@@ -118,23 +118,23 @@ in {
   ];
 }
 # Logic used to store base16 palette while maintaining similar ansi 15 palette:
-# Ansi 0:  Black          -> base01 : Bright Black   (Lighter Background - Status Bar, Line Highlight)
-# Ansi 1:  Red            -> base08 : Red            (Variables, Errors, Git Delete)
-# Ansi 2:  Green          -> base0B : Green          (Strings, Success, Git Add)
-# Ansi 3:  Yellow         -> base0A : Yellow         (Types, Classes, Search HL, Warn)
-# Ansi 4:  Blue           -> base0D : Blue           (Functions, Methods, Ids)
-# Ansi 5:  Magenta        -> base0E : Magenta        (Control Flow, Keywords)
-# Ansi 6:  Cyan           -> base0C : Cyan           (Regex, Escape Chars, Support)
-# Ansi 7:  White          -> base04 : Light Grey     (Faint Foreground - Comments, Line Numbers)
-# Ansi 8:  Bright Black   -> base03 : Grey           (Subtle Foreground - Invisible Characters, Unimportant Text)
-# Ansi 9:  Bright Red     -> base08 : Red            (Duplicate)
-# Ansi 10: Bright Green   -> base0B : Green          (Duplicate)
-# Ansi 11: Bright Yellow  -> base09 : Orange         (Numbers, Bools, Consts, Warn)
-# Ansi 12: Bright Blue    -> base0D : Blue           (Duplicate)
-# Ansi 13: Bright Magenta -> base0F : Brown/Maroon   (Deprecated Code, Headers, Embedded code)
-# Ansi 14: Bright Cyan    -> base02 : Dark Grey      (Selection Background)
-# Ansi 15: Bright White   -> base06 : White      (Light Foreground - High Contrast, Bright FG)
-# Default Background      -> base00 : Black          (Background)
-# Default Foreground      -> base05 : Off-White     (Foreground)
+# Ansi 0:  Black          -> base01 1 : Bright Black   (Lighter Background - Status Bar, Line Highlight)
+# Ansi 1:  Red            -> base08 8 : Red            (Variables, Errors, Git Delete)
+# Ansi 2:  Green          -> base0B 11: Green          (Strings, Success, Git Add)
+# Ansi 3:  Yellow         -> base0A 10: Yellow         (Types, Classes, Search HL, Warn)
+# Ansi 4:  Blue           -> base0D 13: Blue           (Functions, Methods, Ids)
+# Ansi 5:  Magenta        -> base0E 14: Magenta        (Control Flow, Keywords)
+# Ansi 6:  Cyan           -> base0C 12: Cyan           (Regex, Escape Chars, Support)
+# Ansi 7:  White          -> base04 4 : Light Grey     (Faint Foreground - Comments, Line Numbers)
+# Ansi 8:  Bright Black   -> base03 3 : Grey           (Subtle Foreground - Invisible Characters, Unimportant Text)
+# Ansi 9:  Bright Red     -> base08 8 : Red            (Duplicate)
+# Ansi 10: Bright Green   -> base0B 11: Green          (Duplicate)
+# Ansi 11: Bright Yellow  -> base09 9 : Orange         (Numbers, Bools, Consts, Warn)
+# Ansi 12: Bright Blue    -> base02 2 : Dark Grey      (Selection Background)
+# Ansi 13: Bright Magenta -> base0F 15: Brown/Maroon   (Deprecated Code, Headers, Embedded code)
+# Ansi 14: Bright Cyan    -> base0C 12: Cyan           (Duplicate)
+# Ansi 15: Bright White   -> base06 6 : White          (Light Foreground - High Contrast, Bright FG)
+# Default Background      -> base00 0 : Black          (Background)
+# Default Foreground      -> base05 5 : Off-White      (Foreground)
 # Base07 Omitted - Pure white seldom used
 

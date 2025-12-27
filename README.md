@@ -16,6 +16,7 @@
 # todo list:
  - finish configure mangowc, make everything suckless. foot (no ligatures, alternative?), wl clipboard, grim, slurp. media controls in fn keys.
  - use agenix for wireguard conf file and ssh
+ - auto brightness wluma
  - split modules/home-manager/cli packages to dev pkgs like tmux and qol pkgs like starship
  - make dmenu script YOURSELF! dwl -> open floating term -> fd -> skim -> nohup $app &
  - make hardware agnostic (amd nvidia intel gpu cpu integrated graphics etc.)
@@ -35,9 +36,9 @@
  - long time for vim open .md files
  - status bar stays in neovim even tmux
  - mango doesnt run autostart.sh
- - indentblankline doesnt read the fukin highlight group, need to do :IBLDisable :IBLEnable
- - guess-indent doesnt work
- - treesitter context doesnt work
+ - indentblankline doesnt read the fukin highlight group, need to do :IBLDisable > :IBLEnable
+ - guess-indent just doesnt work
+ - tmux not handling transparency
 
 # unrelated:
  - grex, newsboat, jrnl, ttyd, croc: cool cli tools

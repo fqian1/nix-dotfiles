@@ -157,8 +157,8 @@ vim.opt.termguicolors = false
 local colors = {
 	Black = "NONE", -- BG
 	BrightBlack = 0, -- Popup menu BG
-	DarkGrey = 14, -- Selection BG
-	Grey = 8, -- Invisible Text
+	DarkGrey = 12, -- Selection BG
+	Grey = 8, -- Invisible Text, UI Guides
 	LightGrey = 7, -- Comments, LineNumbers
 	OffWhite = "NONE", -- FG
 	White = 15, -- Bright FG
@@ -180,6 +180,7 @@ local highlights = {
 	CursorLine = { ctermbg = colors.BrightBlack },
 	ColorColumn = { ctermbg = colors.Black },
 	Visual = { ctermbg = colors.DarkGrey },
+	Directory = { ctermfg = colors.Cyan },
 
 	-- 2. Standard Syntax
 	Comment = { ctermfg = colors.LightGrey, italic = true },
@@ -196,7 +197,9 @@ local highlights = {
 	Todo = { ctermfg = colors.Black, ctermbg = colors.Yellow, bold = true },
 
 	-- 3. Gutter and Splits
-	LineNr = { ctermfg = colors.LightGrey },
+	LineNr = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack },
+	LineNrBelow = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack },
+	LineNrAbove = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack },
 	CursorLineNr = { ctermfg = colors.OffWhite },
 	SignColumn = { ctermbg = colors.BrightBlack },
 	VertSplit = { ctermfg = colors.BrightBlack },
@@ -212,6 +215,20 @@ local highlights = {
 	Pmenu = { ctermfg = colors.White, ctermbg = colors.BrightBlack },
 	PmenuSel = { ctermfg = colors.White, ctermbg = colors.DarkGrey },
 	SpellBad = { undercurl = true, sp = colors.Red },
+
+	-- Git
+	DiffAdd = { ctermfg = colors.Green, ctermbg = "NONE" },
+	DiffChange = { ctermfg = colors.Yellow, ctermbg = "NONE" },
+	DiffDelete = { ctermfg = colors.Red, ctermbg = "NONE" },
+	DiffText = { ctermfg = colors.Blue, ctermbg = "NONE" },
+
+	-- LSP
+	DiagnosticError = { ctermfg = colors.Red },
+	DiagnosticWarn = { ctermfg = colors.Orange },
+	DiagnosticInfo = { ctermfg = colors.Blue },
+	DiagnosticHint = { ctermfg = colors.Cyan },
+	DiagnosticVirtualTextError = { ctermfg = colors.Red, ctermbg = "NONE" },
+	DiagnosticVirtualTextWarn = { ctermfg = colors.Orange, ctermbg = "NONE" },
 }
 
 for group, settings in pairs(highlights) do

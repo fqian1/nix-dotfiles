@@ -93,7 +93,7 @@ local ts_highlights = {
     ["@boolean"]            = { ctermfg = colors.Orange },
 
     -- 6. Punctuation & Tags
-    ["@punctuation.delimiter"] = { ctermfg = colors.LightGrey },
+    ["@punctuation.delimiter"] = { ctermfg = colors.OffWhite },
     ["@punctuation.bracket"]   = { ctermfg = colors.OffWhite },
     ["@tag"]                   = { ctermfg = colors.Red },
     ["@tag.attribute"]         = { ctermfg = colors.Orange },

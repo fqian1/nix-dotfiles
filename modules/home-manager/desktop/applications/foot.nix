@@ -8,6 +8,7 @@
     enable = true;
     settings = {
       main = {
+        term = "xterm-256color";
         font = "FiraCode Nerd Font:size=10";
         underline-thickness = "2px";
         underline-offset = "3px";
@@ -18,7 +19,7 @@
       };
 
       colors = {
-        alpha = 1.0;
+        alpha = 0.9;
       };
 
       cursor = {
