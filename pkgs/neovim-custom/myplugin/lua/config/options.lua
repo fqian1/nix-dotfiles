@@ -154,22 +154,41 @@ vim.opt.inccommand = "split" -- Show live preview of :s commands
 --------------------
 vim.opt.termguicolors = false
 
+-- Background  -> Black          (Background)
+--          0  -> Bright Black   (Lighter Background - Status Bar, Line Highlight)
+--          1  -> Red            (Duplicate)
+--          2  -> Green          (Duplicate)
+--          3  -> Orange         (Numbers, Bools, Consts, Warn)
+--          4  -> Dark Grey      (Selection Background)
+--          5  -> Maroon   (Deprecated Code, Headers, Embedded code)
+--          6  -> Cyan           (Duplicate)
+--          7  -> Light Grey     (Faint Foreground - Comments, Line Numbers)
+--          8  -> Grey           (Subtle Foreground - Invisible Characters, Unimportant Text)
+--          9  -> Red            (Variables, Errors, Git Delete)
+--          10 -> Green          (Strings, Success, Git Add)
+--          11 -> Yellow         (Types, Classes, Search HL, Warn)
+--          12 -> Blue           (Functions, Methods, Ids)
+--          13 -> Magenta        (Control Flow, Keywords)
+--          14 -> Cyan           (Regex, Escape Chars, Support)
+--          15 -> White          (Light Foreground - High Contrast, Bright FG)
+-- Foreground  -> Off-White      (Foreground)
+
 local colors = {
 	Black = "NONE", -- BG
 	BrightBlack = 0, -- Popup menu BG
-	DarkGrey = 12, -- Selection BG
+	DarkGrey = 4, -- Selection BG
 	Grey = 8, -- Invisible Text, UI Guides
 	LightGrey = 7, -- Comments, LineNumbers
 	OffWhite = "NONE", -- FG
 	White = 15, -- Bright FG
 	Red = 1, --  Variables and errors
 	Green = 2, -- Strings
-	Yellow = 3, -- Types, Classes
-	Blue = 4, -- Functions, ID's
-	Magenta = 5, -- Keywords
-	Cyan = 6, -- Regex, Escape Chars
-	Orange = 11, -- Numbers, Bools, Consts, Warn
-	Maroon = 13, -- Deprecated, Headers, Embedded
+	Yellow = 11, -- Types, Classes
+	Blue = 12, -- Functions, ID's
+	Magenta = 13, -- Keywords
+	Cyan = 14, -- Regex, Escape Chars
+	Orange = 3, -- Numbers, Bools, Consts, Warn
+	Maroon = 5, -- Deprecated, Headers, Embedded
 }
 
 local highlights = {
@@ -181,6 +200,8 @@ local highlights = {
 	ColorColumn = { ctermbg = colors.Black },
 	Visual = { ctermbg = colors.DarkGrey },
 	Directory = { ctermfg = colors.Cyan },
+	MsgArea = { ctermbg = colors.BrightBlack },
+	Cmdline = { ctermfg = colors.Orange, bold = true },
 
 	-- 2. Standard Syntax
 	Comment = { ctermfg = colors.LightGrey, italic = true },

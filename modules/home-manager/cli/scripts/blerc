@@ -97,28 +97,29 @@ ble-import contrib/prompt-git
 function ble/prompt/backslash:cwd2 {
   local dir="${PWD##*/}"
   local pdir_full="${PWD%/*}"
-  # Extract basename and truncate to 4 characters
-  local pdir_raw="${pdir_full##*/}"
-  local pdir="${pdir_raw:0:4}"
+  local pdir="${pdir_full##*/}"
+  local pdirt="${pdir:0:3}.."
 
   if [[ "$PWD" == "$HOME" ]]; then
     ble/prompt/print "~"
   elif [[ "$PWD" == "/" ]]; then
     ble/prompt/print "/"
-  elif [[ -z "$pdir_full" ]]; then
+  elif [[ -z "$pdir_full" ]]; then # Checks if PWD is / (which is already covered, but good for completeness)
     ble/prompt/print "$dir"
   elif [[ "$pdir_full" == "$HOME" ]]; then
-    ble/prompt/print "~/$dir"
+    ble/prompt/print "~/$dir" # Check if the full parent path is HOME
   else
-    ble/prompt/print "$pdir/$dir"
+    ble/prompt/print "$pdirt/$dir"
   fi
 }
 
-function ble/prompt/backslash:show_direnv {
+show_direnv() {
   if [[ -n "$DIRENV_DIR" ]]; then
-    ble/prompt/print "(nix)"
+    echo "(nix) "
   fi
 }
 
-PS1='\g{fg=2}\q{show_direnv}[\u@\h:\q{cwd2}]\g{fg=2}\q{contrib/git-branch}\g{fg=2}\$ \g{none}'
+export PS1='$(show_direnv)'$PS1
+
+PS1='\g{fg=2}[\u@\h:\q{cwd2}]\g{fg=2}\q{contrib/git-branch}\g{fg=2}\$ \g{none}'
 bleopt prompt_rps1='\q{contrib/git-hash} \g{bg=0}\t\g{none}'

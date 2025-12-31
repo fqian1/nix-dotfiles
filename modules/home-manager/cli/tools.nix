@@ -4,6 +4,7 @@
     ripgrep-all.enable = true;
     tealdeer.enable = true;
     gemini-cli.enable = true;
+    vifm.enable = true;
     lazygit = {
       enable = true;
       settings = {
