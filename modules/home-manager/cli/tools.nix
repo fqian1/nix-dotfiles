@@ -57,6 +57,7 @@
     shfmt
     stylua
     # Tools
+    wifitui
     hyperfine
     ffmpeg
     bottom

@@ -40,21 +40,21 @@ require("nvim-treesitter.configs").setup({
 })
 
 local colors = {
-    Black       = "NONE", -- BG
-    BrightBlack = 0,      -- Popup menu BG
-    DarkGrey    = 14,     -- Selection BG
-    Grey        = 8,      -- Invisible Text
-    LightGrey   = 7,      -- Comments, LineNumbers
-    OffWhite    = "NONE", -- FG
-    White       = 15,     -- Bright FG
-    Red         = 1,      -- Variables and errors
-    Green       = 2,      -- Strings
-    Yellow      = 3,      -- Types, Classes
-    Blue        = 4,      -- Functions, ID's
-    Magenta     = 5,      -- Keywords
-    Cyan        = 6,      -- Regex, Escape Chars
-    Orange      = 11,     -- Numbers, Bools, Consts, Warn
-    Maroon      = 13,     -- Deprecated, Headers, Embedded
+	Black = "NONE", -- BG
+	BrightBlack = 0, -- Popup menu BG
+	DarkGrey = 4, -- Selection BG
+	Grey = 8, -- Invisible Text, UI Guides
+	LightGrey = 7, -- Comments, LineNumbers
+	OffWhite = "NONE", -- FG
+	White = 15, -- Bright FG
+	Red = 1, --  Variables and errors
+	Green = 2, -- Strings
+	Yellow = 11, -- Types, Classes
+	Blue = 12, -- Functions, ID's
+	Magenta = 13, -- Keywords
+	Cyan = 14, -- Regex, Escape Chars
+	Orange = 3, -- Numbers, Bools, Consts, Warn
+	Maroon = 5, -- Deprecated, Headers, Embedded
 }
 
 local ts_highlights = {
