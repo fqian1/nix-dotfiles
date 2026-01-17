@@ -65,5 +65,6 @@
     ripgrep
     fd
     fuzzel
+    dconf
   ];
 }
