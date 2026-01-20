@@ -13,7 +13,6 @@
     outputs.homeManagerModules.cli.scripts
     outputs.homeManagerModules.cli.colorschemes
 
-    outputs.homeManagerModules.desktop.neowall
     outputs.homeManagerModules.desktop.mangowc
     outputs.homeManagerModules.desktop.theme
     outputs.homeManagerModules.desktop.applications.librewolf
