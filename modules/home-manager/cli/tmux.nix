@@ -65,7 +65,7 @@
 
       vim_pattern='(\S+/)?g?\.?(view|l?n?vim?x?|fzy)(diff)?(-wrapped)?'
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-          | grep -iqE '^[^TXZ ]+ +$${vim_pattern}$'"
+          | grep -iqE '^[^TXZ ]+ +''${vim_pattern}$'"
       bind-key -n 'C-h' if-shell "$is_vim" { send-keys C-h } { if-shell -F '#{pane_at_left}'   {} { select-pane -L } }
       bind-key -n 'C-j' if-shell "$is_vim" { send-keys C-j } { if-shell -F '#{pane_at_bottom}' {} { select-pane -D } }
       bind-key -n 'C-k' if-shell "$is_vim" { send-keys C-k } { if-shell -F '#{pane_at_top}'    {} { select-pane -U } }
