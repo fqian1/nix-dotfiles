@@ -1,6 +1,6 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter
 
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter").setup({
 	auto_install = false,
 	highlight = {
 		enable = true,
@@ -39,79 +39,91 @@ require("nvim-treesitter.configs").setup({
 	matchup = { enable = true },
 })
 
-local colors = {
-	Black = "NONE", -- BG
-	BrightBlack = 0, -- Popup menu BG
-	DarkGrey = 4, -- Selection BG
-	Grey = 8, -- Invisible Text, UI Guides
-	LightGrey = 7, -- Comments, LineNumbers
-	OffWhite = "NONE", -- FG
-	White = 15, -- Bright FG
-	Red = 1, --  Variables and errors
-	Green = 2, -- Strings
-	Yellow = 11, -- Types, Classes
-	Blue = 12, -- Functions, ID's
-	Magenta = 13, -- Keywords
-	Cyan = 14, -- Regex, Escape Chars
-	Orange = 3, -- Numbers, Bools, Consts, Warn
-	Maroon = 5, -- Deprecated, Headers, Embedded
-}
-
-local ts_highlights = {
-    -- 1. Identifiers & Variables
-    ["@variable"]           = { ctermfg = colors.OffWhite },
-    ["@variable.builtin"]   = { ctermfg = colors.Red },
-    ["@variable.parameter"] = { ctermfg = colors.Red },
-    ["@variable.member"]    = { ctermfg = colors.Red },
-
-    -- 2. Functions & Methods
-    ["@function"]           = { ctermfg = colors.Blue },
-    ["@function.builtin"]   = { ctermfg = colors.Blue, bold = true },
-    ["@function.method"]    = { ctermfg = colors.Blue },
-    ["@function.macro"]     = { ctermfg = colors.Cyan },
-
-    -- 3. Keywords & Control
-    ["@keyword"]            = { ctermfg = colors.Magenta },
-    ["@keyword.function"]   = { ctermfg = colors.Magenta },
-    ["@keyword.operator"]   = { ctermfg = colors.Magenta },
-    ["@keyword.return"]     = { ctermfg = colors.Magenta },
-    ["@conditional"]        = { ctermfg = colors.Magenta },
-    ["@repeat"]             = { ctermfg = colors.Magenta },
-
-    -- 4. Types & Classes
-    ["@type"]               = { ctermfg = colors.Yellow },
-    ["@type.builtin"]       = { ctermfg = colors.Yellow },
-    ["@type.definition"]    = { ctermfg = colors.Yellow },
-    ["@constructor"]        = { ctermfg = colors.Blue },
-
-    -- 5. Constants & Literals
-    ["@constant"]           = { ctermfg = colors.Orange },
-    ["@constant.builtin"]   = { ctermfg = colors.Orange, bold = true },
-    ["@string"]             = { ctermfg = colors.Green },
-    ["@string.escape"]      = { ctermfg = colors.Cyan },
-    ["@number"]             = { ctermfg = colors.Orange },
-    ["@boolean"]            = { ctermfg = colors.Orange },
-
-    -- 6. Punctuation & Tags
-    ["@punctuation.delimiter"] = { ctermfg = colors.OffWhite },
-    ["@punctuation.bracket"]   = { ctermfg = colors.OffWhite },
-    ["@tag"]                   = { ctermfg = colors.Red },
-    ["@tag.attribute"]         = { ctermfg = colors.Orange },
-    ["@tag.delimiter"]         = { ctermfg = colors.LightGrey },
-
-    -- 7. Comments & Documentation
-    ["@comment"]               = { ctermfg = colors.LightGrey, italic = true },
-    ["@text.uri"]              = { ctermfg = colors.Blue, underline = true },
-}
-
-for group, settings in pairs(ts_highlights) do
-    vim.api.nvim_set_hl(0, group, settings)
-end
-
 -- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
 require("treesitter-context").setup({
 	multiline_threshold = 4,
 })
 
-vim.api.nvim_set_hl(0, 'TreesitterContext', { link = 'CursorLine' })
+local colors = {
+	Black = "NONE", -- BG
+	BrightBlack = 0, -- UI Panels
+	Red = 1, -- Variables
+	Green = 2, -- Strings
+	Yellow = 3, -- Classes
+	Blue = 4, -- Functions
+	Magenta = 5, -- Keywords
+	Cyan = 6, -- Regex
+	LightGrey = 7, -- Subtle text
+	Grey = 8, -- Invisible chars
+	Orange = 11, -- Integers, Consts
+	DarkGrey = 12, -- Highlighted lines
+	Maroon = 13, -- Deprecated
+	White = 15, -- Emphasis
+	OffWhite = "NONE", -- FG
+}
 
+local ts_highlights = {
+	-- 1. Identifiers & Variables
+	["@variable"] = { ctermfg = colors.OffWhite }, -- Local vars
+	["@variable.builtin"] = { ctermfg = colors.Red }, -- 'this', 'self'
+	["@variable.parameter"] = { ctermfg = colors.Red },
+	["@variable.member"] = { ctermfg = colors.Red }, -- Object properties
+	["@property"] = { ctermfg = colors.Red }, -- Missing in your list (maps to member)
+
+	-- 2. Functions & Methods
+	["@function"] = { ctermfg = colors.Blue },
+	["@function.builtin"] = { ctermfg = colors.Blue, bold = true },
+	["@function.method"] = { ctermfg = colors.Blue },
+	["@function.macro"] = { ctermfg = colors.Cyan },
+
+	-- 3. Keywords & Control
+	["@keyword"] = { ctermfg = colors.Magenta },
+	["@keyword.function"] = { ctermfg = colors.Magenta },
+	["@keyword.operator"] = { ctermfg = colors.Magenta },
+	["@keyword.import"] = { ctermfg = colors.Maroon }, -- Specific for includes/requires
+	["@operator"] = { ctermfg = colors.Magenta }, -- +, -, *, =
+	["@conditional"] = { ctermfg = colors.Magenta },
+	["@repeat"] = { ctermfg = colors.Magenta },
+
+	-- 4. Types & Classes
+	["@type"] = { ctermfg = colors.Yellow },
+	["@type.builtin"] = { ctermfg = colors.Yellow },
+	["@type.definition"] = { ctermfg = colors.Yellow },
+	["@module"] = { ctermfg = colors.Yellow }, -- Namespaces/Modules
+	["@constructor"] = { ctermfg = colors.Blue },
+
+	-- 5. Constants & Literals
+	["@constant"] = { ctermfg = colors.Orange },
+	["@constant.builtin"] = { ctermfg = colors.Orange, bold = true },
+	["@string"] = { ctermfg = colors.Green },
+	["@string.escape"] = { ctermfg = colors.Cyan },
+	["@number"] = { ctermfg = colors.Orange },
+	["@boolean"] = { ctermfg = colors.Orange },
+
+	-- 6. Punctuation & Tags
+	["@punctuation"] = { ctermfg = colors.OffWhite },
+	["@punctuation.delimiter"] = { ctermfg = colors.OffWhite },
+	["@punctuation.bracket"] = { ctermfg = colors.OffWhite },
+
+	["@tag"] = { ctermfg = colors.Red },
+	["@tag.attribute"] = { ctermfg = colors.Blue }, -- FIXED: Palette says Blue = Attribute IDs
+	["@tag.delimiter"] = { ctermfg = colors.Maroon }, -- FIXED: Palette says Maroon = Embedded Tags
+
+	-- 7. Markup (Markdown / Help)
+	["@markup.heading"] = { ctermfg = colors.Maroon, bold = true }, -- Palette says Maroon = Headers
+	["@markup.strong"] = { bold = true },
+	["@markup.italic"] = { italic = true },
+	["@markup.link"] = { ctermfg = colors.Blue, underline = true },
+	["@markup.link.label"] = { ctermfg = colors.Green },
+	["@markup.raw"] = { ctermfg = colors.Green }, -- Code blocks
+
+	-- 8. Comments
+	["@comment"] = { ctermfg = colors.LightGrey, italic = true },
+	["@text.uri"] = { ctermfg = colors.Blue, underline = true },
+}
+
+for group, settings in pairs(ts_highlights) do
+	vim.api.nvim_set_hl(0, group, settings)
+end
+
+vim.api.nvim_set_hl(0, "TreesitterContext", { link = "CursorLine" })

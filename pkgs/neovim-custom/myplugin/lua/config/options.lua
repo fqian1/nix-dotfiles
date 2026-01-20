@@ -154,54 +154,58 @@ vim.opt.inccommand = "split" -- Show live preview of :s commands
 --------------------
 vim.opt.termguicolors = false
 
--- Background  -> Black          (Background)
---          0  -> Bright Black   (Lighter Background - Status Bar, Line Highlight)
---          1  -> Red            (Duplicate)
---          2  -> Green          (Duplicate)
---          3  -> Orange         (Numbers, Bools, Consts, Warn)
---          4  -> Dark Grey      (Selection Background)
---          5  -> Maroon   (Deprecated Code, Headers, Embedded code)
---          6  -> Cyan           (Duplicate)
---          7  -> Light Grey     (Faint Foreground - Comments, Line Numbers)
---          8  -> Grey           (Subtle Foreground - Invisible Characters, Unimportant Text)
---          9  -> Red            (Variables, Errors, Git Delete)
---          10 -> Green          (Strings, Success, Git Add)
---          11 -> Yellow         (Types, Classes, Search HL, Warn)
---          12 -> Blue           (Functions, Methods, Ids)
---          13 -> Magenta        (Control Flow, Keywords)
---          14 -> Cyan           (Regex, Escape Chars, Support)
---          15 -> White          (Light Foreground - High Contrast, Bright FG)
--- Foreground  -> Off-White      (Foreground)
+-- NONE    ->  Black       (Background)
+-- Ansi 0  ->  BrightBlack (Status bars, UI panels)
+-- Ansi 1  ->  Red         (Variables, XML Tags, Markup Error)
+-- Ansi 2  ->  Green       (Strings, Inherited Class, Markup Added)
+-- Ansi 3  ->  Yellow      (Classes, Bold, Markup Warnings)
+-- Ansi 4  ->  Blue        (Functions, Methods, Attribute IDs)
+-- Ansi 5  ->  Magenta     (Keywords, Storage, Selector Tag)
+-- Ansi 6  ->  Cyan        (Support, Regex, Escape Characters)
+-- Ansi 7  ->  LightGrey   (Subtle text)
+-- Ansi 8  ->  Grey        (Invisible characters)
+-- Ansi 9  ->  Red         (Variables, XML Tags, Markup Error)
+-- Ansi 10 ->  Green       (Strings, Inherited Class, Markup Added)
+-- Ansi 11 ->  Orange      (Integers, Boolean, Constants)
+-- Ansi 12 ->  DarkGrey    (Highlighted lines)
+-- Ansi 13 ->  Brown       (Deprecated, Opening/Closing Embedded Tags)
+-- Ansi 14 ->  Cyan        (Support, Regex, Escape Characters)
+-- Ansi 15 ->  White       (Emphasis)
+-- NONE    ->  OffWhite    (Primary text, Variables)
 
 local colors = {
 	Black = "NONE", -- BG
-	BrightBlack = 0, -- Popup menu BG
-	DarkGrey = 4, -- Selection BG
-	Grey = 8, -- Invisible Text, UI Guides
-	LightGrey = 7, -- Comments, LineNumbers
-	OffWhite = "NONE", -- FG
-	White = 15, -- Bright FG
-	Red = 1, --  Variables and errors
+	BrightBlack = 0, -- UI Panels
+	Red = 1, -- Variables
 	Green = 2, -- Strings
-	Yellow = 11, -- Types, Classes
-	Blue = 12, -- Functions, ID's
-	Magenta = 13, -- Keywords
-	Cyan = 14, -- Regex, Escape Chars
-	Orange = 3, -- Numbers, Bools, Consts, Warn
-	Maroon = 5, -- Deprecated, Headers, Embedded
+	Yellow = 3, -- Classes
+	Blue = 4, -- Functions
+	Magenta = 5, -- Keywords
+	Cyan = 6, -- Regex
+	LightGrey = 7, -- Subtle text
+	Grey = 8, -- Invisible chars
+	Orange = 11, -- Integers, Consts
+	DarkGrey = 12, -- Highlighted lines
+	Maroon = 13, -- Deprecated
+	White = 15, -- Emphasis
+	OffWhite = "NONE", -- FG
 }
 
 local highlights = {
 	-- 1. Core UI
 	Normal = { ctermfg = colors.OffWhite, ctermbg = colors.Black },
 	NormalFloat = { ctermbg = colors.BrightBlack },
+	FloatBorder = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack }, -- Missing
 	Cursor = { reverse = true },
-	CursorLine = { ctermbg = colors.BrightBlack },
-	ColorColumn = { ctermbg = colors.Black },
+	CursorLine = { ctermbg = colors.BrightBlack }, -- Note: Same as NormalFloat/StatusLineNC
+	ColorColumn = { ctermbg = colors.BrightBlack },
 	Visual = { ctermbg = colors.DarkGrey },
-	Directory = { ctermfg = colors.Cyan },
-	MsgArea = { ctermbg = colors.BrightBlack },
+	Directory = { ctermfg = colors.Blue },
+	MsgArea = { ctermbg = colors.Black },
 	Cmdline = { ctermfg = colors.Orange, bold = true },
+	NonText = { ctermfg = colors.Grey }, -- Missing: EOL symbols
+	Folded = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack }, -- Missing
+	Title = { ctermfg = colors.Blue, bold = true }, -- Missing
 
 	-- 2. Standard Syntax
 	Comment = { ctermfg = colors.LightGrey, italic = true },
@@ -218,30 +222,29 @@ local highlights = {
 	Todo = { ctermfg = colors.Black, ctermbg = colors.Yellow, bold = true },
 
 	-- 3. Gutter and Splits
-	LineNr = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack },
-	LineNrBelow = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack },
-	LineNrAbove = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack },
-	CursorLineNr = { ctermfg = colors.OffWhite },
-	SignColumn = { ctermbg = colors.BrightBlack },
+	LineNr = { ctermfg = colors.LightGrey, ctermbg = colors.Black }, -- Changed bg to Black for contrast
+	CursorLineNr = { ctermfg = colors.Orange, bold = true },
+	SignColumn = { ctermbg = colors.Black },
 	VertSplit = { ctermfg = colors.BrightBlack },
 	WinSeparator = { ctermfg = colors.BrightBlack },
-	StatusLine = { ctermfg = colors.OffWhite, ctermbg = colors.Black },
-	StatusLineNC = { ctermfg = colors.LightGrey, ctermbg = colors.BrightBlack },
+	StatusLine = { ctermfg = colors.OffWhite, ctermbg = colors.BrightBlack },
+	StatusLineNC = { ctermfg = colors.Grey, ctermbg = colors.Black }, -- Inverted for contrast
 
 	-- 4. Interaction & Feedback
 	Search = { ctermfg = colors.Black, ctermbg = colors.Yellow },
-	IncSearch = { ctermfg = colors.Black, ctermbg = colors.Yellow },
+	IncSearch = { ctermfg = colors.Black, ctermbg = colors.Orange },
 	CurSearch = { ctermfg = colors.Black, ctermbg = colors.Orange },
-	MatchParen = { ctermfg = colors.Orange, bold = true },
+	MatchParen = { ctermfg = colors.White, ctermbg = colors.DarkGrey, bold = true },
 	Pmenu = { ctermfg = colors.White, ctermbg = colors.BrightBlack },
 	PmenuSel = { ctermfg = colors.White, ctermbg = colors.DarkGrey },
+	WildMenu = { ctermfg = colors.Black, ctermbg = colors.Blue }, -- Missing
 	SpellBad = { undercurl = true, sp = colors.Red },
 
 	-- Git
 	DiffAdd = { ctermfg = colors.Green, ctermbg = "NONE" },
 	DiffChange = { ctermfg = colors.Yellow, ctermbg = "NONE" },
 	DiffDelete = { ctermfg = colors.Red, ctermbg = "NONE" },
-	DiffText = { ctermfg = colors.Blue, ctermbg = "NONE" },
+	DiffText = { ctermfg = colors.Blue, ctermbg = colors.BrightBlack }, -- Needs BG to be readable
 
 	-- LSP
 	DiagnosticError = { ctermfg = colors.Red },
@@ -251,6 +254,10 @@ local highlights = {
 	DiagnosticVirtualTextError = { ctermfg = colors.Red, ctermbg = "NONE" },
 	DiagnosticVirtualTextWarn = { ctermfg = colors.Orange, ctermbg = "NONE" },
 }
+
+for group, settings in pairs(highlights) do
+	vim.api.nvim_set_hl(0, group, settings)
+end
 
 for group, settings in pairs(highlights) do
 	vim.api.nvim_set_hl(0, group, settings)
