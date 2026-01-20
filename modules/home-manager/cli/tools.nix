@@ -41,29 +41,12 @@
   };
 
   home.packages = with pkgs; [
-    # LSP
-    lua-language-server
-    yaml-language-server
-    rust-analyzer
-    bash-language-server
-    vscode-css-languageserver
-    pyright
-    nil
-    # Formatter
-    alejandra
-    prettier
-    rustfmt
-    ruff
-    shfmt
-    stylua
     # Tools
     wifitui
     hyperfine
     ffmpeg
     bottom
     bat
-    ripgrep
-    fd
     fuzzel
     dconf
   ];
