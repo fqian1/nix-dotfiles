@@ -50,7 +50,11 @@ in {
         "ui.prefersReducedMotion" = 1;
         "ui.key.menuAccessKeyFocuses" = false;
         "privacy.clearOnShutdown.history" = false;
+        "privacy.clearOnShutdown.downloads" = false;
+        "privacy.clearOnShutdown.sessions" = false;
+        "privacy.clearOnShutdown.cookies" = false;
         "browser.startup.page" = 3;
+        "places.history.enabled" = true;
 
         # SIDEBAR
         "sidebar.verticalTabs" = true;
