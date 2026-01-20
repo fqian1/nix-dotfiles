@@ -111,7 +111,7 @@ in
         --add-flags 'NORC' \
         --add-flags '--cmd' \
         --add-flags "'set packpath^=${packpath} | set runtimepath^=${packpath}'" \
-        --set-default NVIM_APPNAME nvim-custom
+        --set-default NVIM_APPNAME nvim-custom \
         --prefix PATH : "${lib.makeBinPath externalPackages}"
     '';
 
