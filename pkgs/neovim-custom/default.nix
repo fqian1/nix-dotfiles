@@ -20,6 +20,7 @@
   vscode-css-languageserver,
   pyright,
   nil,
+  tree-sitter,
 }: let
   packageName = "mypackage";
 
@@ -33,8 +34,9 @@
     vimPlugins.nvim-lspconfig
     # Treesitter
     vimPlugins.treesitter-modules-nvim
-    vimPlugins.nvim-treesitter
     vimPlugins.nvim-treesitter-textobjects
+    vimPlugins.nvim-treesitter-textsubjects
+    vimPlugins.nvim-treesitter-sexp
     vimPlugins.nvim-treesitter-context
     # Completion
     vimPlugins.blink-cmp
@@ -99,6 +101,7 @@
     vscode-css-languageserver
     pyright
     nil
+    tree-sitter
   ];
 in
   symlinkJoin {

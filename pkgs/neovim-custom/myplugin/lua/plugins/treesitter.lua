@@ -1,11 +1,13 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter
-
-require("nvim-treesitter").setup({
-	auto_install = false,
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
+require('treesitter-modules').setup({
+    auto_install = false,
+    fold = {
+        enable = true,
+    },
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
 	incremental_selection = {
 		enable = true,
 		keymaps = {
@@ -15,9 +17,9 @@ require("nvim-treesitter").setup({
 			node_decremental = "V",
 		},
 	},
-	indent = {
-		enable = true,
-	},
+    indent = {
+        enable = true,
+    },
 	textobjects = {
 		select = {
 			enable = true,
