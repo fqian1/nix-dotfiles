@@ -25,6 +25,8 @@
  - configure laptop and desktop modules, laptop stuff like tlp, openssh configurations
  - configure rust analyzer expressionadjustmenthints
  - enable encryption with zfs
+ - rice tty (256 font ansi colour)
+ - base16 -> oklab -> stretch 6x6x6 (bisect) -> rippas/tps/linear -> monotonic cube spline greyscale ramp -> ansi255
  - fwupdmgr service / script
  - create overlays for tools/apps like ripgrep or compositor with compiler optimizations -O3 -march=native
  - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
