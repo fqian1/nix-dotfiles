@@ -20,17 +20,21 @@
  - split modules/home-manager/cli packages to dev pkgs like tmux and qol pkgs like starship
  - make dmenu script YOURSELF! dwl -> open floating term -> fd -> skim -> nohup $app &
  - make hardware agnostic (amd nvidia intel gpu cpu integrated graphics etc.)
- - rice with quickshell, stylix?
+ - create base16 -> ansi 255 script
  - configure iwd over wpa supplicant / nmcli make tui using scripts
  - configure laptop and desktop modules, laptop stuff like tlp, openssh configurations
  - configure rust analyzer expressionadjustmenthints
  - enable encryption with zfs
+ - rice tty (256 font ansi colour), kmscon/patched font
+ - base16 -> oklab -> stretch 6x6x6 (bisect) -> rippas/tps/linear -> monotonic cube spline greyscale ramp -> ansi255
  - fwupdmgr service / script
  - create overlays for tools/apps like ripgrep or compositor with compiler optimizations -O3 -march=native
  - add pkgs/overlays for bevy_cli, maybe pixieditor, lmms
  - try out different kernels? maybe the cachyos kernel?? blazingly fast.
  - configure impermanence for home directory so i can do imperative stuff 👹
- - coreboot -> uefi payload (yabits?) -> bootloader (limine) -> uki entries (lanzaboot) -> s6 (sixos)
+ - oreboot -> linuxboot (payload + bootloader) -> GOBO SUPREMACY -> s6
+ - syncthing
+ - configure obsidian - automatic link discovery (smark connections), auto tagging
 
 # BUGS:
  - long time for vim open .md files
