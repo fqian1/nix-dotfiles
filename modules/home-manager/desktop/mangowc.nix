@@ -7,10 +7,10 @@
   xdg.configFile."mango/config.conf".text = ''
     # Window effect
     blur=0
-    shadows = 0
+    shadows=0
     border_radius=0
     focused_opacity=1.0
-    unfocused_opacity=1.0
+    unfocused_opacity=0.9
     animations=0
 
     # Misc
@@ -25,6 +25,11 @@
     snap_distance=30
     cursor_size=24
     drag_tile_to_tile=1
+
+    # Overview
+    enable_hotarea=0
+    overviewgappi=1
+    overviewgappo=1
 
     # keyboard
     repeat_rate=40
@@ -129,7 +134,7 @@
     layerrule=animation_type_open:zoom,layer_name:wmenu
     layerrule=animation_type_close:zoom,layer_name:wmenu
 
-    exec-once=~/.config/mango/autostart.sh
+    exec=bash autostart.sh
 
     env=GTK_IM_MODULE,fcitx
     env=QT_IM_MODULE,fcitx

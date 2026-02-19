@@ -48,7 +48,7 @@ vim.opt.showbreak = "↪\\" -- Show an arrow where lines break
 vim.opt.signcolumn = "yes" -- Always show the sign column (used by plugins like GitGutter)
 -- vim.opt.colorcolumn = '80' -- Highlight column 80 (good for code style)
 vim.opt.cmdheight = 1 -- Set the command bar height to 1 lines
-vim.opt.laststatus = 2 -- Always show the status line
+vim.opt.laststatus = 0 -- Hide statusline (in tmux)
 vim.opt.splitbelow = true -- Horizontal splits open below the current window
 vim.opt.splitright = true -- Vertical splits open to the right of the current window
 vim.opt.foldmethod = syntax -- Use treesitter fold method
@@ -59,7 +59,6 @@ vim.opt.foldopen = ""
 vim.opt.foldopen:remove("search")
 vim.opt.wildignore:append({ "*.o", "*.obj", "*.bin", "*.dll", "*.exe" }) -- Ignore common binary files during tab completion
 vim.cmd("syntax on") -- Enable syntax highlighting
--- vim.cmd('colorscheme desert')          -- Set the colorscheme to 'desert'
 vim.opt.winblend = 0
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = nc

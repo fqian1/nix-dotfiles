@@ -5,22 +5,17 @@
   runCommandLocal,
   vimPlugins,
   lib,
-  alejandra,
+  # Dependencies
   ripgrep,
   fd,
-  prettier,
-  rustfmt,
-  ruff,
-  shfmt,
-  stylua,
-  lua-language-server,
-  yaml-language-server,
-  rust-analyzer,
-  bash-language-server,
-  vscode-css-languageserver,
-  pyright,
-  nil,
   tree-sitter,
+  # QOL global toolchains
+  shellcheck,
+  yaml-language-server,
+  taplo,
+  vscode-json-languageserver,
+  markdown-oxide,
+  shfmt,
 }: let
   packageName = "mypackage";
 
@@ -35,9 +30,9 @@
     # Treesitter
     vimPlugins.treesitter-modules-nvim
     vimPlugins.nvim-treesitter-textobjects
-    vimPlugins.nvim-treesitter-textsubjects
-    vimPlugins.nvim-treesitter-sexp
     vimPlugins.nvim-treesitter-context
+    vimPlugins.nvim-treesitter-parsers.rust
+    vimPlugins.nvim-treesitter-parsers.nix
     # Completion
     vimPlugins.blink-cmp
     # Fuzzy Find
@@ -60,7 +55,6 @@
     vimPlugins.undotree
     vimPlugins.vim-tpipeline
     vimPlugins.vim-tmux-navigator
-    vimPlugins.colorizer
   ];
 
   foldPlugins = builtins.foldl' (
@@ -86,22 +80,17 @@
   '';
 
   externalPackages = [
-    alejandra
+    # Dependencies
     ripgrep
     fd
-    prettier
-    rustfmt
-    ruff
-    shfmt
-    stylua
-    lua-language-server
-    yaml-language-server
-    rust-analyzer
-    bash-language-server
-    vscode-css-languageserver
-    pyright
-    nil
     tree-sitter
+    # QOL globals
+    shellcheck
+    yaml-language-server
+    taplo
+    vscode-json-languageserver
+    markdown-oxide
+    shfmt
   ];
 in
   symlinkJoin {

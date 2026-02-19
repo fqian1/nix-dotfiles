@@ -38,10 +38,14 @@
         };
       };
     };
+    zathura = {
+      enable = true;
+    };
   };
 
   home.packages = with pkgs; [
     # Tools
+    typst
     wifitui
     hyperfine
     ffmpeg

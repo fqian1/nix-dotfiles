@@ -1,13 +1,13 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter
-require('treesitter-modules').setup({
-    auto_install = false,
-    fold = {
-        enable = true,
-    },
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
+require("treesitter-modules").setup({
+	auto_install = false,
+	fold = {
+		enable = true,
+	},
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
 	incremental_selection = {
 		enable = true,
 		keymaps = {
@@ -17,29 +17,41 @@ require('treesitter-modules').setup({
 			node_decremental = "V",
 		},
 	},
-    indent = {
-        enable = true,
-    },
-	textobjects = {
-		select = {
-			enable = true,
-			lookahead = true,
-			keymaps = {
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-			},
-			selection_modes = {
-				["@parameter.outer"] = "v",
-				["@function.outer"] = "V",
-				["@class.outer"] = "v",
-			},
-			include_surrounding_whitespace = true,
-		},
+	indent = {
+		enable = true,
 	},
+	textobjects = {},
 	matchup = { enable = true },
 })
+
+require("nvim-treesitter-textobjects").setup({
+	select = {
+		enable = true,
+		lookahead = true,
+		keymaps = {
+			["af"] = "@function.outer",
+			["if"] = "@function.inner",
+			["ac"] = "@class.outer",
+			["ic"] = "@class.inner",
+		},
+		selection_modes = {
+			["@parameter.outer"] = "v",
+			["@function.outer"] = "V",
+			["@class.outer"] = "v",
+		},
+		include_surrounding_whitespace = false,
+	},
+	move = {
+		set_jumps = true,
+	},
+})
+
+vim.keymap.set({ "n", "x", "o" }, "]f", function()
+  require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+end)
+vim.keymap.set({ "n", "x", "o" }, "[f", function()
+  require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+end)
 
 -- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
 require("treesitter-context").setup({
