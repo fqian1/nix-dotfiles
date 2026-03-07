@@ -9,6 +9,6 @@ pkgs.mkShell {
     vscode-css-languageserver
   ];
   shellHook = ''
-    nix dev env loaded
+    echo "nix dev env loaded"
   '';
 }

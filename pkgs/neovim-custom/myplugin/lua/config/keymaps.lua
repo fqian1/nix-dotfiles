@@ -53,7 +53,7 @@ keymap("n", "q:", "<Nop>", opts)
 keymap("n", "q/", "<Nop>", opts)
 
 -- more useful escape
-keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
+keymap("n", "<Esc>", "<cmd>nohlsearch | set laststatus=0<CR>", opts)
 keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 keymap("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })

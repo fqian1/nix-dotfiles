@@ -23,6 +23,7 @@
  - create base16 -> ansi 255 script
  - configure iwd over wpa supplicant / nmcli make tui using scripts
  - configure laptop and desktop modules, laptop stuff like tlp, openssh configurations
+ - tell noice.nvim to show recording macro or put into lualine
  - configure rust analyzer expressionadjustmenthints
  - enable encryption with zfs
  - rice tty (256 font ansi colour), kmscon/patched font

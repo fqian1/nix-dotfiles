@@ -45,6 +45,8 @@
 
   home.packages = with pkgs; [
     # Tools
+    cloc
+    waybar
     typst
     wifitui
     hyperfine
