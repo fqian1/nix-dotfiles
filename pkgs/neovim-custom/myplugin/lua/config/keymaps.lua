@@ -14,7 +14,7 @@ map("n", '<leader>*', 'mH', opts)
 map("n", '<leader>)', 'mI', opts)
 map("n", '<leader>_', 'mJ', opts)
 
--- Jump to marks using leader + number and jump to recent position
+-- Jump to marks using leader + number then jump to recent position
 map("n", '<leader>1', [['A`"zz]], opts)
 map("n", '<leader>2', [['B`"zz]], opts)
 map("n", '<leader>3', [['C`"zz]], opts)
@@ -61,16 +61,6 @@ keymap("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 keymap("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 keymap("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
--- buffers
-keymap("n", "<leader>bn", ":bn<CR>", { desc = "Next buffer" })
-keymap("n", "<leader>bn", ":bp<CR>", { desc = "Previous buffer" })
-keymap("n", "<leader>sv", ":vsp<CR>", { desc = "Split right" })
-keymap("n", "<leader>sh", ":sp<CR>", { desc = "Split down" })
-keymap("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
-keymap("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
-
 -- stay in visual mode after shifts
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
@@ -78,23 +68,14 @@ map("v", ">", ">gv", opts)
 -- copy to system clipboard with ctrl+c
 map("v", "<C-c>", '"+y', opts)
 
+-- buffers
+keymap("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
+keymap("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+
 -- TODO move to plugins folder
 vim.api.nvim_set_keymap("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { silent = true })
-
--- -- Nvim DAP
--- map("n", "<Leader>dl", "<cmd>lua require'dap'.step_into()<CR>", { desc = "Debugger step into" })
--- map("n", "<Leader>dj", "<cmd>lua require'dap'.step_over()<CR>", { desc = "Debugger step over" })
--- map("n", "<Leader>dk", "<cmd>lua require'dap'.step_out()<CR>", { desc = "Debugger step out" })
--- map("n", "<Leader>dc>", "<cmd>lua require'dap'.continue()<CR>", { desc = "Debugger continue" })
--- map("n", "<Leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Debugger toggle breakpoint" })
--- map(
--- 	"n",
--- 	"<Leader>dd",
--- 	"<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
--- 	{ desc = "Debugger set conditional breakpoint" }
--- )
--- map("n", "<Leader>de", "<cmd>lua require'dap'.terminate()<CR>", { desc = "Debugger reset" })
--- map("n", "<Leader>dr", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Debugger run last" })

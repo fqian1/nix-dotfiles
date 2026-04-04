@@ -2,7 +2,14 @@
   programs.vim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
-
+      vim-signify
+      vim-fugitive
+      vim-vinegar
+      vim-tmux-navigator
+      vim-tmux-clipboard
+      vim-tpipeline
+# yegappan - lsp
+# fuzzbox - fuzzy
     ];
 
     settings = {
@@ -17,7 +24,7 @@
       history = 1000;
       ignorecase = true;
       # modeline
-      mouse = true;
+      mouse = "a";
       shiftwidth = 4;
       smartcase = true;
       tabstop = 4;
@@ -71,7 +78,6 @@
       set foldopen-=search
       set wildignore+=*.o,*.obj,*.bin,*.dll,*.exe
       syntax on
-      set winblend=0
       set conceallevel=0
       set concealcursor=nc
       set lazyredraw
@@ -95,7 +101,6 @@
 
       set completeopt=menuone,noselect
       set pumheight=10
-      set pumblend=10
       set shortmess+=c
       set spelllang=en_us
       set spellsuggest=best,9
@@ -117,7 +122,6 @@
       set visualbell
       set virtualedit=block
       set incsearch
-      set inccommand=nosplit
 
       hi Normal           ctermfg=NONE ctermbg=NONE
       hi NormalFloat      ctermbg=0
@@ -234,6 +238,14 @@
         autocmd BufWinLeave * silent! mkview
         autocmd BufWinEnter * silent! loadview
       augroup END
+
+      set autocomplete
+      set complete=.^5,w^5,b^5,u^5
+      set completeopt=popup
+
+      inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+      inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
     '';
+# make local shada
   };
 }

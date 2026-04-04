@@ -12,6 +12,7 @@
     outputs.homeManagerModules.cli.tmux
     outputs.homeManagerModules.cli.scripts
     outputs.homeManagerModules.cli.colorschemes
+    outputs.homeManagerModules.cli.vim
 
     outputs.homeManagerModules.desktop.mangowc
     outputs.homeManagerModules.desktop.theme

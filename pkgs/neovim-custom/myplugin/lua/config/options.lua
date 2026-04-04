@@ -51,8 +51,8 @@ vim.opt.cmdheight = 1 -- Set the command bar height to 1 lines
 vim.opt.laststatus = 0 -- Hide statusline (in tmux)
 vim.opt.splitbelow = true -- Horizontal splits open below the current window
 vim.opt.splitright = true -- Vertical splits open to the right of the current window
-vim.opt.foldmethod = syntax -- Use treesitter fold method
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- Use treesitter for folding
+vim.opt.foldmethod = "expr" -- Use treesitter fold method
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldenable = true -- Enable folds
 vim.opt.foldlevelstart = 9 -- Start 3 folds deep
 vim.opt.foldopen = ""
@@ -85,8 +85,8 @@ vim.opt.ignorecase = true -- Ignore case when searching
 vim.opt.smartcase = true -- Override ignorecase if search pattern contains uppercase letters
 vim.opt.incsearch = true -- Show matches as you type
 vim.opt.hlsearch = true -- Highlight search results
-vim.opt.gdefault = true -- Apply global substitutions by default
-vim.opt.wrapscan = true -- Wrap searches around the end of the file
+vim.opt.gdefault = false -- dont apply global subs by default (keep muscle memory portable)
+vim.opt.wrapscan = false -- Wrap searches around the end of the file
 
 ------------------------
 --- MOUSE & KEYBOARD ---
