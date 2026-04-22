@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.kanshi.enable = true;
 
   programs.swaylock.enable = true;
@@ -80,20 +79,17 @@
     bind=ALT,e,spawn,librewolf
     bind=ALT,Return,spawn,foot
     bind=ALT,q,killclient,
-    bind=SUPER,Tab,focusstack,next
-    bind=ALT,l,focusdir,right
-    bind=ALT,h,focusdir,left
-    bind=ALT,k,focusdir,up
-    bind=ALT,j,focusdir,down
+    bind=ALT,z,togglefullscreen,
+    bind=ALT,f,togglefloating,
+    bind=ALT,o,focusstack,next
+    bind=ALT,;,focuslast,
+    bind=ALT,Tab,toggleoverview,
+    bind=ALT,-,setmfact,-0.05,
+    bind=ALT+SHIFT,=,setmfact,+0.05,
     bind=ALT+SHIFT,Up,exchange_client,up
     bind=ALT+SHIFT,Down,exchange_client,down
     bind=ALT+SHIFT,Left,exchange_client,left
     bind=ALT+SHIFT,Right,exchange_client,right
-
-    # switch window status
-    bind=ALT,Tab,toggleoverview,
-    bind=ALT,backslash,togglefloating,
-    bind=ALT,z,toggle_scratchpad
 
     # switch layout
     bind=SUPER,n,switch_layout
@@ -108,7 +104,7 @@
     bind=ALT,8,comboview,8,8
     bind=ALT,9,comboview,9,9
 
-    # tag: move client to the tag and focus it
+    # tag: move client to the tag
     bind=ALT+SHIFT,1,tagsilent,1,0
     bind=ALT+SHIFT,2,tagsilent,2,0
     bind=ALT+SHIFT,3,tagsilent,3,0
