@@ -4,6 +4,7 @@
   networking = import ./networking.nix;
   security = import ./security.nix;
   nix-ld = import ./nix-ld.nix;
+  librechat = import ./librechat.nix;
   greetd = import ./greetd.nix;
   locale = import ./locale.nix;
   audio = import ./audio.nix;

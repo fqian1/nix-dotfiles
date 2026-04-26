@@ -225,6 +225,9 @@
       nnoremap <c-k> <c-w>k
       nnoremap <C-j> <C-w>j
 
+      nnoremap j gj
+      nnoremap k gk
+
       " Stay in visual mode after indenting
       vnoremap < <gv
       vnoremap > >gv

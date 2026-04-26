@@ -14,6 +14,7 @@ vim.lsp.config['*'] = {
 
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nil_ls")
+vim.lsp.enable("tinymist")
 vim.lsp.enable("bashls")
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("clangd")

@@ -1,0 +1,334 @@
+require("nvim-autopairs").setup({
+    check_ts = true,
+    enable_check_bracket_line = false,
+})
+require("fidget").setup()
+require("ibl").setup()
+
+vim.api.nvim_set_hl(0, "IblScope", { ctermfg = 11 })
+vim.api.nvim_set_hl(0, "IblIndent", { ctermfg = 8 })
+
+require("gitsigns").setup()
+
+require("lualine").setup({
+	options = {
+		component_separators = { left = "|", right = "|" },
+		section_separators = { left = "", right = "" },
+	},
+})
+
+-- https://cmp.saghen.dev/recipes.html
+
+require("blink.cmp").setup({
+    keymap = { preset = "super-tab" },
+    completion = { ghost_text = { enabled = true } },
+    cmdline = {
+        keymap = { preset = "inherit" },
+        completion = { menu = { auto_show = true } },
+    }
+})
+require("conform").setup({
+	formatters_by_ft = {
+		lua = { "stylua" },
+		nix = { "alejandra" },
+		sh = { "shfmt" },
+		rust = { "rustfmt" },
+		css = { "prettier" },
+		python = { "ruff" },
+	},
+})
+
+ require('guess-indent').setup {}
+
+vim.keymap.set({ "n", "v" }, "=", function()
+	require("conform").format({
+		async = true,
+		lsp_fallback = true,
+	})
+end, {
+	desc = "Format buffer/selection with conform",
+})
+local function on_attach(client, bufnr)
+    local opts = { buffer = bufnr }
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+end
+
+vim.lsp.config['*'] = {
+	root_markers = {'.git'},
+	on_attach = on_attach()
+}
+
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("nil_ls")
+vim.lsp.enable("bashls")
+vim.lsp.enable("rust_analyzer")
+vim.lsp.enable("clangd")
+vim.lsp.enable("cssls")
+vim.lsp.enable("pyright")
+
+vim.keymap.set('n', 'L', function()
+    local new_config = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = 'Toggle diagnostic virtual_lines' })
+
+vim.diagnostic.config({ virtual_text = false })
+require("obsidian").setup({
+	workspaces = {
+		{
+			name = "personal",
+			path = "~/vaults",
+		},
+	},
+})
+require("render-markdown").setup()
+-- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
+-- https://github.com/nvim-telescope/telescope-file-browser.nvim/wiki/Configuration-Recipes
+
+local actions = require("telescope.actions")
+local fb_actions = require("telescope._extensions.file_browser.actions")
+
+local opts = {
+	require("telescope").setup({
+		defaults = {
+			borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+			-- borderchars = { "", "", "", "", "", "", "", "" },
+			preview = {
+				filesize_limit = 0.3, -- MB
+			},
+			vimgrep_arguments = {
+				"rg",
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+				"--trim",
+			},
+			file_ignore_patterns = { "node_modules", ".git/" },
+			winblend = 0,
+			mappings = {
+				i = {},
+				n = {
+					["J"] = actions.preview_scrolling_down,
+					["K"] = actions.preview_scrolling_up,
+				},
+			},
+		},
+		pickers = {
+			find_files = {
+				find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+			},
+		},
+		extensions = {
+			frecency = {
+				path_display = { "shorten" },
+			},
+			file_browser = {
+				grouped = true,
+				depth = 2,
+				hidden = true,
+				hijack_netrw = true,
+				select_buffer = true,
+				mappings = {
+					["i"] = {},
+					["n"] = {
+						["c"] = fb_actions.create,
+						["r"] = fb_actions.rename,
+						["m"] = fb_actions.move,
+						["y"] = fb_actions.copy,
+						["d"] = fb_actions.remove,
+					},
+				},
+			},
+		},
+	}),
+}
+
+require("telescope").setup(opts)
+require("telescope").load_extension("ui-select")
+require("telescope").load_extension("file_browser")
+require("telescope").load_extension("fzy_native")
+require("telescope").load_extension("frecency")
+
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set("n", "<leader>e", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+vim.keymap.set("n", "<leader>f", require("telescope.builtin").find_files, opts)
+vim.keymap.set("n", "<leader>g", require("telescope.builtin").live_grep, opts)
+vim.keymap.set("n", "<leader>b", require("telescope.builtin").buffers, opts)
+vim.keymap.set("n", "<leader>h", require("telescope.builtin").help_tags, opts)
+
+local colors = {
+	bg = "NONE", -- Black
+	BrightBlack = 0,
+	DarkGrey = 14,
+	Grey = 8,
+	LightGrey = 7,
+	fg = "NONE", -- OffWhite
+	White = 15,
+	Red = 1,
+	Green = 2,
+	Yellow = 3,
+	Blue = 4,
+	Magenta = 5,
+	Cyan = 6,
+	Orange = 11,
+	Maroon = 13,
+}
+
+vim.api.nvim_set_hl(0, "TelescopeNormal", { ctermfg = colors.fg, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopeBorder", { ctermfg = colors.BrightBlack, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopePromptNormal", { ctermfg = colors.fg, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopePromptBorder", { ctermfg = colors.BrightBlack, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopePromptTitle", { ctermfg = colors.Orange, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { ctermfg = colors.Orange, ctermbg = colors.BrightBlack })
+vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { ctermfg = colors.Orange, ctermbg = colors.BrightBlack })
+-- https://github.com/nvim-treesitter/nvim-treesitter
+require("treesitter-modules").setup({
+	auto_install = false,
+	fold = {
+		enable = true,
+	},
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = false,
+			node_incremental = "v",
+			scope_incremental = false,
+			node_decremental = "V",
+		},
+	},
+	indent = {
+		enable = true,
+	},
+	textobjects = {},
+	matchup = { enable = true },
+})
+
+require("nvim-treesitter-textobjects").setup({
+	select = {
+		enable = true,
+		lookahead = true,
+		keymaps = {
+			["af"] = "@function.outer",
+			["if"] = "@function.inner",
+			["ac"] = "@class.outer",
+			["ic"] = "@class.inner",
+		},
+		selection_modes = {
+			["@parameter.outer"] = "v",
+			["@function.outer"] = "V",
+			["@class.outer"] = "v",
+		},
+		include_surrounding_whitespace = false,
+	},
+	move = {
+		set_jumps = true,
+	},
+})
+
+vim.keymap.set({ "n", "x", "o" }, "]f", function()
+  require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+end)
+vim.keymap.set({ "n", "x", "o" }, "[f", function()
+  require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+end)
+
+-- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
+require("treesitter-context").setup({
+	multiline_threshold = 4,
+})
+
+local colors = {
+	Black = "NONE", -- BG
+	BrightBlack = 0, -- UI Panels
+	Red = 1, -- Variables
+	Green = 2, -- Strings
+	Yellow = 3, -- Classes
+	Blue = 4, -- Functions
+	Magenta = 5, -- Keywords
+	Cyan = 6, -- Regex
+	LightGrey = 7, -- Subtle text
+	Grey = 8, -- Invisible chars
+	Orange = 11, -- Integers, Consts
+	DarkGrey = 12, -- Highlighted lines
+	Maroon = 13, -- Deprecated
+	White = 15, -- Emphasis
+	OffWhite = "NONE", -- FG
+}
+
+local ts_highlights = {
+	-- 1. Identifiers & Variables
+	["@variable"] = { ctermfg = colors.OffWhite }, -- Local vars
+	["@variable.builtin"] = { ctermfg = colors.Red }, -- 'this', 'self'
+	["@variable.parameter"] = { ctermfg = colors.Red },
+	["@variable.member"] = { ctermfg = colors.Red }, -- Object properties
+	["@property"] = { ctermfg = colors.Red }, -- Missing in your list (maps to member)
+
+	-- 2. Functions & Methods
+	["@function"] = { ctermfg = colors.Blue },
+	["@function.builtin"] = { ctermfg = colors.Blue, bold = true },
+	["@function.method"] = { ctermfg = colors.Blue },
+	["@function.macro"] = { ctermfg = colors.Cyan },
+
+	-- 3. Keywords & Control
+	["@keyword"] = { ctermfg = colors.Magenta },
+	["@keyword.function"] = { ctermfg = colors.Magenta },
+	["@keyword.operator"] = { ctermfg = colors.Magenta },
+	["@keyword.import"] = { ctermfg = colors.Maroon }, -- Specific for includes/requires
+	["@operator"] = { ctermfg = colors.Magenta }, -- +, -, *, =
+	["@conditional"] = { ctermfg = colors.Magenta },
+	["@repeat"] = { ctermfg = colors.Magenta },
+
+	-- 4. Types & Classes
+	["@type"] = { ctermfg = colors.Yellow },
+	["@type.builtin"] = { ctermfg = colors.Yellow },
+	["@type.definition"] = { ctermfg = colors.Yellow },
+	["@module"] = { ctermfg = colors.Yellow }, -- Namespaces/Modules
+	["@constructor"] = { ctermfg = colors.Blue },
+
+	-- 5. Constants & Literals
+	["@constant"] = { ctermfg = colors.Orange },
+	["@constant.builtin"] = { ctermfg = colors.Orange, bold = true },
+	["@string"] = { ctermfg = colors.Green },
+	["@string.escape"] = { ctermfg = colors.Cyan },
+	["@number"] = { ctermfg = colors.Orange },
+	["@boolean"] = { ctermfg = colors.Orange },
+
+	-- 6. Punctuation & Tags
+	["@punctuation"] = { ctermfg = colors.OffWhite },
+	["@punctuation.delimiter"] = { ctermfg = colors.OffWhite },
+	["@punctuation.bracket"] = { ctermfg = colors.OffWhite },
+
+	["@tag"] = { ctermfg = colors.Red },
+	["@tag.attribute"] = { ctermfg = colors.Blue }, -- FIXED: Palette says Blue = Attribute IDs
+	["@tag.delimiter"] = { ctermfg = colors.Maroon }, -- FIXED: Palette says Maroon = Embedded Tags
+
+	-- 7. Markup (Markdown / Help)
+	["@markup.heading"] = { ctermfg = colors.Maroon, bold = true }, -- Palette says Maroon = Headers
+	["@markup.strong"] = { bold = true },
+	["@markup.italic"] = { italic = true },
+	["@markup.link"] = { ctermfg = colors.Blue, underline = true },
+	["@markup.link.label"] = { ctermfg = colors.Green },
+	["@markup.raw"] = { ctermfg = colors.Green }, -- Code blocks
+
+	-- 8. Comments
+	["@comment"] = { ctermfg = colors.LightGrey, italic = true },
+	["@text.uri"] = { ctermfg = colors.Blue, underline = true },
+}
+
+for group, settings in pairs(ts_highlights) do
+	vim.api.nvim_set_hl(0, group, settings)
+end
+
+vim.api.nvim_set_hl(0, "TreesitterContext", { link = "CursorLine" })
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
