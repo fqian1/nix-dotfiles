@@ -15,6 +15,7 @@
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/var/lib/NetworkManager"
+      "/var/lib/librechat"
       "/etc/ssh"
       "/etc/NetworkManager/system-connections"
       "/etc/wireguard/"
@@ -25,6 +26,7 @@
     ];
   };
   fileSystems."/persistent".neededForBoot = true;
+  fileSystems."/var".neededForBoot = true;
   systemd.shutdownRamfs = {
     enable = true;
     contents."/etc/systemd/system-shutdown/zfs-rollback".source =

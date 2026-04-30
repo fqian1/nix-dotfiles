@@ -89,7 +89,6 @@
   systemd.user.startServices = "sd-switch";
   services.ssh-agent = {
     enable = true;
-    enableBashIntegration = true;
   };
 
   services = {

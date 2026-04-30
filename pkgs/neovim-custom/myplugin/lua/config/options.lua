@@ -10,7 +10,6 @@ vim.opt.autochdir = false
 vim.opt.iskeyword:append("-")
 vim.opt.path:append("**")
 vim.opt.selection = "exclusive"
-vim.opt.mouse = "a"
 vim.opt.modifiable = true
 vim.opt.showcmd = true -- Show incomplete commands in the bottom right
 vim.opt.wildmenu = true -- Enable command-line completion in a menu
@@ -92,7 +91,7 @@ vim.opt.wrapscan = false -- Wrap searches around the end of the file
 --- MOUSE & KEYBOARD ---
 ------------------------
 
-vim.opt.mouse = "a" -- Enable mouse in all modes
+vim.opt.mouse = "" -- Disable mouse
 vim.opt.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete
 vim.opt.ttimeoutlen = 0 -- Time in milliseconds to wait for key code sequences
 -- vim.opt.clipboard = 'unnamed'      -- Use the system clipboard for copy/paste

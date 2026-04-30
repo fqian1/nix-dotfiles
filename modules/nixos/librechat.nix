@@ -1,39 +1,49 @@
-{...}: {
+{ lib, pkgs, ... }: {
+  # Allow MongoDB if using enableLocalDB
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "mongodb-ce"
+  ];
+  
+  services.mongodb.package = pkgs.mongodb-ce;
+
   services.librechat = {
     enable = true;
+    enableLocalDB = true; # This automatically sets MONGO_URI to localhost
+    
+    # This tells Systemd to load your file via EnvironmentFile=
+    credentialsFile = "/var/lib/librechat/librechat.env";
 
-    # 1. Database: The easiest way is to let the module handle a local MongoDB.
-    enableLocalDB = true;
+    # # Optional: If you want to open the firewall
+    # openFirewall = true;
 
-    # 2. Security: These are REQUIRED.
-    # Use 'credentials' to point to files containing the secrets to keep them out of the Nix store.
-    # If you don't care about the Nix store being world-readable, move these to 'env' as strings.
-    credentials = {
-      CREDS_KEY = "/run/secrets/librechat_creds_key";
-      CREDS_IV = "/run/secrets/librechat_creds_iv";
-      JWT_SECRET = "/run/secrets/librechat_jwt_secret";
-      JWT_REFRESH_SECRET = "/run/secrets/librechat_jwt_refresh";
-    };
-
-    # 3. Optional Search: Enable Meilisearch for chat history search
-    meilisearch.enable = true;
-
-    # 4. Endpoints and Settings
+    # The free-form settings for the librechat.yaml
     settings = {
       version = "1.2.1";
+      # If you reference variables from the .env file in your yaml, 
+      # use the ${VAR} syntax. Note: Nix requires escaping the '$'
       endpoints = {
-        # Example: OpenAI Configuration
-        openai = {
-          apiKey = "\${API_KEY}"; # References an env var from credentials
-        };
+        custom = [
+          {
+            name = "OpenRouter";
+            # We use the variable name from your .env file.
+            # The \$ escapes it so Nix doesn't try to evaluate it as a Nix variable.
+            apiKey = "\${API_KEY}"; 
+            baseURL = "https://openrouter.ai/api/v1";
+            models = {
+              default = [ 
+              "deepseek/deepseek-r1" 
+              ];
+              fetch = true; # Set to true to attempt to pull other available models automatically
+            };
+            titleConvo = true;
+            titleModel = "deepseek/deepseek-chat";
+            summarize = true;
+            summaryModel = "deepseek/deepseek-chat";
+            forcePrompt = false;
+            modelDisplayLabel = "OpenRouter (DeepSeek)";
+          }
+        ];
       };
     };
-
-    # 5. API Keys: Add any keys your endpoints need here
-    # Ensure the files exist at these paths and are readable by the 'librechat' user.
-    credentials.API_KEY = "/run/secrets/deepseek_key";
   };
-
-  # Mandatory if Meilisearch is enabled
-  services.meilisearch.masterKeyFile = "/run/secrets/meili_master_key";
 }

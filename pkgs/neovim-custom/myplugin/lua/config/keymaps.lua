@@ -75,9 +75,3 @@ keymap("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
 keymap("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
-
--- TODO move to plugins folder
-vim.api.nvim_set_keymap("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { silent = true })

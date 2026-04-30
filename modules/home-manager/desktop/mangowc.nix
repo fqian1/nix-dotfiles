@@ -50,8 +50,8 @@
 
     # mouse
     mouse_natural_scrolling=0
-    accel_profile=0
-    accel_speed=0.6
+    accel_profile=1
+    accel_speed=1.0
 
     # Appearance
     gappih=0
