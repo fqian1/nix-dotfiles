@@ -12,7 +12,7 @@
     outputs.nixosModules.greetd
     outputs.nixosModules.networking
     outputs.nixosModules.impermanence
-    outputs.nixosModules.librechat
+    # outputs.nixosModules.librechat
     outputs.nixosModules.nix-ld
     outputs.nixosModules.power
     outputs.nixosModules.security

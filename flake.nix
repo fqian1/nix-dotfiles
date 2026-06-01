@@ -1,7 +1,7 @@
 {
   description = "fqian's nixos configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -76,7 +76,7 @@
         modules = [
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
-          lix-module.nixosModules.default
+          lix-module.nixosModules.lixFromNixpkgs
           ./hosts/laptop/configuration.nix
         ];
       };

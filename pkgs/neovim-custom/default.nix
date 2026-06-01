@@ -16,6 +16,7 @@
   vscode-json-languageserver,
   markdown-oxide,
   shfmt,
+  harper,
 }: let
   packageName = "mypackage";
 
@@ -90,6 +91,7 @@
     taplo
     vscode-json-languageserver
     markdown-oxide
+    harper
     shfmt
   ];
 in
